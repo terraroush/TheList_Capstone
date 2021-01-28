@@ -11,7 +11,7 @@ const Register = () => {
   const { register } = useContext(UserProfileContext);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -78,14 +78,14 @@ const Register = () => {
     setLoading(true);
     const profile = {
       name,
-      username,
+      userName,
       profilePicUrl,
       email,
     };
     register(profile, password)
       .then((user) => {
         setLoading(false);
-        toast.info(`Welcome ${user.username}`);
+        toast.info(`Welcome ${user.userName}`);
       })
       .catch((err) => {
         setLoading(false);
@@ -118,10 +118,10 @@ const Register = () => {
         </div>
         <div className="form-group">
           <Input
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUserName(e.target.value)}
             type="text"
             className="form-control"
-            name="username"
+            name="userName"
             placeholder="Username"
             required="required"
           />

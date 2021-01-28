@@ -7,7 +7,7 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 // making test comment for whatever
 
-function App() {
+function TheList() {
   return (
     <div className="App">
       <ToastContainer position="bottom-right" hideProgressBar />
@@ -20,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default TheList;

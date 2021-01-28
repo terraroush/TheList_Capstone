@@ -18,8 +18,8 @@ const Login = () => {
     setLoading(true);
     login(email, password)
       .then((user) => {
-        setLoading(false);
-        toast.info(`Welcome back ${user.username}`);
+        setLoading(true);
+        toast.info(`Welcome back ${user.userName}`);
         history.push("/");
       })
       .catch((err) => {
