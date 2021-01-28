@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TheList_Back_end_Capstone_ServerSide.Data;
 using TheList_Back_end_Capstone_ServerSide.Models;
@@ -14,29 +15,41 @@ namespace TheList_Back_end_Capstone_ServerSide.Controllers
     [ApiController]
     public class UserProfileController : ControllerBase
     {
-        private readonly UserProfileRepository _userProfileRepository;
-        public UserProfileController(ApplicationDbContext context)
+        private readonly IUserProfileRepository _repo;
+
+        private UserProfile GetCurrentUserProfile()
         {
-            _userProfileRepository = new UserProfileRepository(context);
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _repo.GetByFirebaseUserId(firebaseUserId);
+        }
+        public UserProfileController(IUserProfileRepository repo)
+        {
+            _repo = repo;
         }
 
         [HttpGet("{firebaseUserId}")]
-        public IActionResult GetByFirebaseUserId(string firebaseUserId)
+        public IActionResult GetUserProfile(string firebaseUserId)
         {
-            var userProfile = _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
-            if (userProfile == null)
-            {
-                return NotFound();
-            }
-            return Ok(userProfile);
+            return Ok(_repo.GetByFirebaseUserId(firebaseUserId));
         }
 
         [HttpPost]
-        public IActionResult Register(UserProfile userProfile)
+        public IActionResult Post(UserProfile userProfile)
         {
-            _userProfileRepository.Add(userProfile);
+            _repo.Add(userProfile);
             return CreatedAtAction(
-                nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);
+                nameof(GetUserProfile),
+                new { firebaseUserId = userProfile.FirebaseUserId },
+                userProfile);
         }
+
+        //[HttpPut]
+        //public IActionResult AddUserImage(Image image)
+        //{
+
+        //    var user = GetCurrentUserProfile();
+        //    _repo.AddImageProfile(image, user.Id);
+        //    return Ok();
+        //}
     }
 }

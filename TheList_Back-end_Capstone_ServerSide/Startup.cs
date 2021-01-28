@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TheList_Back_end_Capstone_ServerSide.Data;
+using TheList_Back_end_Capstone_ServerSide.Repositories;
 
 namespace TheList_Back_end_Capstone_ServerSide
 {
@@ -31,6 +32,8 @@ namespace TheList_Back_end_Capstone_ServerSide
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -75,6 +78,7 @@ namespace TheList_Back_end_Capstone_ServerSide
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

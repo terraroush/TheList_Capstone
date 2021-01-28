@@ -14,5 +14,7 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
         public int UserProfileId { get; set; }
 
         public UserProfile UserProfile { get; set; }
+
+        public int SubscriberId { get; set; }
     }
 }

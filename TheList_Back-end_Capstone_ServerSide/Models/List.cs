@@ -22,10 +22,6 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
         public DateTime Deadline { get; set; }
 
         [Required]
-        [MaxLength(255)]
-        public string Content { get; set; }
-
-        [Required]
         public bool Active { get; set; }
 
         [Required]
@@ -40,6 +36,8 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
         public int ListTypeId { get; set; }
 
         public ListType ListType { get; set; }
+
+        public List<ListItem> ListItems { get; set; }
 
     }
 }

@@ -16,6 +16,7 @@ namespace TheList_Back_end_Capstone_ServerSide.Data
         public DbSet<ListType> ListType { get; set; }
         public DbSet<List> List { get; set; }
         public DbSet<Comment> Comment { get; set; }
+        public DbSet<ListItem> ListItem { get; set; }
 
     }
 }

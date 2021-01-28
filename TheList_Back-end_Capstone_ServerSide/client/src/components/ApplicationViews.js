@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
-export default function ApplicationViews() {
+const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
 
   return (
@@ -25,3 +25,4 @@ export default function ApplicationViews() {
     </main>
   );
 };
+export default ApplicationViews;
