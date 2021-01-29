@@ -16,9 +16,10 @@ const ApplicationViews = () => {
     <main>
       <Sidebar />
       <Main />
+      
       <Switch>
         <Route path="/" exact>
-          {isLoggedIn ? /*this is home*/<p>hello logged in user</p> : <Redirect to="/login" />}
+          {!isLoggedIn ? <Login /> : <Redirect to="/dashboard" />}
         </Route>
 
         <Route path="/login">
@@ -26,9 +27,15 @@ const ApplicationViews = () => {
         </Route>
 
         <Route path="/register">
-          <Register />
+        {!isLoggedIn ? <Register /> : <Redirect to="/dashboard" />}
         </Route>
+
+        {/* <Route path="/dashboard">
+          {isLoggedIn ? <Dashboard /> : <Redirect to="/login" />}
+        </Route> */}
+
       </Switch>
+
       <Footer />
     </main>
   );
