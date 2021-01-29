@@ -7,14 +7,14 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Footer from "./Footer";
 import Main from "./Main";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar/Sidebar";
 
 const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
 
   return (
     <main>
-      <Sidebar />
+      
       <Main />
       
       <Switch>

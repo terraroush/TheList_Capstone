@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import firebase from "firebase/app";
 import 'bootstrap/dist/css/bootstrap.css';
 import TheList from './TheList';
+import App from './App';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -15,6 +16,7 @@ firebase.initializeApp(firebaseConfig);
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <App />
       <TheList />
     </Router>
   </React.StrictMode>,
