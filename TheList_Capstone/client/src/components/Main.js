@@ -1,14 +1,16 @@
 import React from "react";
-import "./Main.css";
+import "../index.css";
 import LeftMain from "./LeftMain";
 import RightMain from "./RightMain";
 
 const Main = () => {
 
     return (
-        <div className="main" id="main">
-            <LeftMain />
-            <RightMain />
+        <div className="theMain" id="theMain">
+            <h3>main container</h3>
+            <h6>holds leftMain and rightMain</h6>
+            <div className="listContainer"><LeftMain /></div>
+            <div className="listDetailContainer"><RightMain /></div>
         </div>
     )
 };

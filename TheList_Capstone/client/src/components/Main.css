@@ -1,8 +1,0 @@
-.main {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  background: lightcoral;
-  border: 5px lightcoral;
-
-  display: grid;
-}
