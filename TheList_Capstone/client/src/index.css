@@ -13,27 +13,27 @@ code {
     monospace;
 }
 
-#root {
+#bossGrid {
   display: grid;
   width: 100%;
   height: 100vh;
   background: palegoldenrod;
   grid-template-columns: 0.35fr 1fr;
   grid-template-rows: 1fr 0.08fr;
-  grid-template-areas:
+  /* grid-template-areas:
     "sidebar theMain"
     "sidebar theMain"
-    "footer footer";
+    "footer footer"; */
 }
 .sidebar {
-  grid-area: sidebar;
+  /* grid-area: sidebar; */
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  grid-row: 1 / 2;
   background: lightblue;
   border: 2px lightblue;
 }
 .theMain {
-  grid-area: theMain;
+  /* grid-area: theMain; */
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   background: lightcoral;
@@ -44,7 +44,7 @@ code {
   /* gap: 0.5em; */
 }
 .footer {
-  grid-area: footer;
+  /* grid-area: footer; */
   grid-column: 1 / 3;
   grid-row: 2 / 3;
   background: lightslategrey;

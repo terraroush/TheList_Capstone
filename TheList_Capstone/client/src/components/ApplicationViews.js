@@ -13,7 +13,7 @@ const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
 
   return (
-    <main>
+    <main id="bossGrid">
       <Sidebar />
       <Main />
       
