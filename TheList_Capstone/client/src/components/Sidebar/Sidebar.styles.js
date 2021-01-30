@@ -28,6 +28,12 @@ export const SidebarHeader = styled.h3`
 export const MenuItemContainer = styled.div`
     
 `
+export const ItemContainer = styled.div`
+    
+`
+
+// Menu items -------------------------------------------------------------------------------------------
+
 export const MenuItem = styled.div`
     ${p => !p.isSidebarOpen && `
         text-align: center;
@@ -40,6 +46,8 @@ export const MenuItem = styled.div`
     font-family: ${p => p.font};
     font-size: 14px;
     white-space: nowrap;
+    position: relative; // Dropdown Icon
+    transition: .2s ease-in all;
 
     &:hover {
         color: rgba(255, 255, 255);
@@ -49,8 +57,9 @@ export const MenuItem = styled.div`
     &:after {
         content: "";
         border: .5px solid ${p => p.selected ? "white" : "gold"};
-        display: block;
+        display: ${p => p.isSidebarOpen && p.selected && p.isOpen ? "none" : "block"};
         margin: 8px 0 4px;
+        transition: .1s ease-in all;
     }
 
     ${p => !p.selected && `
@@ -72,6 +81,35 @@ export const Icon = styled.img`
 
     height: 25px;
     width: 25px;
+`
+
+// Sub menu items --------------------------------------------------------------------------------
+
+export const SubMenuItemContainer = styled.div`
+    font-size: 12px;
+    ${p => p.isSidebarOpen && "padding-left: 15%"};
+    ${p => !p.isSidebarOpen && "text-align: center"};
+`
+export const SubMenuItem = styled.p`
+    color: rgba(19, 15, 64);
+    &:hover {
+        color: rgba(255, 255, 255);
+        transition: .1s ease-in all;
+    }
+`
+
+
+// Dropdown Icon ---------------------------------------------------------------------------------
+        // makes a lined box, but with border-width essentially get rid of two sides, leaving just one angle, then we rotate it, creating a little carrot/arrow for the submenu
+export const DropdownIcon = styled.span`
+    position: absolute;
+    top: ${p => p.isOpen ? "16px" : "12px" };
+    right: 24px;
+    border: solid ${p => p.selected ? "rgba(255, 255, 255)" : "rgba(19, 15, 64)"};
+    border-width: 0 1px 1px 0;
+    padding: 3px;
+    transform: ${p => p.isOpen ? "rotate(-135deg)": "rotate(45deg)"};
+    transition: .4s ease-in all;
 `
 
 // Toggler ---------------------------------------------------------------------------------------

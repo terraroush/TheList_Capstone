@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {AnimatePresence, motion} from "framer-motion";
 import * as s from "./Sidebar.styles";
 import "../../Global.scss";
  
@@ -20,9 +21,9 @@ const Sidebar = (props) => {
     const [selected, setSelectedMenuItem] = useState(menuItems[0].name)
     const [isSidebarOpen, setSidebarState] = useState(true)
     const [header, setHeader] = useState(sidebarHeader.fullName)
+    const [subMenuItemsStates, setSubMenus] = useState({})
 
-    // Effects
-
+// Effects
     // Update of header state
     useEffect(() => {
         isSidebarOpen ? setTimeout(() => setHeader(sidebarHeader.fullName), 200) : setHeader(sidebarHeader.shortName)
@@ -39,24 +40,79 @@ const Sidebar = (props) => {
         return () => window.removeEventListener("resize", updateWindowWidth);
     }, [isSidebarOpen])
 
-    const handleMenuItemClick = name => {
+    // Add index of menu items with submenus to state
+    useEffect(() => {
+        const newSubMenus = {};
+
+        menuItems.forEach((item, index) => {
+            // !! checks for falsey or truthy; 0 is falsey any other number is truthy
+            const hasSubMenus = !!item.subMenuItems.length;
+
+            if (hasSubMenus) {
+                newSubMenus[index] = {};
+                newSubMenus[index]["isOpen"] = false;
+                newSubMenus[index]["isSelected"] = null;
+            }
+        }) 
+
+        setSubMenus(newSubMenus)
+
+    }, [menuItems])
+    
+    const handleMenuItemClick = (name, index) => {
         setSelectedMenuItem(name)
+
+        const subMenusCopy = JSON.parse(JSON.stringify(subMenuItemsStates));
+
+        if (subMenuItemsStates.hasOwnProperty(index)) {
+            subMenusCopy[index]["isOpen"] = !subMenuItemsStates[index]["isOpen"]
+            setSubMenus(subMenusCopy)
+        }
     }
 
     const menuItemsJSX = menuItems.map((item, index) => {
         const isItemSelected = selected === item.name;
 
+        // !! converts to truthy or falsey value
+        const hasSubMenus = !!item.subMenuItems.length
+        // if this exists, then it's open; if this doesn't exist, it's not open
+        const isOpen = subMenuItemsStates[index]?.isOpen;
+
+        const subMenusJSX = item.subMenuItems.map((subMenuItem, subMenuItemIndex) => {
+            return (
+                <s.SubMenuItem key={subMenuItemIndex}>{subMenuItem.name}</s.SubMenuItem>
+            )
+        })
+
         return (
-            <s.MenuItem 
-                key={index} 
-                font={fonts.menu}
-                selected={isItemSelected}
-                onClick={() => handleMenuItemClick(item.name)}
-                isSidebarOpen={isSidebarOpen}
-            >
-                <s.Icon isSidebarOpen={isSidebarOpen} src={item.icon} />
-                <s.Text isSidebarOpen={isSidebarOpen}>{item.name}</s.Text>
-            </s.MenuItem>
+            <s.ItemContainer key={index}>
+                <s.MenuItem 
+                    font={fonts.menu}
+                    selected={isItemSelected}
+                    onClick={() => handleMenuItemClick(item.name, index)}
+                    isSidebarOpen={isSidebarOpen}
+                    isOpen={isOpen}
+                >
+                    <s.Icon isSidebarOpen={isSidebarOpen} src={item.icon} />
+                    <s.Text isSidebarOpen={isSidebarOpen}>{item.name}</s.Text>
+                    {hasSubMenus && isSidebarOpen && (
+                        <s.DropdownIcon selected={isItemSelected} isOpen={isOpen}/>
+                    )}
+                </s.MenuItem>
+
+                    <AnimatePresence>
+                    {hasSubMenus && isOpen && (
+                        <motion.nav 
+                            initial={{ opacity: 0.5, y: -5 }}
+                            animation={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                            exit={{ opacity: 0.5, x: -30 }}
+                        >
+                            <s.SubMenuItemContainer isSidebarOpen={isSidebarOpen}>{subMenusJSX}</s.SubMenuItemContainer>
+                        </motion.nav>
+                    )}
+                    </AnimatePresence>
+            </s.ItemContainer>
         )
     })
 
