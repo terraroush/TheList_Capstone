@@ -6,17 +6,13 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Footer from "./Footer";
-import Main from "./Main";
-// import Sidebar from "./Sidebar/Sidebar";
 
 const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
 
   return (
     <main>
-      
-      <Main />
-      
+            
       <Switch>
         <Route path="/" exact>
           {!isLoggedIn ? <Login /> : <Redirect to="/dashboard" />}
