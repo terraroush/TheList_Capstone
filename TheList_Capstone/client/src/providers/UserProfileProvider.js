@@ -91,12 +91,6 @@ export function UserProfileProvider(props) {
     return JSON.parse(user);
   };
 
-  const isAdmin = () => {
-    const user = getCurrentUser();
-    const adminTypeId = 1;
-    return user !== null && user.userTypeId === adminTypeId;
-  };
-
   return (
     <UserProfileContext.Provider
       value={{
@@ -106,7 +100,6 @@ export function UserProfileProvider(props) {
         register,
         getToken,
         getCurrentUser,
-        isAdmin,
       }}
     >
       {isFirebaseReady ? (

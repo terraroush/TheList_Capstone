@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {AnimatePresence, motion} from "framer-motion";
+import { Link } from "react-router-dom";
 import * as s from "./Sidebar.styles";
 import "../../Global.scss";
  
@@ -23,7 +24,8 @@ const Sidebar = (props) => {
     const [header, setHeader] = useState(sidebarHeader.fullName)
     const [subMenuItemsStates, setSubMenus] = useState({})
 
-// Effects
+    // Effects
+
     // Update of header state
     useEffect(() => {
         isSidebarOpen ? setTimeout(() => setHeader(sidebarHeader.fullName), 200) : setHeader(sidebarHeader.shortName)
@@ -54,9 +56,7 @@ const Sidebar = (props) => {
                 newSubMenus[index]["isSelected"] = null;
             }
         }) 
-
         setSubMenus(newSubMenus)
-
     }, [menuItems])
     
     const handleMenuItemClick = (name, index) => {
@@ -86,20 +86,21 @@ const Sidebar = (props) => {
 
         return (
             <s.ItemContainer key={index}>
-                <s.MenuItem 
-                    font={fonts.menu}
-                    selected={isItemSelected}
-                    onClick={() => handleMenuItemClick(item.name, index)}
-                    isSidebarOpen={isSidebarOpen}
-                    isOpen={isOpen}
-                >
-                    <s.Icon isSidebarOpen={isSidebarOpen} src={item.icon} />
-                    <s.Text isSidebarOpen={isSidebarOpen}>{item.name}</s.Text>
-                    {hasSubMenus && isSidebarOpen && (
-                        <s.DropdownIcon selected={isItemSelected} isOpen={isOpen}/>
-                    )}
-                </s.MenuItem>
-
+                <Link to={item.to} style={{ textDecoration: "none"}}>
+                    <s.MenuItem 
+                        font={fonts.menu}
+                        selected={isItemSelected}
+                        onClick={() => handleMenuItemClick(item.name, index)}
+                        isSidebarOpen={isSidebarOpen}
+                        isOpen={isOpen}
+                    >
+                        <s.Icon isSidebarOpen={isSidebarOpen} src={item.icon} />
+                        <s.Text isSidebarOpen={isSidebarOpen}>{item.name}</s.Text>
+                        {hasSubMenus && isSidebarOpen && (
+                            <s.DropdownIcon selected={isItemSelected} isOpen={isOpen}/>
+                        )}
+                    </s.MenuItem>
+                </Link>
                     <AnimatePresence>
                     {hasSubMenus && isOpen && (
                         <motion.nav 
