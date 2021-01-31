@@ -12,11 +12,11 @@ const App = () => {
     shortName: "TL",
   };
   const menuItems = [
-    { name: "Home", to: "/", icon: "icons/home.svg", subMenuItems: [] },
+    { name: "Home", to: "/", icon: "/icons/home.svg", subMenuItems: [] },
     {
       name: "All Lists",
       to: "/alllists",
-      icon: "icons/list.svg",
+      icon: "/icons/list.svg",
       subMenuItems: [
         { name: "list1", to: "/list1" },
         { name: "list2", to: "/list2" },
@@ -26,19 +26,19 @@ const App = () => {
     {
       name: "List Details",
       to: "/listdetails",
-      icon: "icons/details.svg",
+      icon: "/icons/details.svg",
       subMenuItems: [],
     },
     {
       name: "Connections",
       to: "/connections",
-      icon: "icons/connections.svg",
+      icon: "/icons/connections.svg",
       subMenuItems: [],
     },
     {
       name: "Logout",
       to: "/logout",
-      icon: "icons/logout.svg",
+      icon: "/icons/logout.svg",
       subMenuItems: [],
     },
   ];

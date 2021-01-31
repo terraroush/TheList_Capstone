@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import * as s from "./Sidebar.styles";
@@ -25,6 +25,20 @@ const Sidebar = (props) => {
   const [subMenuItemsStates, setSubMenus] = useState({});
 
   // Effects
+
+  // Set selected menu item based on URL pathname
+  useLayoutEffect(() => {
+    const path = window.location.pathname;
+    const parts = path.split("/");
+
+    if (
+      path !== "/" &&
+      parts[1].charAt(0).toUpperCase() !== menuItems[0].name
+    ) {
+      const selectedItem = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+      setSelectedMenuItem(selectedItem);
+    }
+  }, [menuItems]);
 
   // Update of header state
   useEffect(() => {
@@ -58,8 +72,30 @@ const Sidebar = (props) => {
         newSubMenus[index]["isSelected"] = null;
       }
     });
-    setSubMenus(newSubMenus);
-  }, [menuItems]);
+    // Set selected submenu if user landed on one
+    const path = window.location.pathname;
+    const parts = path.split("/");
+
+    if (parts.length === 3) {
+      const selectedItem = parts[1].toLowerCase();
+      const selectedSubItem = parts[2].toLowerCase();
+      const selectedItemIndex = menuItems.findIndex(
+        (item) => item.name.toLowerCase() === selectedItem
+      );
+      const selectedSubItemIndex = menuItems[
+        selectedItemIndex
+      ]?.subMenuItems.findIndex(
+        (subItem) => subItem.name.toLowerCase() === selectedSubItem
+      );
+
+      if (selectedItemIndex !== -1)
+        newSubMenus[selectedItemIndex]["isOpen"] = true;
+      if (selectedItemIndex !== -1 && selectedSubItemIndex !== -1)
+        newSubMenus[selectedItemIndex]["selected"] = selectedSubItemIndex;
+    }
+
+    Object.keys(subMenuItemsStates).length === 0 && setSubMenus(newSubMenus);
+  }, [menuItems, subMenuItemsStates]);
 
   const handleMenuItemClick = (name, index) => {
     setSelectedMenuItem(name);
