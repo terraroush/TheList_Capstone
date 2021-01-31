@@ -8,7 +8,6 @@ export const UserProfileContext = createContext();
 export function UserProfileProvider(props) {
   const apiUrl = "/api/userprofile";
 
-
   const userProfile = localStorage.getItem("userProfile");
   const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
 
@@ -18,7 +17,7 @@ export function UserProfileProvider(props) {
       setIsFirebaseReady(true);
     });
   }, []);
-  
+
   const login = (email, pw) => {
     return firebase
       .auth()
@@ -91,12 +90,6 @@ export function UserProfileProvider(props) {
     return JSON.parse(user);
   };
 
-  const isAdmin = () => {
-    const user = getCurrentUser();
-    const adminTypeId = 1;
-    return user !== null && user.userTypeId === adminTypeId;
-  };
-
   return (
     <UserProfileContext.Provider
       value={{
@@ -106,7 +99,6 @@ export function UserProfileProvider(props) {
         register,
         getToken,
         getCurrentUser,
-        isAdmin,
       }}
     >
       {isFirebaseReady ? (

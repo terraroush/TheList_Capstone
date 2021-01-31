@@ -66,7 +66,6 @@ const Register = () => {
   //   }
   // }
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -95,8 +94,8 @@ const Register = () => {
       //   handleUpload()
       // })
       .then(() => {
-        history.push("/")
-      })
+        history.push("/");
+      });
   };
 
   return (
@@ -133,7 +132,6 @@ const Register = () => {
             className="form-control"
             name="profilePicUrl"
             placeholder="profilePicUrl"
-            
           />
         </div>
         <div className="form-group">
