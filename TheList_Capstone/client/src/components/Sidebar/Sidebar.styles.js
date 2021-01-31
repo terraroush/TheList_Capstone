@@ -4,17 +4,17 @@ export const SidebarContainer = styled.div`
   width: ${(p) => (p.isSidebarOpen ? "23%" : "5%")};
   max-width: 280px;
   min-width: 80px;
-  background: lightgrey;
+  background: #454f48;
   background-image: linear-gradient(
       315deg,
-      rgba(254, 202, 32, 0.8) 0%,
-      rgba(255, 209, 148, 0.8) 74%
+      rgba(235, 252, 241, 0.8) 0%,
+      rgba(195, 224, 204, 0.8) 74%
     ),
     url(${(p) => p.backgroundImage});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  color: #fff;
+  color: #2e3630;
   position: relative; // Toggler
   transition: 0.2s ease-in all;
 `;
@@ -36,7 +36,7 @@ export const MenuItem = styled.div`
     !p.isSidebarOpen &&
     `
         text-align: center;
-        ${p.selected && "background-color: orange"};
+        ${p.selected && "background-color: #b1f4cf"};
     `}
 
   padding: 6px 10px;
@@ -55,7 +55,8 @@ export const MenuItem = styled.div`
 
   &:after {
     content: "";
-    border: 0.5px solid ${(p) => (p.selected ? "white" : "gold")};
+    border: 0.5px solid
+      ${(p) => (p.selected ? "white" : "rgba(137, 156, 143, 1)")};
     display: ${(p) =>
       p.isSidebarOpen && p.selected && p.isOpen ? "none" : "block"};
     margin: 8px 0 4px;
