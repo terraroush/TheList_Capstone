@@ -70,6 +70,13 @@ const Sidebar = (props) => {
         }
     }
 
+    const handleSubMenuItemClick = (menuItemIdx, subMenuItemIdx) => {
+        const subMenusCopy = JSON.parse(JSON.stringify(subMenuItemsStates));
+
+        subMenusCopy[menuItemIdx]["selected"] = subMenuItemIdx;
+        setSubMenus(subMenusCopy);
+    }
+
     const menuItemsJSX = menuItems.map((item, index) => {
         const isItemSelected = selected === item.name;
 
@@ -79,8 +86,17 @@ const Sidebar = (props) => {
         const isOpen = subMenuItemsStates[index]?.isOpen;
 
         const subMenusJSX = item.subMenuItems.map((subMenuItem, subMenuItemIndex) => {
+            const isSubMenuItemSelected = subMenuItemsStates[index]?.selected === subMenuItemIndex;
+
             return (
-                <s.SubMenuItem key={subMenuItemIndex}>{subMenuItem.name}</s.SubMenuItem>
+                <Link to={`${item.to}${subMenuItem.to}`} style={{ textDecoration: "none" }} key={subMenuItemIndex}>
+                    <s.SubMenuItem
+                    onClick={() => handleSubMenuItemClick( index, subMenuItemIndex)}
+                    selected={isSubMenuItemSelected}
+                    >
+                        {subMenuItem.name}
+                    </s.SubMenuItem>
+                </Link>
             )
         })
 

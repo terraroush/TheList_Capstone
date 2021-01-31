@@ -91,7 +91,10 @@ export const SubMenuItemContainer = styled.div`
     ${p => !p.isSidebarOpen && "text-align: center"};
 `
 export const SubMenuItem = styled.p`
-    color: rgba(19, 15, 64);
+    color: ${p => p.selected ? "rbga(255, 255, 255)" : "rgba(19, 15, 64)"};
+    ${p => p.selected && "font-weight: bold; letter-spacing: 2px;"};
+    transition: .1s ease-in all;
+
     &:hover {
         color: rgba(255, 255, 255);
         transition: .1s ease-in all;

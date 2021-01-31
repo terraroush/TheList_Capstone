@@ -6,11 +6,9 @@ const AllLists = () => {
     <>
     <h4>Select from your lists</h4>    
     <ListGroup>
-        <ListGroupItem>Cras justo odio</ListGroupItem>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Morbi leo risus</ListGroupItem>
-        <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-        <ListGroupItem>Vestibulum at eros</ListGroupItem>
+        <ListGroupItem>list1</ListGroupItem>
+        <ListGroupItem>list2</ListGroupItem>
+        <ListGroupItem>list3</ListGroupItem>
     </ListGroup>
     </>
     )

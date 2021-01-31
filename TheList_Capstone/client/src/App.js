@@ -14,11 +14,11 @@ const App = () => {
     };
     const menuItems = [
         {name: "Home", to: "/", icon: "icons/home.svg", subMenuItems: []},
-        {name: "All Lists", to: "/lists", icon: "icons/list.svg", 
+        {name: "All Lists", to: "/alllists", icon: "icons/list.svg", 
             subMenuItems: [
-                {name: "listOne", to: "/listone"},
-                {name: "listTwo", to: "/listTwo"},
-                {name: "listThree", to: "/listThree"}
+                {name: "list1", to: "/list1"},
+                {name: "list2", to: "/list2"},
+                {name: "list3", to: "/list3"}
             ]},
         {name: "List Details", to: "/listdetails", icon: "icons/details.svg", subMenuItems: []},
         {name: "Connections", to: "/connections", icon: "icons/connections.svg", 
