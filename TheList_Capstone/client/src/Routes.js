@@ -13,17 +13,15 @@ import ListDetails from "./components/MainView/ListDetails/ListDetails";
 import NotFound from "./pages/NotFound";
 // import Footer from "./components/Footer";
 
-
 const Routes = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
 
   return (
     <>
       <Switch>
-
-         <Route path="/" exact>
+        <Route path="/" exact>
           {isLoggedIn ? <Home /> : <Redirect to="/login" />}
-        </Route> 
+        </Route>
 
         <Route path="/alllists" exact>
           {isLoggedIn ? <AllLists /> : <Redirect to="/login" />}
@@ -39,14 +37,14 @@ const Routes = () => {
         </Route>
 
         <Route path="/login">
-         <Login />
+          <Login />
         </Route>
 
         <Route path="/register">
-        <Register /> 
+          <Register />
         </Route>
 
-        <Route component={NotFound} /> 
+        <Route component={NotFound} />
       </Switch>
     </>
   );

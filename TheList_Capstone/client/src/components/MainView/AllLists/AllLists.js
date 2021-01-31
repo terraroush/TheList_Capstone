@@ -1,17 +1,17 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem } from "reactstrap";
 
 const AllLists = () => {
-    return (
+  return (
     <>
-    <h4>Select from your lists</h4>    
-    <ListGroup>
+      <h4>Select from your lists</h4>
+      <ListGroup>
         <ListGroupItem>list1</ListGroupItem>
         <ListGroupItem>list2</ListGroupItem>
         <ListGroupItem>list3</ListGroupItem>
-    </ListGroup>
+      </ListGroup>
     </>
-    )
-}
+  );
+};
 
 export default AllLists;
