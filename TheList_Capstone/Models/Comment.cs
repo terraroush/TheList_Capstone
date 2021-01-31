@@ -20,8 +20,8 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
         public UserProfile UserProfile { get; set; }
 
         [Required]
-        public int ListId { get; set; }
+        public int UserListId { get; set; }
 
-        public List List { get; set; }
+        public UserList UserList { get; set; }
     }
 }

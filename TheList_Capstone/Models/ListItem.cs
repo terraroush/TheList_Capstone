@@ -13,6 +13,6 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
 
         public int ListId { get; set; }
 
-        public List List { get; set; }
+        public UserList List { get; set; }
     }
 }

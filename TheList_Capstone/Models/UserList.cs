@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheList_Back_end_Capstone_ServerSide.Models
 {
-    public class List
+    public class UserList
     {
         public int Id { get; set; }
 
@@ -33,9 +33,9 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
         public UserProfile UserProfile { get; set; }
 
         [Required]
-        public int ListTypeId { get; set; }
+        public int ListKindId { get; set; }
 
-        public ListType ListType { get; set; }
+        public ListKind ListKind { get; set; }
 
         public List<ListItem> ListItems { get; set; }
 
