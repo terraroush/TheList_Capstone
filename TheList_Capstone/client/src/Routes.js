@@ -29,9 +29,6 @@ const Routes = () => {
           {isLoggedIn ? <AllLists /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/alllists/:list" component={List} />
-          
-
-
 
         <Route path="/connections" exact>
           {isLoggedIn ? <Connections /> : <Redirect to="/login" />}

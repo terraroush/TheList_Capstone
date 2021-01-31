@@ -68,6 +68,13 @@ const Sidebar = (props) => {
             subMenusCopy[index]["isOpen"] = !subMenuItemsStates[index]["isOpen"]
             setSubMenus(subMenusCopy)
         }
+        else {
+            for (let item in subMenuItemsStates) {
+                subMenusCopy[item]["isOpen"] = false;
+                subMenusCopy[item]["selected"] = null
+            }
+            setSubMenus(subMenusCopy);
+        }
     }
 
     const handleSubMenuItemClick = (menuItemIdx, subMenuItemIdx) => {

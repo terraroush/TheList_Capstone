@@ -21,13 +21,7 @@ const App = () => {
                 {name: "list3", to: "/list3"}
             ]},
         {name: "List Details", to: "/listdetails", icon: "icons/details.svg", subMenuItems: []},
-        {name: "Connections", to: "/connections", icon: "icons/connections.svg", 
-            subMenuItems: [
-                {name: "friendOne", to: "/friendOne"},
-                {name: "friendTwo", to: "/friendTwo"},
-                {name: "friendThree", to: "/friendThree"},
-                {name: "friendFour", to: "/friendFour"}
-            ]},
+        {name: "Connections", to: "/connections", icon: "icons/connections.svg", subMenuItems: []},
         {name: "Logout", to: "/logout", icon: "icons/logout.svg", subMenuItems: []}
     ];
 
