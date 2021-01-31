@@ -1,6 +1,6 @@
-﻿using TheList_Back_end_Capstone_ServerSide.Models;
+﻿using TheList_Capstone.Models;
 
-namespace TheList_Back_end_Capstone_ServerSide.Repositories
+namespace TheList_Capstone.Repositories
 {
     public interface IUserProfileRepository
     {

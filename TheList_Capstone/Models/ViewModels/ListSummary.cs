@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TheList_Back_end_Capstone_ServerSide.Models.ViewModels
+namespace TheList_Capstone.Models.ViewModels
 {
     public class ListSummary
     {

@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TheList_Back_end_Capstone_ServerSide.Data;
-using TheList_Back_end_Capstone_ServerSide.Models;
-using TheList_Back_end_Capstone_ServerSide.Repositories;
+using TheList_Capstone.Data;
+using TheList_Capstone.Models;
+using TheList_Capstone.Repositories;
 
-namespace TheList_Back_end_Capstone_ServerSide.Controllers
+namespace TheList_Capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

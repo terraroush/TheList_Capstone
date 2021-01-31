@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TheList_Back_end_Capstone_ServerSide.Data;
+using TheList_Capstone.Data;
 
-namespace TheList_Back_end_Capstone_ServerSide.Repositories
+namespace TheList_Capstone.Repositories
 {
-    public class UserListRepository
+    public class UserListRepository : IUserListRepository
     {
         private ApplicationDbContext _context;
 
@@ -40,6 +40,7 @@ namespace TheList_Back_end_Capstone_ServerSide.Repositories
         {
             return _context.UserList
                 .Where(l => l.UserProfileId == userId)
+                .Where(l => l.Public)
                 .Select(l => new UserListSummary()
                 {
                     Id = l.Id,
@@ -62,6 +63,13 @@ namespace TheList_Back_end_Capstone_ServerSide.Repositories
                 .FirstOrDefault();
         }
 
+        public List<UserList> GetAll()
+        {
+            return _context.UserList
+                .OrderByDescending(ul => ul.DateCreated)
+                .ToList();
+        }
+
         public void Add(UserList userList)
         {
             userList.DateCreated = DateTime.Now;
@@ -82,7 +90,7 @@ namespace TheList_Back_end_Capstone_ServerSide.Repositories
         }
 
         public void Delete(UserList userList)
-        {    
+        {
             _context.UserList.Remove(userList);
             _context.SaveChanges();
         }

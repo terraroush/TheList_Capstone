@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TheList_Back_end_Capstone_ServerSide.Models;
+using TheList_Capstone.Models;
 
-namespace TheList_Back_end_Capstone_ServerSide.Data
+namespace TheList_Capstone.Data
 {
     public class ApplicationDbContext : DbContext
     {
