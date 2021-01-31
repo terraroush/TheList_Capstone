@@ -12,3 +12,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#bossGrid {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  background: palegoldenrod;
+  grid-template-columns: 0.35fr 1fr;
+  grid-template-rows: 1fr 0.08fr;
+  /* grid-template-areas:
+    "sidebar theMain"
+    "sidebar theMain"
+    "footer footer"; */
+}
+.sidebar {
+  /* grid-area: sidebar; */
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  background: lightblue;
+  border: 2px lightblue;
+}
+.theMain {
+  /* grid-area: theMain; */
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  background: lightcoral;
+  border: 5px lightcoral;
+
+  display: flex;
+  justify-content: center;
+  /* gap: 0.5em; */
+}
+.footer {
+  /* grid-area: footer; */
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  background: lightslategrey;
+  border: 2px lightslategrey;
+}
+
+.leftMain {
+  /* grid-column: 1 / 2; */
+  display: flex;
+  background: mediumaquamarine;
+  border: 2px mediumaquamarine;
+}
+
+.rightMain {
+  /* grid-column: 2 / 3; */
+  display: flex;
+  background: mediumpurple;
+  border: 2px mediumpurple;
+}
+
+.listContainer {
+  display: flex;
+}
+
+.listDetailContainer {
+  display: flex;
+}
+
+/* @media all and (max-width: 100%) {
+  .sidebar {
+    grid-column: 1 / 3;
+  }
+} */
