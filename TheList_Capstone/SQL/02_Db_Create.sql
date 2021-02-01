@@ -10,9 +10,9 @@ GO
 
 
 DROP TABLE IF EXISTS [UserProfile];
-DROP TABLE IF EXISTS [Follower];
-DROP TABLE IF EXISTS [ListType];
-DROP TABLE IF EXISTS [List];
+DROP TABLE IF EXISTS [Connection];
+DROP TABLE IF EXISTS [ListKind];
+DROP TABLE IF EXISTS [UserList];
 DROP TABLE IF EXISTS [ListItem];
 DROP TABLE IF EXISTS [Comment];
 GO 
@@ -29,7 +29,7 @@ CREATE TABLE [UserProfile] (
 )
 GO
 
-CREATE TABLE [Follower] (
+CREATE TABLE [Connection] (
   [Id] INTEGER PRIMARY KEY identity NOT NULL,
   [UserProfileId] INTEGER NOT NULL,
   [Accepted] bit NOT NULL,
@@ -39,13 +39,13 @@ CREATE TABLE [Follower] (
 )
 GO
 
-CREATE TABLE [ListType] (
+CREATE TABLE [ListKind] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [Name] nvarchar(20) NOT NULL
 )
 GO
 
-CREATE TABLE [List] (
+CREATE TABLE [UserList] (
   [Id] INTEGER PRIMARY KEY identity NOT NULL,
   [Title] nvarchar(30) NOT NULL,
   [DateCreated] datetime NOT NULL,
@@ -54,19 +54,19 @@ CREATE TABLE [List] (
   [Active] bit NOT NULL,
   [Public] bit NOT NULL,
   [UserProfileId] INTEGER NOT NULL,
-  [ListTypeId] INTEGER NOT NULL,
+  [ListKindId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_List_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
-  CONSTRAINT FK_List_ListType FOREIGN KEY (ListTypeId) REFERENCES ListType(Id)
+  CONSTRAINT FK_UserList_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
+  CONSTRAINT FK_UserList_ListKind FOREIGN KEY (ListKindId) REFERENCES ListKind(Id)
 )
 GO
 
 CREATE TABLE [ListItem] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [Name] nvarchar(50) NOT NULL,
-  [ListId] INTEGER NOT NULL,
+  [UserListId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_ListItem_List FOREIGN KEY (ListId) REFERENCES List(Id)
+  CONSTRAINT FK_ListItem_UserList FOREIGN KEY (UserListId) REFERENCES UserList(Id)
 )
 GO
 
@@ -74,10 +74,10 @@ CREATE TABLE [Comment] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [Message] nvarchar(255) NOT NULL,
   [UserProfileId] INTEGER NOT NULL,
-  [ListId] INTEGER NOT NULL,
+  [UserListId] INTEGER NOT NULL,
 
   CONSTRAINT FK_Comment_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
-  CONSTRAINT FK_Comment_List FOREIGN KEY (ListId) REFERENCES List(Id)
+  CONSTRAINT FK_Comment_UserList FOREIGN KEY (UserListId) REFERENCES UserList(Id)
 )
 GO
 
@@ -90,35 +90,35 @@ VALUES
   (2, 'Stan Laurel', 'stan@email.com', 'vP3tkzRXWmRzwSLGwNTBS5fJs2N2', 'Stanny-boy', null);
 SET IDENTITY_INSERT [UserProfile] OFF
 
-SET IDENTITY_INSERT [Follower] ON
-INSERT INTO [Follower]
+SET IDENTITY_INSERT [Connection] ON
+INSERT INTO [Connection]
   ([Id], [UserProfileId], [Accepted], [SubscriberId])
 VALUES
   (1, 1, 1, 2),
   (2, 2, 1, 1);
-SET IDENTITY_INSERT [Follower] OFF
+SET IDENTITY_INSERT [Connection] OFF
 
-SET IDENTITY_INSERT [ListType] ON
-INSERT INTO [ListType]
+SET IDENTITY_INSERT [ListKind] ON
+INSERT INTO [ListKind]
   ([Id], [Name])
 VALUES
   (1, 'Grocery'),
   (2, 'To Do'),
   (3, 'Other');
-SET IDENTITY_INSERT [ListType] OFF
+SET IDENTITY_INSERT [ListKind] OFF
 
-SET IDENTITY_INSERT [List] ON
-INSERT INTO [List]
-  ([Id], [Title], [DateCreated], [DateUpdated], [Deadline], [Active], [Public], [UserProfileId], [ListTypeId])
+SET IDENTITY_INSERT [UserList] ON
+INSERT INTO [UserList]
+  ([Id], [Title], [DateCreated], [DateUpdated], [Deadline], [Active], [Public], [UserProfileId], [ListKindId])
 VALUES
   (1, 'Groceries mar 22', '03-22-2021', '03-24-2021', '03-28-2021', 1, 1, 1, 1),
   (2, 'Potluck Graduation', '01-24-2021', null, '02-10-2021', 1, 1, 2, 3),
   (3, 'ToDo weekend', '02-19-2021', '02-20-2021', null, 1, 0, 2, 2);
-SET IDENTITY_INSERT [List] OFF
+SET IDENTITY_INSERT [UserList] OFF
 
 SET IDENTITY_INSERT [ListItem] ON
 INSERT INTO [ListItem]
-  ([Id], [Name], [ListId])
+  ([Id], [Name], [UserListId])
 VALUES
   (1, 'Broccoli', 1),
   (2, 'Rice', 1),
@@ -134,7 +134,7 @@ SET IDENTITY_INSERT [ListItem] OFF
 
 SET IDENTITY_INSERT [Comment] ON
 INSERT INTO [Comment]
-  ([Id], [UserProfileId], [ListId], [Message])
+  ([Id], [UserProfileId], [UserListId], [Message])
 VALUES
   (1, 2, 1, 'We still have two bags of granola!'),
   (2, 1, 1, 'I know. I don''t like that kind though.'),

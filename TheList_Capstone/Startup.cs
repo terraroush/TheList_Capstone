@@ -15,10 +15,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TheList_Back_end_Capstone_ServerSide.Data;
-using TheList_Back_end_Capstone_ServerSide.Repositories;
+using TheList_Capstone.Data;
+using TheList_Capstone.Repositories;
 
-namespace TheList_Back_end_Capstone_ServerSide
+namespace TheList_Capstone
 {
     public class Startup
     {
@@ -33,6 +33,7 @@ namespace TheList_Back_end_Capstone_ServerSide
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IUserListRepository, UserListRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -60,7 +61,7 @@ namespace TheList_Back_end_Capstone_ServerSide
             );
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TheList_Back_end_Capstone_ServerSide", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TheList_Capstone", Version = "v1" });
             });
         }
 
@@ -71,7 +72,7 @@ namespace TheList_Back_end_Capstone_ServerSide
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TheList_Back_end_Capstone_ServerSide v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TheList_Capstone v1"));
             }
 
             app.UseHttpsRedirection();

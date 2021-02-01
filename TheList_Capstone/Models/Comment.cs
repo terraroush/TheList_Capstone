@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TheList_Back_end_Capstone_ServerSide.Models
+namespace TheList_Capstone.Models
 {
     public class Comment
     {
@@ -20,8 +20,8 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
         public UserProfile UserProfile { get; set; }
 
         [Required]
-        public int ListId { get; set; }
+        public int UserListId { get; set; }
 
-        public List List { get; set; }
+        public UserList UserList { get; set; }
     }
 }

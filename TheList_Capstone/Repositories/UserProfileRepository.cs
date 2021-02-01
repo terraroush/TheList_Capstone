@@ -1,12 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TheList_Back_end_Capstone_ServerSide.Data;
-using TheList_Back_end_Capstone_ServerSide.Models;
+using TheList_Capstone.Data;
+using TheList_Capstone.Models;
 
-namespace TheList_Back_end_Capstone_ServerSide.Repositories
+namespace TheList_Capstone.Repositories
 {
     public class UserProfileRepository : IUserProfileRepository
     {
@@ -34,6 +31,17 @@ namespace TheList_Back_end_Capstone_ServerSide.Repositories
         {
             _context.Add(userProfile);
             _context.SaveChanges();
+        }
+
+        public List<UserProfile> GetAll()
+        {
+            return _context.UserProfile.ToList();
+        }
+
+        public UserProfile GetById(int id)
+        {
+            return _context.UserProfile
+                .FirstOrDefault(up => up.Id == id);
         }
 
         //public void AddImageProfile(Image image, int id)

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TheList_Back_end_Capstone_ServerSide": {
+    "TheList_Capstone": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": false,

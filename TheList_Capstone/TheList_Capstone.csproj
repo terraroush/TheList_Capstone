@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>TheList_Back_end_Capstone_ServerSide</RootNamespace>
+    <RootNamespace>TheList_Capstone</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

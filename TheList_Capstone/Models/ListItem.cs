@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TheList_Back_end_Capstone_ServerSide.Models
+namespace TheList_Capstone.Models
 {
     public class ListItem
     {
@@ -11,8 +11,8 @@ namespace TheList_Back_end_Capstone_ServerSide.Models
 
         public string Name { get; set; }
 
-        public int ListId { get; set; }
+        public int UserListId { get; set; }
 
-        public List List { get; set; }
+        public UserList List { get; set; }
     }
 }
