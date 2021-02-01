@@ -35,12 +35,12 @@ const App = () => {
       icon: "/icons/connections.svg",
       subMenuItems: [],
     },
-    {
-      name: "Logout",
-      to: "/logout",
-      icon: "/icons/logout.svg",
-      subMenuItems: [],
-    },
+    // {
+    //   name: "Logout",
+    //   to: "/logout",
+    //   icon: "/icons/logout.svg",
+    //   subMenuItems: [],
+    // },
   ];
 
   const fonts = {
@@ -48,8 +48,10 @@ const App = () => {
     menu: "",
   };
 
+  // App.js contains the whole sidebar
   return (
     <s.App>
+      {/* here we're saying, sidebar, you can have these props to do with what you will. all our data are belong to us, and all your logic are belong to you. */}
       <Sidebar
         backgroundImage={backgroundImage}
         sidebarHeader={sidebarHeader}
