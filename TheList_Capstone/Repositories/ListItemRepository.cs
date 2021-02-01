@@ -26,10 +26,10 @@ namespace TheList_Capstone.Repositories
                 .FirstOrDefault();
         }
 
-        public List<UserList> GetAll()
+        public List<ListItem> GetAll()
         {
-            return _context.UserList
-                .OrderByDescending(ul => ul.DateCreated)
+            return _context.ListItem
+                .OrderByDescending(ul => ul.Name)
                 .ToList();
         }
 
