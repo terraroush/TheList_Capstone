@@ -8,7 +8,7 @@ using TheList_Capstone.Models;
 
 namespace TheList_Capstone.Repositories
 {
-    public class ListKindRepository
+    public class ListKindRepository : IListKindRepository
     {
         private ApplicationDbContext _context;
 
