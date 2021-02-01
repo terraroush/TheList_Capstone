@@ -13,6 +13,6 @@ namespace TheList_Capstone.Models
 
         public int UserListId { get; set; }
 
-        public UserList List { get; set; }
+        public UserList UserList { get; set; }
     }
 }
