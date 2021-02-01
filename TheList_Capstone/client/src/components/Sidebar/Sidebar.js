@@ -100,6 +100,7 @@ const Sidebar = (props) => {
   const handleMenuItemClick = (name, index) => {
     setSelectedMenuItem(name);
 
+    // Must make copy of the subMenuItemsStates object
     const subMenusCopy = JSON.parse(JSON.stringify(subMenuItemsStates));
 
     if (subMenuItemsStates.hasOwnProperty(index)) {
@@ -150,7 +151,7 @@ const Sidebar = (props) => {
         );
       }
     );
-
+    // this return is from menuItemsJSX; each item is given to menuItemJSX function to be mapped
     return (
       <s.ItemContainer key={index}>
         <Link to={item.to} style={{ textDecoration: "none" }}>
@@ -186,6 +187,7 @@ const Sidebar = (props) => {
     );
   });
 
+  // This is the main return from Sidebar.js
   return (
     <s.SidebarContainer
       backgroundImage={backgroundImage}
