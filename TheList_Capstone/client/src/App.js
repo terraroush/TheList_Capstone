@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as s from "./App.styles";
 
 //Components
@@ -35,12 +35,12 @@ const App = () => {
       icon: "/icons/connections.svg",
       subMenuItems: [],
     },
-    // {
-    //   name: "Logout",
-    //   to: "/logout",
-    //   icon: "/icons/logout.svg",
-    //   subMenuItems: [],
-    // },
+    {
+      name: "Logout",
+      to: "/logout",
+      icon: "/icons/logout.svg",
+      subMenuItems: [],
+    },
   ];
 
   const fonts = {

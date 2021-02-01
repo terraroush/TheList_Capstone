@@ -107,6 +107,7 @@ export const SubMenuItem = styled.p`
 `;
 
 // Dropdown Icon ---------------------------------------------------------------------------------
+
 // makes a lined box, but with border-width essentially get rid of two sides, leaving just one angle, then we rotate it, creating a little carrot/arrow for the submenu
 export const DropdownIcon = styled.span`
   position: absolute;
