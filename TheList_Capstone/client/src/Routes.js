@@ -1,5 +1,12 @@
-import React, { useContext } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import {
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+  useHistory,
+} from "react-router-dom";
+import { toast } from "react-toastify";
 import { UserProfileContext } from "./providers/UserProfileProvider";
 
 // Components
@@ -14,7 +21,19 @@ import NotFound from "./pages/NotFound";
 // import Footer from "./components/Footer";
 
 const Routes = () => {
-  const { isLoggedIn } = useContext(UserProfileContext);
+  const { isLoggedIn, logout } = useContext(UserProfileContext);
+
+  const currentURL = useLocation().pathname;
+  const history = useHistory();
+
+  // checks the URl to trigger the logout function
+  useEffect(() => {
+    if (currentURL === "/logout") {
+      logout();
+      toast.dark("Until next time...");
+      history.push("/login");
+    }
+  }, [currentURL]);
 
   return (
     <>

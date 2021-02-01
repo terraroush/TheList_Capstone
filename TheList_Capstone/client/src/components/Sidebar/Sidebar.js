@@ -72,6 +72,7 @@ const Sidebar = (props) => {
         newSubMenus[index]["isSelected"] = null;
       }
     });
+
     // Set selected submenu if user landed on one
     const path = window.location.pathname;
     const parts = path.split("/");
@@ -96,6 +97,8 @@ const Sidebar = (props) => {
 
     Object.keys(subMenuItemsStates).length === 0 && setSubMenus(newSubMenus);
   }, [menuItems, subMenuItemsStates]);
+
+  // Handlers
 
   const handleMenuItemClick = (name, index) => {
     setSelectedMenuItem(name);
@@ -122,6 +125,7 @@ const Sidebar = (props) => {
     setSubMenus(subMenusCopy);
   };
 
+  // MenuItemsJSX maps the menuItems and then checks to see if they have anything in the submenus, then maps the submenus
   const menuItemsJSX = menuItems.map((item, index) => {
     const isItemSelected = selected === item.name;
 
@@ -134,7 +138,7 @@ const Sidebar = (props) => {
       (subMenuItem, subMenuItemIndex) => {
         const isSubMenuItemSelected =
           subMenuItemsStates[index]?.selected === subMenuItemIndex;
-
+        // this return is for subMenusJSX
         return (
           <Link
             to={`${item.to}${subMenuItem.to}`}
@@ -151,7 +155,7 @@ const Sidebar = (props) => {
         );
       }
     );
-    // this return is from menuItemsJSX; each item is given to menuItemJSX function to be mapped
+    // this return is for menuItemsJSX
     return (
       <s.ItemContainer key={index}>
         <Link to={item.to} style={{ textDecoration: "none" }}>
@@ -187,7 +191,7 @@ const Sidebar = (props) => {
     );
   });
 
-  // This is the main return from Sidebar.js
+  // This is the main return for Sidebar.js
   return (
     <s.SidebarContainer
       backgroundImage={backgroundImage}
