@@ -20,8 +20,6 @@ namespace TheList_Capstone.Repositories
         public ListItem GetById(int id)
         {
             return _context.ListItem
-                .Include(l => l.Name)
-                .Include(l => l.UserList)
                 .Where(l => l.Id == id)
                 .FirstOrDefault();
         }

@@ -59,16 +59,15 @@ namespace TheList_Capstone.Controllers
                 return BadRequest();
             }
 
-            // Get listItem by Id to ensure it's in database
-            var listItemToEdit = _listItemRepository.GetById(id);
-
-            if (listItemToEdit == null)
+            try
+            {
+                _listItemRepository.Update(listItem);
+                return NoContent();
+            }
+            catch(Exception ex)
             {
                 return NotFound();
             }
-
-            _listItemRepository.Update(listItemToEdit);
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
