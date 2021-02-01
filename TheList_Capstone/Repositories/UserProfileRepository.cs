@@ -33,6 +33,17 @@ namespace TheList_Capstone.Repositories
             _context.SaveChanges();
         }
 
+        public List<UserProfile> GetAll()
+        {
+            return _context.UserProfile.ToList();
+        }
+
+        public UserProfile GetById(int id)
+        {
+            return _context.UserProfile
+                .FirstOrDefault(up => up.Id == id);
+        }
+
         //public void AddImageProfile(Image image, int id)
         //{
         //    var user = GetByUserProfileId(id);

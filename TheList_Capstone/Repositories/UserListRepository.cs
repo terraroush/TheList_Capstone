@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TheList_Capstone.Data;
+using TheList_Capstone.Models;
+using TheList_Capstone.Models.ViewModels;
+
 
 namespace TheList_Capstone.Repositories
 {
@@ -19,19 +22,19 @@ namespace TheList_Capstone.Repositories
         public List<UserListSummary> Get()
         {
             return _context.UserList
-                .Include(l => l.ListKindId)
-                .Where(l => l.Public)
-                .Where(l => l.Deadline <= DateTime.Now)
-                .OrderByDescending(l => l.DateCreated)
-                .Select(l => new UserListSummary()
+                .Where(ul => ul.Public)
+                .Where(ul => ul.DateCreated <= DateTime.Now)
+                .OrderByDescending(ul => ul.DateCreated)
+                .Take(4)
+                .Select(ul => new UserListSummary()
                 {
-                    Id = l.Id,
-                    Title = l.Title,
-                    AbbreviatedList = l.ListItems.GetRange(0, 3),
-                    AuthorId = l.UserProfileId,
-                    AuthorName = l.UserProfile.UserName,
-                    DateCreated = l.DateCreated,
-                    ListType = l.ListKind.Name
+                    Id = ul.Id,
+                    Title = ul.Title,
+                    //AbbreviatedList = ul.ListItems.GetRange(0, 3),
+                    AuthorId = ul.UserProfileId,
+                    AuthorName = ul.UserProfile.UserName,
+                    DateCreated = ul.DateCreated,
+                    //ListKind = ul.ListKind.Name
                 })
                 .ToList();
         }
@@ -41,15 +44,16 @@ namespace TheList_Capstone.Repositories
             return _context.UserList
                 .Where(l => l.UserProfileId == userId)
                 .Where(l => l.Public)
+                .OrderByDescending(p => p.DateCreated)
                 .Select(l => new UserListSummary()
                 {
                     Id = l.Id,
                     Title = l.Title,
-                    AbbreviatedList = l.ListItems.GetRange(0, 3),
+                    //AbbreviatedList = l.ListItems.GetRange(0, 3),
                     AuthorId = l.UserProfileId,
                     AuthorName = l.UserProfile.UserName,
                     DateCreated = l.DateCreated,
-                    ListType = l.ListKind.Name
+                    //ListKind = l.ListKind.Name
                 })
                 .ToList();
         }
@@ -74,11 +78,6 @@ namespace TheList_Capstone.Repositories
         {
             userList.DateCreated = DateTime.Now;
 
-            // If user did not enter a good URL, give them the default image
-            if (!Uri.IsWellFormedUriString(userList.ImageLocation, UriKind.Absolute))
-            {
-                userList.ImageLocation = "http://lorempixel.com/920/360/";
-            }
             _context.Add(userList);
             _context.SaveChanges();
         }

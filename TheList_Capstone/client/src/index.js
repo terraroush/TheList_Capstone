@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import firebase from "firebase/app";
 import "bootstrap/dist/css/bootstrap.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import TheList from './TheList';
 import App from "./App";
 import "./Global.scss";
@@ -16,6 +18,7 @@ firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
+    <ToastContainer position="bottom-right" hideProgressBar />
     <UserProfileProvider>
       <Router>
         <App />

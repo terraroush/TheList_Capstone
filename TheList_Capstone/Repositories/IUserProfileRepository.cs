@@ -1,4 +1,5 @@
 ﻿using TheList_Capstone.Models;
+using System.Collections.Generic;
 
 namespace TheList_Capstone.Repositories
 {
@@ -7,5 +8,7 @@ namespace TheList_Capstone.Repositories
         void Add(UserProfile userProfile);
         UserProfile GetByFirebaseUserId(string firebaseUserId);
         UserProfile GetByUserProfileId(int id);
+        List<UserProfile> GetAll();
+        UserProfile GetById(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TheList_Capstone.Models;
+using TheList_Capstone.Models.ViewModels;
 
 namespace TheList_Capstone.Repositories
 {

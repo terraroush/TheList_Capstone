@@ -48,6 +48,10 @@ namespace TheList_Capstone.Controllers
             {
                 return NotFound();
             }
+            if (userList.UserProfileId != firebaseUser.Id)
+            {
+                return NotFound();
+            }
 
             return Ok(userList);
         }
