@@ -33,23 +33,21 @@ namespace TheList_Capstone.Repositories
                 .ToList();
         }
 
-        public void Add(UserList userList)
+        public void Add(ListItem listItem)
         {
-            userList.DateCreated = DateTime.Now;
-
-            _context.Add(userList);
+            _context.Add(listItem);
             _context.SaveChanges();
         }
 
-        public void Update(UserList userList)
+        public void Update(ListItem listItem)
         {
-            _context.Entry(userList).State = EntityState.Modified;
+            _context.Entry(listItem).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void Delete(UserList userList)
+        public void Delete(ListItem listItem)
         {
-            _context.UserList.Remove(userList);
+            _context.ListItem.Remove(listItem);
             _context.SaveChanges();
         }
     }
