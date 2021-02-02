@@ -30,7 +30,7 @@ const Routes = () => {
   useEffect(() => {
     if (currentURL === "/logout") {
       logout();
-      toast.dark("Until next time...");
+      toast("Until next time...");
       history.push("/login");
     }
   }, [currentURL]);
