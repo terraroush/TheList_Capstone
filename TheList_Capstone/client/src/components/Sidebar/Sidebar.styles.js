@@ -4,7 +4,6 @@ export const SidebarContainer = styled.div`
   width: ${(p) => (p.isSidebarOpen ? "23%" : "5%")};
   max-width: 280px;
   min-width: 80px;
-  background: #454f48;
   background-image: linear-gradient(
       315deg,
       rgba(235, 252, 241, 0.8) 0%,
