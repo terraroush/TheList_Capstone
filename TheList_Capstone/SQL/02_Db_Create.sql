@@ -8,6 +8,12 @@ GO
 USE TheList
 GO
 
+ALTER TABLE [UserList] DROP CONSTRAINT [FK_UserList_UserProfile];
+ALTER TABLE [UserList] DROP CONSTRAINT [FK_UserList_ListKind];
+
+ALTER TABLE [Comment] DROP CONSTRAINT [FK_Comment_UserProfile];
+ALTER TABLE [Comment] DROP CONSTRAINT [FK_Comment_UserList];
+GO
 
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Connection];
@@ -35,7 +41,7 @@ CREATE TABLE [Connection] (
   [Accepted] bit NOT NULL,
   [SubscriberId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_Follower_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id)
+  CONSTRAINT FK_Connection_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id)
 )
 GO
 

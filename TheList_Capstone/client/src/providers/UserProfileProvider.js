@@ -42,7 +42,6 @@ export function UserProfileProvider(props) {
   };
 
   const register = (userProfile, password) => {
-    debugger;
     return firebase
       .auth()
       .createUserWithEmailAndPassword(userProfile.email, password)

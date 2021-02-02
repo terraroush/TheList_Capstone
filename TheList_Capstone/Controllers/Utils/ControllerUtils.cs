@@ -15,7 +15,7 @@ namespace TheList_Capstone.Controllers.Utils
     {
         public static UserProfile GetCurrentUserProfile(IUserProfileRepository _userProfileRepository, ClaimsPrincipal user)
         {
-            var firebaseUserId = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var firebaseUserId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }

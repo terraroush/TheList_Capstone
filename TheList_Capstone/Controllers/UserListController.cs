@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace TheList_Capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class UserListController : ControllerBase
     {
         private IUserListRepository _userListRepository;
@@ -27,33 +29,37 @@ namespace TheList_Capstone.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var userLists = _userListRepository.Get();
-            return Ok(userLists);
-        }
-
-        [HttpGet("getbyuserid")]
-        public IActionResult GetByUserId()
-        {
-            var firebaseUser = ControllerUtils.GetCurrentUserProfile(_userProfileRepository, User);
-            var userLists = _userListRepository.GetByUserId(firebaseUser.Id);
-            return Ok(userLists);
+           
+                var userLists = _userListRepository.GetAll();
+                return Ok(userLists);
+           
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult Get(int id)
         {
             var firebaseUser = ControllerUtils.GetCurrentUserProfile(_userProfileRepository, User);
-            var userList = _userListRepository.GetById(id);
+            var userList = _userListRepository.GetById(firebaseUser.Id);
             if (userList == null)
             {
                 return NotFound();
             }
-            if (userList.UserProfileId != firebaseUser.Id)
+       
+            return Ok(userList);
+        }
+
+        [HttpGet("getbyuser/{id}")]
+        public IActionResult GetByUser(int id)
+        {
+            try
+            {
+                var userList = _userListRepository.GetById(id);
+                return Ok(userList);
+            }
+            catch(Exception ex)
             {
                 return NotFound();
             }
-
-            return Ok(userList);
         }
 
         [HttpPost]
@@ -66,20 +72,9 @@ namespace TheList_Capstone.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, UserList userList)
         {
-            // Get current user
-            var firebaseUser = ControllerUtils.GetCurrentUserProfile(_userProfileRepository, User);
-
-            // Get author of the userList
             var listAuthor = userList.UserProfileId;
 
-            // Check if incoming user is NOT a list's author,
-            if (firebaseUser.Id != listAuthor)
-            {
-                return NotFound();
-            }
-
-            // UserList's Id coming from URL must match the UserList object's
-            if (id != userList.Id)
+            if (id != listAuthor)
             {
                 return BadRequest();
             }
@@ -99,24 +94,13 @@ namespace TheList_Capstone.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            // Get current user
-            var firebaseUser = ControllerUtils.GetCurrentUserProfile(_userProfileRepository, User);
-            // Get userList by Id
             var userListToDelete = _userListRepository.GetById(id);
 
-            // Ensure we have a userList
             if (userListToDelete == null)
             {
                 return NotFound();
             }
-
-            // Get userList's author
-            var userListAuthor = userListToDelete.UserProfileId;
-            // Check if incoming user is NOT an admin OR post's author,
-            if (firebaseUser.Id != userListAuthor)
-            {
-                return NotFound();
-            }
+            
             _userListRepository.Delete(userListToDelete);
             return NoContent();
         }

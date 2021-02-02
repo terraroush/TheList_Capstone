@@ -19,59 +19,34 @@ namespace TheList_Capstone.Repositories
             _context = context;
         }
 
-        public List<UserListSummary> Get()
+        // Will need to update to filter only public list eventually. Keeping as is for testing purposes rn
+        public List<UserList> GetAll()
         {
             return _context.UserList
-                .Where(ul => ul.Public)
-                .Where(ul => ul.DateCreated <= DateTime.Now)
+                .Include(ul => ul.ListItems)
+                .Include(ul => ul.UserProfile)
+                .Include(ul => ul.ListKind)
                 .OrderByDescending(ul => ul.DateCreated)
-                .Take(4)
-                .Select(ul => new UserListSummary()
-                {
-                    Id = ul.Id,
-                    Title = ul.Title,
-                    //AbbreviatedList = ul.ListItems.GetRange(0, 3),
-                    AuthorId = ul.UserProfileId,
-                    AuthorName = ul.UserProfile.UserName,
-                    DateCreated = ul.DateCreated,
-                    //ListKind = ul.ListKind.Name
-                })
                 .ToList();
         }
-
-        public List<UserListSummary> GetByUserId(int userId)
+        public List<UserList> GetByUserProfileId(int id)
         {
             return _context.UserList
-                .Where(l => l.UserProfileId == userId)
-                .Where(l => l.Public)
-                .OrderByDescending(p => p.DateCreated)
-                .Select(l => new UserListSummary()
-                {
-                    Id = l.Id,
-                    Title = l.Title,
-                    //AbbreviatedList = l.ListItems.GetRange(0, 3),
-                    AuthorId = l.UserProfileId,
-                    AuthorName = l.UserProfile.UserName,
-                    DateCreated = l.DateCreated,
-                    //ListKind = l.ListKind.Name
-                })
+                .Include(ul => ul.ListItems)
+                .Include(ul => ul.UserProfile)
+                .Where(ul => ul.UserProfileId == id)
+                .OrderByDescending(ul => ul.DateCreated)
                 .ToList();
         }
 
         public UserList GetById(int id)
         {
             return _context.UserList
-                .Include(l => l.UserProfile)
-                .Include(l => l.ListKind)
-                .Where(l => l.Id == id)
+                .Include(ul => ul.ListItems)
+                .Include(ul => ul.UserProfile)
+                .Include(ul => ul.ListKind)
+                .Where(ul => ul.Id == id)
                 .FirstOrDefault();
-        }
-
-        public List<UserList> GetAll()
-        {
-            return _context.UserList
-                .OrderByDescending(ul => ul.DateCreated)
-                .ToList();
         }
 
         public void Add(UserList userList)
