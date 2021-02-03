@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./components/MainView/Home/Home";
 import AllLists from "./components/MainView/AllLists/AllLists";
-import List from "./components/MainView/AllLists/List/List";
+import List from "./components/MainView/AllLists/UserList/UserListCard";
 import Connections from "./components/MainView/Connections/Connections";
 import ListDetails from "./components/MainView/ListDetails/ListDetails";
 import NotFound from "./pages/NotFound";

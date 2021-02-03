@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using TheList_Capstone.Controllers.Utils;
 using TheList_Capstone.Models;
 using TheList_Capstone.Repositories;
 
@@ -16,8 +16,14 @@ namespace TheList_Capstone.Controllers
     //[Authorize]
     public class UserListController : ControllerBase
     {
-        private IUserListRepository _userListRepository;
-        private IUserProfileRepository _userProfileRepository;
+        private readonly IUserListRepository _userListRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
 
         public UserListController(IUserListRepository userListRepository, IUserProfileRepository userProfileRepository)
         {
@@ -38,8 +44,7 @@ namespace TheList_Capstone.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var firebaseUser = ControllerUtils.GetCurrentUserProfile(_userProfileRepository, User);
-            var userList = _userListRepository.GetById(firebaseUser.Id);
+            var userList = _userListRepository.GetById(id);
             if (userList == null)
             {
                 return NotFound();
@@ -51,12 +56,24 @@ namespace TheList_Capstone.Controllers
         [HttpGet("getbyuser/{id}")]
         public IActionResult GetByUser(int id)
         {
+            // need to check if the id exisits
+            var validUser = _userProfileRepository.GetById(id);
+            if (validUser == null)
+            {
+                return NotFound();
+            }
+
+            var userList = _userListRepository.GetByUserProfileId(id);
+            if (userList == null)
+            {
+                return NotFound();
+            }
+
             try
             {
-                var userList = _userListRepository.GetById(id);
                 return Ok(userList);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return NotFound();
             }

@@ -12,7 +12,7 @@ namespace TheList_Capstone.Repositories
 {
     public class UserListRepository : IUserListRepository
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public UserListRepository(ApplicationDbContext context)
         {

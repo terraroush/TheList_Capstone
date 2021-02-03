@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { UserProfileContext } from "./providers/UserProfileProvider";
+import { UserProfileContext } from "./UserProfileProvider";
 
 export const UserListContext = createContext();
 

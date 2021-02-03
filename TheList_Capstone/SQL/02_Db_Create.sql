@@ -8,13 +8,6 @@ GO
 USE TheList
 GO
 
-ALTER TABLE [UserList] DROP CONSTRAINT [FK_UserList_UserProfile];
-ALTER TABLE [UserList] DROP CONSTRAINT [FK_UserList_ListKind];
-
-ALTER TABLE [Comment] DROP CONSTRAINT [FK_Comment_UserProfile];
-ALTER TABLE [Comment] DROP CONSTRAINT [FK_Comment_UserList];
-GO
-
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Connection];
 DROP TABLE IF EXISTS [ListKind];
@@ -41,7 +34,7 @@ CREATE TABLE [Connection] (
   [Accepted] bit NOT NULL,
   [SubscriberId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_Connection_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id)
+  CONSTRAINT [FK_Connection_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id])
 )
 GO
 
@@ -62,8 +55,8 @@ CREATE TABLE [UserList] (
   [UserProfileId] INTEGER NOT NULL,
   [ListKindId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_UserList_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
-  CONSTRAINT FK_UserList_ListKind FOREIGN KEY (ListKindId) REFERENCES ListKind(Id)
+  CONSTRAINT [FK_UserList_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id]),
+  CONSTRAINT [FK_UserList_ListKind] FOREIGN KEY ([ListKindId]) REFERENCES [ListKind]([Id])
 )
 GO
 
@@ -72,7 +65,7 @@ CREATE TABLE [ListItem] (
   [Name] nvarchar(50) NOT NULL,
   [UserListId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_ListItem_UserList FOREIGN KEY (UserListId) REFERENCES UserList(Id)
+  CONSTRAINT [FK_ListItem_UserList] FOREIGN KEY ([UserListId]) REFERENCES [UserList]([Id])
 )
 GO
 
@@ -82,8 +75,8 @@ CREATE TABLE [Comment] (
   [UserProfileId] INTEGER NOT NULL,
   [UserListId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_Comment_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
-  CONSTRAINT FK_Comment_UserList FOREIGN KEY (UserListId) REFERENCES UserList(Id)
+  CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id]),
+  CONSTRAINT [FK_Comment_UserList] FOREIGN KEY ([UserListId]) REFERENCES [UserList]([Id])
 )
 GO
 

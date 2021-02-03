@@ -17,9 +17,9 @@ namespace TheList_Capstone.Models
         [Required]
         public DateTime DateCreated { get; set; }
 
-        public DateTime DateUpdated { get; set; }
+        public DateTime? DateUpdated { get; set; }
 
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
 
         [Required]
         public bool Active { get; set; }

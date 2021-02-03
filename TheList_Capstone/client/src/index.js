@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import "./Global.scss";
 import { UserProfileProvider } from "./providers/UserProfileProvider";
+import { UserListProvider } from "./providers/UserListProvider";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -20,10 +21,12 @@ ReactDOM.render(
   <React.StrictMode>
     <ToastContainer position="bottom-right" hideProgressBar />
     <UserProfileProvider>
-      <Router>
-        <App />
-        {/* <TheList /> */}
-      </Router>
+      <UserListProvider>
+        <Router>
+          <App />
+          {/* <TheList /> */}
+        </Router>
+      </UserListProvider>
     </UserProfileProvider>
   </React.StrictMode>,
   document.getElementById("root")
