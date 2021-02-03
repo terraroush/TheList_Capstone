@@ -1,42 +1,31 @@
 import React, { useContext, useEffect } from "react";
-import { UserListContext } from "../../../../providers/UserListProvider";
-import { ClientName } from "./ClientName";
 import { useHistory } from "react-router-dom";
+import { UserListContext } from "../../../../providers/UserListProvider";
+import { Button } from "reactstrap";
+import UserListCard from "./UserListCard";
 
-const UserListList = ({ userList }) => {
+const UserListList = () => {
   const { userLists, getUserListsByUserId } = useContext(UserListContext);
 
   const history = useHistory();
-  const activeUser = parseInt(localStorage.getItem("activeUser"));
+  const activeUser = localStorage.getItem("userProfile.id");
+  console.log(activeUser);
 
   useEffect(() => {
     getUserListsByUserId(activeUser);
   }, []);
 
   return (
-    <article className="clientList--grid">
-      <h1 className="cursive">client book </h1>
-      <Button
-        className="cursive"
-        fitted="true"
-        size="large"
-        icon="add"
-        title="add new client"
-        onClick={() => history.push("/clients/create")}
-      ></Button>
-      {/* <p>
-        <small>click for more information</small>
-      </p> */}
+    <article>
+      <h1>My Lists</h1>
+      <Button onClick={() => history.push("/alllists/createlist")}></Button>
 
-      <div className="clientList--list">
-        {clients
-          .sort((a, b) =>
-            a.lastName.toUpperCase().localeCompare(b.lastName.toUpperCase())
-          )
-          .map((client) => (
-            <ClientName key={client.id} client={client} />
-          ))}
+      <div>
+        {userLists.map((userList) => (
+          <UserListCard key={userList.id} userList={userList} />
+        ))}
       </div>
     </article>
   );
 };
+export default UserListList;

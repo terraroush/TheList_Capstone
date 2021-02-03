@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, CustomInput } from "reactstrap";
 
 const UserListForm = () => {
   return (
@@ -16,6 +16,14 @@ const UserListForm = () => {
         />
       </FormGroup>{" "}
       <Button>Submit</Button>
+      <div>
+        <CustomInput
+          type="switch"
+          id="exampleCustomSwitch"
+          name="customSwitch"
+          label="Grocery List"
+        />
+      </div>
     </Form>
   );
 };

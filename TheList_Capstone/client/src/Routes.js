@@ -18,6 +18,8 @@ import List from "./components/MainView/AllLists/UserList/UserListCard";
 import Connections from "./components/MainView/Connections/Connections";
 import ListDetails from "./components/MainView/ListDetails/ListDetails";
 import NotFound from "./pages/NotFound";
+import UserListList from "./components/MainView/AllLists/UserList/UserListList";
+import UserListCard from "./components/MainView/AllLists/UserList/UserListCard";
 // import Footer from "./components/Footer";
 
 const Routes = () => {
@@ -45,7 +47,20 @@ const Routes = () => {
         <Route path="/alllists" exact>
           {isLoggedIn ? <AllLists /> : <Redirect to="/login" />}
         </Route>
+
+        <Route path="/alllists/createlist" exact>
+          {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
+        </Route>
+        {/* <Route path="/alllists/mylists" exact>
+          {isLoggedIn ? <UserListList /> : <Redirect to="/login" />}
+        </Route> */}
+        {/* <Route path="/alllists/friendslists" exact>
+          {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
+        </Route> */}
+
+        {/* <Route exact path="/alllists/:list" component={List} />
         <Route exact path="/alllists/:list" component={List} />
+        <Route exact path="/alllists/:list" component={List} /> */}
 
         <Route path="/connections" exact>
           {isLoggedIn ? <Connections /> : <Redirect to="/login" />}

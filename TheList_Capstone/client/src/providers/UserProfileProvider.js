@@ -50,7 +50,7 @@ export function UserProfileProvider(props) {
       )
       .then((savedUserProfile) => {
         localStorage.setItem("userProfile", JSON.stringify(savedUserProfile));
-        localStorage.setItem("userProfileId", userProfile.id);
+        localStorage.setItem("userProfileId", savedUserProfile.id);
         setIsLoggedIn(true);
         return savedUserProfile;
       });
@@ -70,6 +70,7 @@ export function UserProfileProvider(props) {
   };
 
   const saveUser = (userProfile) => {
+    debugger;
     return getToken().then((token) =>
       fetch(apiUrl, {
         method: "POST",
