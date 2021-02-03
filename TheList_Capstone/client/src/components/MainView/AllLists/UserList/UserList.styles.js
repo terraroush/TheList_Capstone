@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 
 export const ListContainer = styled.div`
-  width: 80%;
-  height: 200px;
+  width: 40%;
+  height: 140px;
   margin: 20px auto 0;
   display: flex;
   justify-content: space-between;
-  slign-items: center;
+  align-items: center;
 `;
 
 export const ListTitle = styled.h3`

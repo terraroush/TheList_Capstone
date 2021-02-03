@@ -6,10 +6,10 @@ namespace TheList_Capstone.Repositories
 {
     public interface IUserListRepository
     {
-        List<UserListSummary> Get();
-        List<UserListSummary> GetByUserId(int userId);
-        void Add(UserList userList);
+        List<UserList> GetAll();
+        List<UserList> GetByUserProfileId(int id);
         UserList GetById(int id);
+        void Add(UserList userList);
         void Update(UserList userList);
         void Delete(UserList userList);
     }

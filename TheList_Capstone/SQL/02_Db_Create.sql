@@ -8,7 +8,6 @@ GO
 USE TheList
 GO
 
-
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Connection];
 DROP TABLE IF EXISTS [ListKind];
@@ -35,7 +34,7 @@ CREATE TABLE [Connection] (
   [Accepted] bit NOT NULL,
   [SubscriberId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_Follower_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id)
+  CONSTRAINT [FK_Connection_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id])
 )
 GO
 
@@ -56,8 +55,8 @@ CREATE TABLE [UserList] (
   [UserProfileId] INTEGER NOT NULL,
   [ListKindId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_UserList_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
-  CONSTRAINT FK_UserList_ListKind FOREIGN KEY (ListKindId) REFERENCES ListKind(Id)
+  CONSTRAINT [FK_UserList_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id]),
+  CONSTRAINT [FK_UserList_ListKind] FOREIGN KEY ([ListKindId]) REFERENCES [ListKind]([Id])
 )
 GO
 
@@ -66,7 +65,7 @@ CREATE TABLE [ListItem] (
   [Name] nvarchar(50) NOT NULL,
   [UserListId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_ListItem_UserList FOREIGN KEY (UserListId) REFERENCES UserList(Id)
+  CONSTRAINT [FK_ListItem_UserList] FOREIGN KEY ([UserListId]) REFERENCES [UserList]([Id])
 )
 GO
 
@@ -76,8 +75,8 @@ CREATE TABLE [Comment] (
   [UserProfileId] INTEGER NOT NULL,
   [UserListId] INTEGER NOT NULL,
 
-  CONSTRAINT FK_Comment_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
-  CONSTRAINT FK_Comment_UserList FOREIGN KEY (UserListId) REFERENCES UserList(Id)
+  CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id]),
+  CONSTRAINT [FK_Comment_UserList] FOREIGN KEY ([UserListId]) REFERENCES [UserList]([Id])
 )
 GO
 
@@ -86,8 +85,8 @@ SET IDENTITY_INSERT [UserProfile] ON
 INSERT INTO [UserProfile]
   ([Id], [Name], [Email], [FirebaseUserId], [UserName], [ProfilePicUrl])
 VALUES 
-  (1, 'Oliver Hardy', 'olie@email.com', 'MA9qsgE6vfbp2P1z0kv72bqRql43', 'Ollie', null),
-  (2, 'Stan Laurel', 'stan@email.com', 'vP3tkzRXWmRzwSLGwNTBS5fJs2N2', 'Stanny-boy', null);
+  (1, 'Oliver Hardy', 'olie@email.com', 'pKeqSxRiizWl7nhhd5uMFytF4ih2', 'Ollie', null),
+  (2, 'Stan Laurel', 'stan@email.com', 'ytlqqpjFh0fJSF4tXflMR2siEa82', 'Stanny-boy', null);
 SET IDENTITY_INSERT [UserProfile] OFF
 
 SET IDENTITY_INSERT [Connection] ON

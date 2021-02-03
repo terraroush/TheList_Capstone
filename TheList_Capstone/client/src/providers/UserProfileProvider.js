@@ -42,7 +42,6 @@ export function UserProfileProvider(props) {
   };
 
   const register = (userProfile, password) => {
-    debugger;
     return firebase
       .auth()
       .createUserWithEmailAndPassword(userProfile.email, password)
@@ -51,7 +50,7 @@ export function UserProfileProvider(props) {
       )
       .then((savedUserProfile) => {
         localStorage.setItem("userProfile", JSON.stringify(savedUserProfile));
-        localStorage.setItem("userProfileId", userProfile.id);
+        localStorage.setItem("userProfileId", savedUserProfile.id);
         setIsLoggedIn(true);
         return savedUserProfile;
       });

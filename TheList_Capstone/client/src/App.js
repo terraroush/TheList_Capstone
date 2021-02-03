@@ -23,9 +23,9 @@ const App = () => {
       to: "/alllists",
       icon: "/icons/list.svg",
       subMenuItems: [
-        { name: "list1", to: "/list1" },
-        { name: "list2", to: "/list2" },
-        { name: "list3", to: "/list3" },
+        { name: "Add New List", to: "/createList" },
+        { name: "My Lists", to: "/myLists" },
+        { name: "Friends' Lists", to: "/friendsLists" },
       ],
     },
     {

@@ -134,6 +134,7 @@ const Sidebar = (props) => {
     // if this exists, then it's open; if this doesn't exist, it's not open
     const isOpen = subMenuItemsStates[index]?.isOpen;
 
+    // This is where all the submenu logic happens
     const subMenusJSX = item.subMenuItems.map(
       (subMenuItem, subMenuItemIndex) => {
         const isSubMenuItemSelected =
