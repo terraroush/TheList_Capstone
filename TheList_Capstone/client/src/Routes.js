@@ -51,9 +51,9 @@ const Routes = () => {
         <Route path="/alllists/createlist" exact>
           {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
         </Route>
-        {/* <Route path="/alllists/mylists" exact>
+        <Route path="/alllists/mylists" exact>
           {isLoggedIn ? <UserListList /> : <Redirect to="/login" />}
-        </Route> */}
+        </Route>
         {/* <Route path="/alllists/friendslists" exact>
           {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
         </Route> */}

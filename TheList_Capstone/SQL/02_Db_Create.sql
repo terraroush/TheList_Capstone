@@ -85,8 +85,8 @@ SET IDENTITY_INSERT [UserProfile] ON
 INSERT INTO [UserProfile]
   ([Id], [Name], [Email], [FirebaseUserId], [UserName], [ProfilePicUrl])
 VALUES 
-  (1, 'Oliver Hardy', 'olie@email.com', 'MA9qsgE6vfbp2P1z0kv72bqRql43', 'Ollie', null),
-  (2, 'Stan Laurel', 'stan@email.com', 'vP3tkzRXWmRzwSLGwNTBS5fJs2N2', 'Stanny-boy', null);
+  (1, 'Oliver Hardy', 'olie@email.com', 'pKeqSxRiizWl7nhhd5uMFytF4ih2', 'Ollie', null),
+  (2, 'Stan Laurel', 'stan@email.com', 'ytlqqpjFh0fJSF4tXflMR2siEa82', 'Stanny-boy', null);
 SET IDENTITY_INSERT [UserProfile] OFF
 
 SET IDENTITY_INSERT [Connection] ON

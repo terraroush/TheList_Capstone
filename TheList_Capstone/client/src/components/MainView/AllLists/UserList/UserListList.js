@@ -8,17 +8,25 @@ const UserListList = () => {
   const { userLists, getUserListsByUserId } = useContext(UserListContext);
 
   const history = useHistory();
-  const activeUser = localStorage.getItem("userProfile.id");
-  console.log(activeUser);
+  const activeUser = localStorage.getItem("userProfileId");
 
   useEffect(() => {
     getUserListsByUserId(activeUser);
   }, []);
 
+  if (!userLists) return null;
+
   return (
     <article>
       <h1>My Lists</h1>
-      <Button onClick={() => history.push("/alllists/createlist")}></Button>
+      <Button
+        size="small"
+        outline
+        color="info"
+        onClick={() => history.push("/alllists/createlist")}
+      >
+        New List
+      </Button>
 
       <div>
         {userLists.map((userList) => (

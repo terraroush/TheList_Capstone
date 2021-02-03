@@ -70,7 +70,6 @@ export function UserProfileProvider(props) {
   };
 
   const saveUser = (userProfile) => {
-    debugger;
     return getToken().then((token) =>
       fetch(apiUrl, {
         method: "POST",
