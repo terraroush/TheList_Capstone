@@ -8,22 +8,23 @@ import {
 } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserProfileContext } from "./providers/UserProfileProvider";
+import { UserListContext } from "./providers/UserListProvider";
 
 // Components
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./components/MainView/Home/Home";
 import AllLists from "./components/MainView/AllLists/AllLists";
-import List from "./components/MainView/AllLists/UserList/UserListCard";
 import Connections from "./components/MainView/Connections/Connections";
 import ListDetails from "./components/MainView/ListDetails/ListDetails";
 import NotFound from "./pages/NotFound";
 import UserListList from "./components/MainView/AllLists/UserList/UserListList";
-import UserListCard from "./components/MainView/AllLists/UserList/UserListCard";
+import UserListContainer from "./components/MainView/AllLists/UserList/UserListContainer";
 // import Footer from "./components/Footer";
 
 const Routes = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
+  const { userLists, setUserList } = useContext(UserListContext);
 
   const currentURL = useLocation().pathname;
   const history = useHistory();
@@ -44,23 +45,26 @@ const Routes = () => {
           {isLoggedIn ? <Home /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/listcenter" exact>
+        {/* <Route path="/listcenter" exact>
           {isLoggedIn ? <AllLists /> : <Redirect to="/login" />}
-        </Route>
+        </Route> */}
 
         <Route path="/listcenter/createlist" exact>
-          {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
+          {isLoggedIn ? (
+            <UserListContainer
+              userLists={userLists}
+              setUserList={setUserList}
+            />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
-        <Route path="/listcenter/listory" exact>
+        {/* <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <UserListList /> : <Redirect to="/login" />}
-        </Route>
+        </Route> */}
         {/* <Route path="/listcenter/friendslists" exact>
           {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
         </Route> */}
-
-        {/* <Route exact path="/alllists/:list" component={List} />
-        <Route exact path="/alllists/:list" component={List} />
-        <Route exact path="/alllists/:list" component={List} /> */}
 
         <Route path="/connections" exact>
           {isLoggedIn ? <Connections /> : <Redirect to="/login" />}

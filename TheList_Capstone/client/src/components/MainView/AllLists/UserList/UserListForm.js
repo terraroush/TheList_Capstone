@@ -1,30 +1,47 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, CustomInput } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
+import "./UserList.css";
 
-const UserListForm = () => {
+const UserListForm = ({ inputText, setInputText, tasks, setTasks }) => {
+  const inputTextHandler = (e) => {
+    setInputText(e.target.value);
+  };
+  const submitTaskHandler = (e) => {
+    e.preventDefault();
+    setTasks([
+      ...tasks,
+      { text: inputText, completed: false, id: Math.random() * 1000 },
+    ]);
+    setInputText("");
+  };
+
   return (
-    <Form inline>
-      <FormGroup>
-        <Label for="toDoInput" hidden>
-          toDoInput
-        </Label>
-        <Input
-          type="text"
-          name="toDoInput"
-          id="toDoInput"
-          placeholder="add to your list"
-        />
-      </FormGroup>{" "}
-      <Button>Submit</Button>
-      <div>
-        <CustomInput
-          type="switch"
-          id="exampleCustomSwitch"
-          name="customSwitch"
-          label="Grocery List"
-        />
-      </div>
-    </Form>
+    <>
+      <Form inline>
+        <FormGroup>
+          <Label for="toDoInput" hidden>
+            toDoInput
+          </Label>
+          <Input
+            value={inputText}
+            name="toDoInput"
+            id="toDoInput"
+            onChange={inputTextHandler}
+            type="text"
+            placeholder="add to your list"
+            className="task-input"
+            autofocus
+          />
+        </FormGroup>
+        <Button
+          onClick={submitTaskHandler}
+          className="task-button"
+          type="submit"
+        >
+          <i className="fas fa-plus-square"></i>
+        </Button>
+      </Form>
+    </>
   );
 };
 
