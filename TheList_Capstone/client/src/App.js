@@ -19,12 +19,12 @@ const App = () => {
   const menuItems = [
     { name: "Home", to: "/", icon: "/icons/home.svg", subMenuItems: [] },
     {
-      name: "All Lists",
-      to: "/alllists",
+      name: "List Center",
+      to: "/listcenter",
       icon: "/icons/list.svg",
       subMenuItems: [
         { name: "Add New List", to: "/createList" },
-        { name: "My Lists", to: "/myLists" },
+        { name: "Listory", to: "/listory" },
         { name: "Friends' Lists", to: "/friendsLists" },
       ],
     },

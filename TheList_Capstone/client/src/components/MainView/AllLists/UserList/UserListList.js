@@ -18,15 +18,15 @@ const UserListList = () => {
 
   return (
     <article>
-      <h1>My Lists</h1>
-      <Button
+      <h1>My Listory</h1>
+      {/* <Button
         size="small"
         outline
         color="info"
         onClick={() => history.push("/alllists/createlist")}
       >
         New List
-      </Button>
+      </Button> */}
 
       <div>
         {userLists.map((userList) => (

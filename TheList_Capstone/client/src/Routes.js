@@ -44,17 +44,17 @@ const Routes = () => {
           {isLoggedIn ? <Home /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/alllists" exact>
+        <Route path="/listcenter" exact>
           {isLoggedIn ? <AllLists /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/alllists/createlist" exact>
+        <Route path="/listcenter/createlist" exact>
           {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/alllists/mylists" exact>
+        <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <UserListList /> : <Redirect to="/login" />}
         </Route>
-        {/* <Route path="/alllists/friendslists" exact>
+        {/* <Route path="/listcenter/friendslists" exact>
           {isLoggedIn ? <UserListCard /> : <Redirect to="/login" />}
         </Route> */}
 

@@ -11,8 +11,6 @@ import UserListForm from "./UserListForm";
 import UserListItems from "./UserListItems";
 
 const UserListCard = ({ userList }) => {
-  const { isEditing, setIsEditing } = useState(false);
-
   return (
     <Card>
       <CardHeader>
