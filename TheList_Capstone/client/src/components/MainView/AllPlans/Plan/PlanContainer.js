@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
-import "./UserList.css";
+import "./Plan.css";
 
 // components
-import UserListForm from "./UserListForm";
-import UserListCard from "./UserListCard";
-import UserListDetailsForm from "./UserListDetailsForm";
+import PlanForm from "./PlanForm";
+import PlanDetailsForm from "./PlanDetailsForm";
+import TaskCard from "./TaskCard";
 
-const UserListContainer = () => {
+const PlanContainer = () => {
   // state
   const [inputText, setInputText] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputDate, setInputDate] = useState("");
-  const [inputDeadline, setInputDeadline] = useState("");
-  const [inputPublic, setInputPublic] = useState("");
-  const [taskLists, setTaskLists] = useState([]);
 
   // effects
 
@@ -44,17 +39,17 @@ const UserListContainer = () => {
   return (
     <>
       <div className="App">
-        <UserListDetailsForm />
-        <UserListForm
+        <PlanDetailsForm />
+        <PlanForm
           tasks={tasks}
           setTasks={setTasks}
           setInputText={setInputText}
           inputText={inputText}
         />
-        <UserListCard tasks={tasks} setTasks={setTasks} />
+        <TaskCard tasks={tasks} setTasks={setTasks} />
         <Button type="submit">Save</Button>
       </div>
     </>
   );
 };
-export default UserListContainer;
+export default PlanContainer;

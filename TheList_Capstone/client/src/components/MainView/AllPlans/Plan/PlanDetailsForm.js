@@ -1,17 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Form, FormGroup, Input, Label, CustomInput, Button } from "reactstrap";
-import { UserListContext } from "../../../../providers/UserListProvider";
+import { PlanContext } from "../../../../providers/PlanProvider";
 import { useParams } from "react-router-dom";
 import "./DetailsForm.css";
 
-const UserListDetailsForm = () => {
-  const { addTaskList, getUserListsById, updateUserList } = useContext(
-    UserListContext
-  );
+const PlanDetailsForm = () => {
+  const { addPlan, getPlansById, updatePlan } = useContext(PlanContext);
   const activeUser = +localStorage.getItem("userProfileId");
-  const { taskListId } = useParams();
+  const { planId } = useParams();
 
-  const [taskList, setTaskList] = useState({});
+  const [plan, setPlan] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   //   const [isChecked, setIsChecked] = useState(false);
   //   const [groceryValue, setGroceryValue] = useState(false);
@@ -24,29 +22,29 @@ const UserListDetailsForm = () => {
   //   };
 
   const handleControlledInputChange = (e) => {
-    const newTaskList = { ...taskList };
-    newTaskList[e.target.name] = e.target.value;
-    setTaskList(newTaskList);
+    const newPlan = { ...plan };
+    newPlan[e.target.name] = e.target.value;
+    setPlan(newPlan);
   };
 
   useEffect(() => {
-    if (taskListId) {
-      getUserListsById(taskListId).then(() => setIsLoading(false));
+    if (planId) {
+      getPlansById(planId).then(() => setIsLoading(false));
     } else {
       setIsLoading(false);
     }
   }, []);
 
-  const constructTaskListObject = () => {
+  const constructPlanObject = () => {
     setIsLoading(true);
-    if (taskListId) {
-      updateUserList({
-        id: taskList.id,
-        title: taskList.title,
-        dateCreated: taskList.dateCreated,
-        deadline: taskList.deadline,
-        active: taskList.active,
-        public: taskList.public,
+    if (planId) {
+      updatePlan({
+        id: plan.id,
+        title: plan.title,
+        dateCreated: plan.dateCreated,
+        deadline: plan.deadline,
+        active: plan.active,
+        public: plan.public,
         userProfileId: activeUser,
         listKindId: 1,
       }).then((res) => {
@@ -57,22 +55,22 @@ const UserListDetailsForm = () => {
         }
       });
     } else {
-      addTaskList({
-        id: taskList.id,
-        title: taskList.title,
+      addPlan({
+        id: plan.id,
+        title: plan.title,
         dateCreated: new Date(),
-        deadline: taskList.deadline,
+        deadline: plan.deadline,
         active: true,
         public: true,
         userProfileId: activeUser,
         listKindId: 1,
       }).then(() => {
         setIsLoading(false);
-        setTaskList();
+        setPlan();
       });
     }
   };
-  console.log(taskList);
+  console.log(plan);
 
   return (
     <>
@@ -81,7 +79,7 @@ const UserListDetailsForm = () => {
         onSubmit={(e) => {
           e.preventDefault();
           setIsLoading(true);
-          constructTaskListObject();
+          constructPlanObject();
         }}
       >
         <FormGroup className="detailsFormChild">
@@ -92,7 +90,7 @@ const UserListDetailsForm = () => {
             label="title"
             placeholder="List Title"
             onChange={handleControlledInputChange}
-            defaultValue={taskList.title}
+            defaultValue={plan.title}
           />
         </FormGroup>
         <FormGroup className="detailsFormChild">
@@ -123,7 +121,7 @@ const UserListDetailsForm = () => {
           </Label>
           <input
             type="date"
-            value={taskList.deadline}
+            value={plan.deadline}
             onChange={handleControlledInputChange}
             name="deadline"
             id="deadline"
@@ -139,9 +137,9 @@ const UserListDetailsForm = () => {
         </FormGroup>
       </Form>
       <Button disabled={isLoading} type="submit">
-        {taskListId ? "Save" : "Add"}
+        {planId ? "Save" : "Add"}
       </Button>
     </>
   );
 };
-export default UserListDetailsForm;
+export default PlanDetailsForm;

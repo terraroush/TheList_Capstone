@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
-const AllLists = () => {
+const AllPlans = () => {
   return (
     <>
       <h4>Most Recent</h4>
@@ -14,4 +14,4 @@ const AllLists = () => {
   );
 };
 
-export default AllLists;
+export default AllPlans;

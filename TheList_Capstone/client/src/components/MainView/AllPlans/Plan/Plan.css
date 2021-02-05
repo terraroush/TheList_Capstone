@@ -53,9 +53,6 @@ form button:hover {
   flex: 1;
 }
 
-.trash-btn {
-  /* border-radius: 0 10px 10px 0; */
-}
 .trash-btn,
 .complete-btn {
   background: #404d41;

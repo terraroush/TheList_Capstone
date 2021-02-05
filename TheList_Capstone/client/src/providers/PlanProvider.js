@@ -1,15 +1,15 @@
 import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
 
-export const UserListContext = createContext();
+export const PlanContext = createContext();
 
-export function UserListProvider(props) {
-  const apiUrl = "/api/userList";
+export function PlanProvider(props) {
+  const apiUrl = "/api/plan";
 
   const { getToken } = useContext(UserProfileContext);
-  const [userLists, setUserLists] = useState([]);
+  const [plans, setPlans] = useState([]);
 
-  const getAllUserLists = () => {
+  const getAllPlans = () => {
     getToken().then((token) =>
       fetch(`${apiUrl}`, {
         method: "GET",
@@ -18,13 +18,13 @@ export function UserListProvider(props) {
         },
       })
         .then((res) => res.json())
-        .then((userLists) => {
-          setUserLists(userLists);
+        .then((plans) => {
+          setPlans(plans);
         })
     );
   };
 
-  const getUserListsById = (id) => {
+  const getPlansById = (id) => {
     getToken().then((token) =>
       fetch(`${apiUrl}/${id}`, {
         method: "GET",
@@ -33,12 +33,12 @@ export function UserListProvider(props) {
         },
       })
         .then((res) => res.json())
-        .then((userLists) => {
-          setUserLists(userLists);
+        .then((plans) => {
+          setPlans(plans);
         })
     );
   };
-  const getUserListsByUserId = (id) => {
+  const getPlansByUserId = (id) => {
     getToken().then((token) =>
       fetch(`${apiUrl}/getbyuser/${id}`, {
         method: "GET",
@@ -47,12 +47,12 @@ export function UserListProvider(props) {
         },
       })
         .then((res) => res.json())
-        .then((userLists) => {
-          setUserLists(userLists);
+        .then((plans) => {
+          setPlans(plans);
         })
     );
   };
-  const addTaskList = (taskList) => {
+  const addPlan = (plan) => {
     return getToken().then((token) =>
       fetch(`${apiUrl}`, {
         method: "POST",
@@ -60,49 +60,49 @@ export function UserListProvider(props) {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(taskList),
+        body: JSON.stringify(plan),
       }).then((res) => res.json())
     );
   };
 
-  const updateUserList = (userList) => {
+  const updatePlan = (plan) => {
     getToken().then((token) => {
-      fetch(`${apiUrl}/${userList.id}`, {
+      fetch(`${apiUrl}/${plan.id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userList),
-      }).then(getAllUserLists);
+        body: JSON.stringify(plan),
+      }).then(getAllPlans);
     });
   };
 
-  const deleteUserList = (userList) => {
+  const deletePlan = (plan) => {
     getToken().then((token) => {
-      fetch(`${apiUrl}/${userList.id}`, {
+      fetch(`${apiUrl}/${plan.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then(getAllUserLists);
+      }).then(getAllPlans);
     });
   };
 
   return (
-    <UserListContext.Provider
+    <PlanContext.Provider
       value={{
-        getAllUserLists,
-        getUserListsById,
-        getUserListsByUserId,
-        addTaskList,
-        setUserLists,
-        userLists,
-        updateUserList,
-        deleteUserList,
+        getAllPlans,
+        getPlansById,
+        getPlansByUserId,
+        addPlan,
+        setPlans,
+        plans,
+        updatePlan,
+        deletePlan,
       }}
     >
       {props.children}
-    </UserListContext.Provider>
+    </PlanContext.Provider>
   );
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import { CardBody, ListGroupItem, Button } from "reactstrap";
-import "./UserList.css";
+import { Button } from "reactstrap";
+import "./Plan.css";
 
-const UserListItem = ({ text, task, tasks, setTasks }) => {
+const Task = ({ text, task, tasks, setTasks }) => {
   // events
   const deleteHandler = () => {
     setTasks(tasks.filter((el) => el.id !== task.id));
@@ -35,4 +35,4 @@ const UserListItem = ({ text, task, tasks, setTasks }) => {
     </div>
   );
 };
-export default UserListItem;
+export default Task;

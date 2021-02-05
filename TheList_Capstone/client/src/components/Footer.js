@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer" id="footer">
       <h3>footer</h3>
       <p>should span all the way across, left to right</p>
-      <div>Copyright Terra Roush 2021</div>
+      <div>Copyright 2021 Terra Roush</div>
     </div>
   );
 };

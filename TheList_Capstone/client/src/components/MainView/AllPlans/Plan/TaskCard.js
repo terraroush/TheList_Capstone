@@ -1,15 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import { ListGroup } from "reactstrap";
-import UserListItem from "./UserListItem";
-import UserListDetails from "./UserListDetails";
-import "./UserList.css";
+import Task from "./Task";
+import "./Plan.css";
 
-const UserListCard = ({ tasks, setTasks }) => {
+const TaskCard = ({ tasks, setTasks }) => {
   return (
     <div className="task-container">
       <ListGroup className="task-list">
         {tasks.map((task) => (
-          <UserListItem
+          <Task
             key={task.id}
             text={task.text}
             tasks={tasks}
@@ -22,4 +21,4 @@ const UserListCard = ({ tasks, setTasks }) => {
   );
 };
 
-export default UserListCard;
+export default TaskCard;
