@@ -52,6 +52,18 @@ export function UserListProvider(props) {
         })
     );
   };
+  const addTaskList = (taskList) => {
+    return getToken().then((token) =>
+      fetch(`${apiUrl}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(taskList),
+      }).then((res) => res.json())
+    );
+  };
 
   const updateUserList = (userList) => {
     getToken().then((token) => {
@@ -83,6 +95,7 @@ export function UserListProvider(props) {
         getAllUserLists,
         getUserListsById,
         getUserListsByUserId,
+        addTaskList,
         setUserLists,
         userLists,
         updateUserList,

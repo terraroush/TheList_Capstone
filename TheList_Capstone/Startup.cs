@@ -33,9 +33,9 @@ namespace TheList_Capstone
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
-            services.AddTransient<IUserListRepository, UserListRepository>();
-            services.AddTransient<IListItemRepository, ListItemRepository>();
-            services.AddTransient<IListKindRepository, ListKindRepository>();
+            services.AddTransient<IPlanRepository, PlanRepository>();
+            services.AddTransient<IPlanItemRepository, PlanItemRepository>();
+            services.AddTransient<IPlanTypeRepository, PlanTypeRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

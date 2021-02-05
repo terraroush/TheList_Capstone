@@ -13,10 +13,10 @@ namespace TheList_Capstone.Data
 
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<Connection> Connection { get; set; }
-        public DbSet<ListKind> ListKind { get; set; }
-        public DbSet<UserList> UserList { get; set; }
+        public DbSet<PlanType> PlanType { get; set; }
+        public DbSet<Plan> Plan { get; set; }
         public DbSet<Comment> Comment { get; set; }
-        public DbSet<ListItem> ListItem { get; set; }
+        public DbSet<PlanItem> PlanItem { get; set; }
 
     }
 }

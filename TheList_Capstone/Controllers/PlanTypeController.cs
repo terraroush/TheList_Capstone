@@ -11,14 +11,14 @@ namespace TheList_Capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ListKindController : ControllerBase
+    public class PlanTypeController : ControllerBase
     {
-        private IListKindRepository _listKindRepository;
+        private IPlanTypeRepository _planTypeRepository;
         private IUserProfileRepository _userProfileRepository;
 
-        public ListKindController(IListKindRepository listKindRepository, IUserProfileRepository userProfileRepository)
+        public PlanTypeController(IPlanTypeRepository planTypeRepository, IUserProfileRepository userProfileRepository)
         {
-            _listKindRepository = listKindRepository;
+            _planTypeRepository = planTypeRepository;
             _userProfileRepository = userProfileRepository;
 
         }
@@ -26,43 +26,43 @@ namespace TheList_Capstone.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var listKinds = _listKindRepository.GetAll();
-            return Ok(listKinds);
+            var planTypes = _planTypeRepository.GetAll();
+            return Ok(planTypes);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var listKind = _listKindRepository.GetById(id);
-            if (listKind == null)
+            var planType = _planTypeRepository.GetById(id);
+            if (planType == null)
             {
                 return NotFound();
             }
 
-            return Ok(listKind);
+            return Ok(planType);
         }
 
         // Again, as far as I can tell, I won't be needing the remainder of crud
 
         //[HttpPost]
-        //public IActionResult Add(ListKind listKind)
+        //public IActionResult Add(PlanType planType)
         //{
-        //    _listKindRepository.Add(listKind);
-        //    return Ok(listKind);
+        //    _planTypeRepository.Add(planType);
+        //    return Ok(planType);
         //}
 
         //[HttpPut("{id}")]
-        //public IActionResult Put(int id, ListKind listKind)
+        //public IActionResult Put(int id, PlanType planType)
         //{
-        //    // ListKind's Id coming from URL must match the ListKind object's
-        //    if (id != listKind.Id)
+        //    // PlanType's Id coming from URL must match the PlanType object's
+        //    if (id != planType.Id)
         //    {
         //        return BadRequest();
         //    }
 
         //    try
         //    {
-        //        _listKindRepository.Update(listKind);
+        //        _planTypeRepository.Update(planType);
         //        return NoContent();
         //    }
         //    catch (Exception ex)
@@ -74,14 +74,14 @@ namespace TheList_Capstone.Controllers
         //[HttpDelete("{id}")]
         //public IActionResult Delete(int id)
         //{
-        //    var listKind = _listKindRepository.GetById(id);
+        //    var planType = _planTypeRepository.GetById(id);
 
-        //    if (listKind == null)
+        //    if (planType == null)
         //    {
         //        return NotFound();
         //    }
 
-        //    _listKindRepository.Delete(listKind);
+        //    _planTypeRepository.Delete(planType);
         //    return NoContent();
         //}
     }

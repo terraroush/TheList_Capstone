@@ -10,62 +10,62 @@ using TheList_Capstone.Models.ViewModels;
 
 namespace TheList_Capstone.Repositories
 {
-    public class UserListRepository : IUserListRepository
+    public class PlanRepository : IPlanRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public UserListRepository(ApplicationDbContext context)
+        public PlanRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // Will need to update to filter only public list eventually. Keeping as is for testing purposes rn
-        public List<UserList> GetAll()
+        // Will need to update to filter only public plan eventually. Keeping as is for testing purposes rn
+        public List<Plan> GetAll()
         {
-            return _context.UserList
-                .Include(ul => ul.ListItems)
+            return _context.Plan
+                .Include(ul => ul.PlanItem)
                 .Include(ul => ul.UserProfile)
-                .Include(ul => ul.ListKind)
+                .Include(ul => ul.PlanType)
                 .OrderByDescending(ul => ul.DateCreated)
                 .ToList();
         }
-        public List<UserList> GetByUserProfileId(int id)
+        public List<Plan> GetByUserProfileId(int id)
         {
-            return _context.UserList
-                .Include(ul => ul.ListItems)
+            return _context.Plan
+                .Include(ul => ul.PlanItem)
                 .Include(ul => ul.UserProfile)
                 .Where(ul => ul.UserProfileId == id)
                 .OrderByDescending(ul => ul.DateCreated)
                 .ToList();
         }
 
-        public UserList GetById(int id)
+        public Plan GetById(int id)
         {
-            return _context.UserList
-                .Include(ul => ul.ListItems)
+            return _context.Plan
+                .Include(ul => ul.PlanItem)
                 .Include(ul => ul.UserProfile)
-                .Include(ul => ul.ListKind)
+                .Include(ul => ul.PlanType)
                 .Where(ul => ul.Id == id)
                 .FirstOrDefault();
         }
 
-        public void Add(UserList userList)
+        public void Add(Plan plan)
         {
-            userList.DateCreated = DateTime.Now;
+            plan.DateCreated = DateTime.Now;
 
-            _context.Add(userList);
+            _context.Add(plan);
             _context.SaveChanges();
         }
 
-        public void Update(UserList userList)
+        public void Update(Plan plan)
         {
-            _context.Entry(userList).State = EntityState.Modified;
+            _context.Entry(plan).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void Delete(UserList userList)
+        public void Delete(Plan plan)
         {
-            _context.UserList.Remove(userList);
+            _context.Plan.Remove(plan);
             _context.SaveChanges();
         }
     }

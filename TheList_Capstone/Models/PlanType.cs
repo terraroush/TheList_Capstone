@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace TheList_Capstone.Models
 {
-    public class ListItem
+    public class PlanType
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
-
-        public int UserListId { get; set; }
-
-        public UserList UserList { get; set; }
+        [Required]
+        [MaxLength(20)]
+        public bool IsGrocery { get; set; }
     }
 }

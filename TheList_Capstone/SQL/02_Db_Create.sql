@@ -10,9 +10,9 @@ GO
 
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Connection];
-DROP TABLE IF EXISTS [ListKind];
-DROP TABLE IF EXISTS [UserList];
-DROP TABLE IF EXISTS [ListItem];
+DROP TABLE IF EXISTS [PlanType];
+DROP TABLE IF EXISTS [Plan];
+DROP TABLE IF EXISTS [PlanItem];
 DROP TABLE IF EXISTS [Comment];
 GO 
 
@@ -34,17 +34,17 @@ CREATE TABLE [Connection] (
   [Accepted] bit NOT NULL,
   [SubscriberId] INTEGER NOT NULL,
 
-  CONSTRAINT [FK_Connection_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id])
+  CONSTRAINT FK_Connection_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id)
 )
 GO
 
-CREATE TABLE [ListKind] (
+CREATE TABLE [PlanType] (
   [Id] integer PRIMARY KEY identity NOT NULL,
-  [Name] nvarchar(20) NOT NULL
+  [IsGrocery] bit NOT NULL
 )
 GO
 
-CREATE TABLE [UserList] (
+CREATE TABLE [Plan] (
   [Id] INTEGER PRIMARY KEY identity NOT NULL,
   [Title] nvarchar(30) NOT NULL,
   [DateCreated] datetime NOT NULL,
@@ -53,19 +53,19 @@ CREATE TABLE [UserList] (
   [Active] bit NOT NULL,
   [Public] bit NOT NULL,
   [UserProfileId] INTEGER NOT NULL,
-  [ListKindId] INTEGER NOT NULL,
+  [PlanTypeId] INTEGER NOT NULL,
 
-  CONSTRAINT [FK_UserList_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id]),
-  CONSTRAINT [FK_UserList_ListKind] FOREIGN KEY ([ListKindId]) REFERENCES [ListKind]([Id])
+  CONSTRAINT FK_Plan_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
+  CONSTRAINT FK_Plan_PlanType FOREIGN KEY (PlanTypeId) REFERENCES PlanType(Id)
 )
 GO
 
-CREATE TABLE [ListItem] (
+CREATE TABLE [PlanItem] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [Name] nvarchar(50) NOT NULL,
-  [UserListId] INTEGER NOT NULL,
+  [PlanId] INTEGER NOT NULL,
 
-  CONSTRAINT [FK_ListItem_UserList] FOREIGN KEY ([UserListId]) REFERENCES [UserList]([Id])
+  CONSTRAINT FK_PlanItem_Plan FOREIGN KEY (PlanId) REFERENCES [Plan](Id)
 )
 GO
 
@@ -73,10 +73,10 @@ CREATE TABLE [Comment] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [Message] nvarchar(255) NOT NULL,
   [UserProfileId] INTEGER NOT NULL,
-  [UserListId] INTEGER NOT NULL,
+  [PlanId] INTEGER NOT NULL,
 
-  CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile]([Id]),
-  CONSTRAINT [FK_Comment_UserList] FOREIGN KEY ([UserListId]) REFERENCES [UserList]([Id])
+  CONSTRAINT FK_Comment_UserProfile FOREIGN KEY (UserProfileId) REFERENCES UserProfile(Id),
+  CONSTRAINT FK_Comment_Plan FOREIGN KEY (PlanId) REFERENCES [Plan](Id)
 )
 GO
 
@@ -85,8 +85,8 @@ SET IDENTITY_INSERT [UserProfile] ON
 INSERT INTO [UserProfile]
   ([Id], [Name], [Email], [FirebaseUserId], [UserName], [ProfilePicUrl])
 VALUES 
-  (1, 'Oliver Hardy', 'olie@email.com', 'pKeqSxRiizWl7nhhd5uMFytF4ih2', 'Ollie', null),
-  (2, 'Stan Laurel', 'stan@email.com', 'ytlqqpjFh0fJSF4tXflMR2siEa82', 'Stanny-boy', null);
+  (1, 'Oliver Hardy', 'olie@email.com', 'MA9qsgE6vfbp2P1z0kv72bqRql43', 'Ollie', null),
+  (2, 'Stan Laurel', 'stan@email.com', 'vP3tkzRXWmRzwSLGwNTBS5fJs2N2', 'Stanny-boy', null);
 SET IDENTITY_INSERT [UserProfile] OFF
 
 SET IDENTITY_INSERT [Connection] ON
@@ -97,27 +97,26 @@ VALUES
   (2, 2, 1, 1);
 SET IDENTITY_INSERT [Connection] OFF
 
-SET IDENTITY_INSERT [ListKind] ON
-INSERT INTO [ListKind]
-  ([Id], [Name])
+SET IDENTITY_INSERT [PlanType] ON
+INSERT INTO [PlanType]
+  ([Id], [IsGrocery])
 VALUES
-  (1, 'Grocery'),
-  (2, 'To Do'),
-  (3, 'Other');
-SET IDENTITY_INSERT [ListKind] OFF
+  (1, 1),
+  (2, 2);
+SET IDENTITY_INSERT [PlanType] OFF
 
-SET IDENTITY_INSERT [UserList] ON
-INSERT INTO [UserList]
-  ([Id], [Title], [DateCreated], [DateUpdated], [Deadline], [Active], [Public], [UserProfileId], [ListKindId])
+SET IDENTITY_INSERT [Plan] ON
+INSERT INTO [Plan]
+  ([Id], [Title], [DateCreated], [DateUpdated], [Deadline], [Active], [Public], [UserProfileId], [PlanTypeId])
 VALUES
   (1, 'Groceries mar 22', '03-22-2021', '03-24-2021', '03-28-2021', 1, 1, 1, 1),
-  (2, 'Potluck Graduation', '01-24-2021', null, '02-10-2021', 1, 1, 2, 3),
+  (2, 'Potluck Graduation', '01-24-2021', null, '02-10-2021', 1, 1, 2, 2),
   (3, 'ToDo weekend', '02-19-2021', '02-20-2021', null, 1, 0, 2, 2);
-SET IDENTITY_INSERT [UserList] OFF
+SET IDENTITY_INSERT [Plan] OFF
 
-SET IDENTITY_INSERT [ListItem] ON
-INSERT INTO [ListItem]
-  ([Id], [Name], [UserListId])
+SET IDENTITY_INSERT [PlanItem] ON
+INSERT INTO [PlanItem]
+  ([Id], [Name], [PlanId])
 VALUES
   (1, 'Broccoli', 1),
   (2, 'Rice', 1),
@@ -129,13 +128,14 @@ VALUES
   (8, 'post office', 3),
   (9, 'interview question review', 3),
   (10, 'update website', 3);
-SET IDENTITY_INSERT [ListItem] OFF
+SET IDENTITY_INSERT [PlanItem] OFF
 
 SET IDENTITY_INSERT [Comment] ON
 INSERT INTO [Comment]
-  ([Id], [UserProfileId], [UserListId], [Message])
+  ([Id], [UserProfileId], [PlanId], [Message])
 VALUES
   (1, 2, 1, 'We still have two bags of granola!'),
   (2, 1, 1, 'I know. I don''t like that kind though.'),
   (3, 1, 2, 'We still need some beverages, unless y''all want to do BYOB...');
+
 SET IDENTITY_INSERT [Comment] OFF

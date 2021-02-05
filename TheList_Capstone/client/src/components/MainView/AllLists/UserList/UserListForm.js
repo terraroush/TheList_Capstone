@@ -30,7 +30,6 @@ const UserListForm = ({ inputText, setInputText, tasks, setTasks }) => {
             type="text"
             placeholder="add to your list"
             className="task-input"
-            autofocus
           />
         </FormGroup>
         <Button

@@ -14,9 +14,9 @@ namespace TheList_Capstone.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
-    public class UserListController : ControllerBase
+    public class PlanController : ControllerBase
     {
-        private readonly IUserListRepository _userListRepository;
+        private readonly IPlanRepository _planRepository;
         private readonly IUserProfileRepository _userProfileRepository;
 
         private UserProfile GetCurrentUserProfile()
@@ -25,9 +25,9 @@ namespace TheList_Capstone.Controllers
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
-        public UserListController(IUserListRepository userListRepository, IUserProfileRepository userProfileRepository)
+        public PlanController(IPlanRepository planRepository, IUserProfileRepository userProfileRepository)
         {
-            _userListRepository = userListRepository;
+            _planRepository = planRepository;
             _userProfileRepository = userProfileRepository;
 
         }
@@ -36,21 +36,21 @@ namespace TheList_Capstone.Controllers
         public IActionResult Get()
         {
            
-                var userLists = _userListRepository.GetAll();
-                return Ok(userLists);
+                var userLists = _planRepository.GetAll();
+                return Ok(plans);
            
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var userList = _userListRepository.GetById(id);
-            if (userList == null)
+            var plan = _planRepository.GetById(id);
+            if (plan == null)
             {
                 return NotFound();
             }
        
-            return Ok(userList);
+            return Ok(plan);
         }
 
         [HttpGet("getbyuser/{id}")]
@@ -63,15 +63,15 @@ namespace TheList_Capstone.Controllers
                 return NotFound();
             }
 
-            var userList = _userListRepository.GetByUserProfileId(id);
-            if (userList == null)
+            var plan = _planRepository.GetByUserProfileId(id);
+            if (plan == null)
             {
                 return NotFound();
             }
 
             try
             {
-                return Ok(userList);
+                return Ok(plan);
             }
             catch (Exception ex)
             {
@@ -80,45 +80,45 @@ namespace TheList_Capstone.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(UserList userList)
+        public IActionResult Add(Plan plan)
         {
-            _userListRepository.Add(userList);
-            return Ok(userList);
+            _planRepository.Add(plan);
+            return Ok(plan);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, UserList userList)
+        public IActionResult Put(int id, Plan plan)
         {
-            var listAuthor = userList.UserProfileId;
+            var listAuthor = plan.UserProfileId;
 
             if (id != listAuthor)
             {
                 return BadRequest();
             }
 
-            // Get userList by Id to ensure it's in database
-            var userListToEdit = _userListRepository.GetById(id);
+            // Get plan by Id to ensure it's in database
+            var planToEdit = _planRepository.GetById(id);
 
-            if (userListToEdit == null)
+            if (planToEdit == null)
             {
                 return NotFound();
             }
 
-            _userListRepository.Update(userListToEdit);
+            _planRepository.Update(planToEdit);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var userListToDelete = _userListRepository.GetById(id);
+            var planToDelete = _planRepository.GetById(id);
 
-            if (userListToDelete == null)
+            if (planToDelete == null)
             {
                 return NotFound();
             }
             
-            _userListRepository.Delete(userListToDelete);
+            _planRepository.Delete(planToDelete);
             return NoContent();
         }
     }
