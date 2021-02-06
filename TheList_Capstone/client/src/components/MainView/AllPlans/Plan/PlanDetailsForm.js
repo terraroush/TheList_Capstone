@@ -55,6 +55,7 @@ const PlanDetailsForm = () => {
           setIsLoading(false);
         } else {
           setIsLoading(false);
+          history.push(`/listcenter/createlist/${plan.id}`);
         }
       });
     } else {
@@ -67,10 +68,10 @@ const PlanDetailsForm = () => {
         public: true,
         userProfileId: activeUser,
         planTypeId: 1,
-      }).then(() => {
+      }).then((planObj) => {
         setIsLoading(false);
         setPlan();
-        // history.push("/listcenter/createlist");
+        history.push(`/listcenter/createlist/${planObj.id}`);
       });
     }
   };

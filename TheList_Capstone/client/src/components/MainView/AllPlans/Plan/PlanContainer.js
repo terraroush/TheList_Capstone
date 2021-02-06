@@ -11,6 +11,7 @@ const PlanContainer = () => {
   // state
   const [inputText, setInputText] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState({});
 
   return (
     <>
@@ -21,9 +22,10 @@ const PlanContainer = () => {
           setTasks={setTasks}
           setInputText={setInputText}
           inputText={inputText}
+          task={task}
+          setTask={setTask}
         />
         <TaskList tasks={tasks} setTasks={setTasks} />
-        {/* <Button type="submit">Save</Button> */}
       </div>
     </>
   );

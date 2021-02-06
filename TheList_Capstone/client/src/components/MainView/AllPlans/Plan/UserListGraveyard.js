@@ -54,3 +54,14 @@
 //   );
 // };
 // export default PlanContainer;
+
+// for old todolist
+// const inputTextHandler = (e) => {
+//   setInputText(e.target.value);
+// };
+// const submitTaskCollectionHandler = (e) => {
+//   setIsLoading(true);
+//   e.preventDefault();
+//   setTasks([...tasks, { name: inputText }]);
+//   setInputText("");
+// };
