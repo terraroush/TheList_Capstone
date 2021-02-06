@@ -12,31 +12,6 @@ const PlanContainer = () => {
   const [inputText, setInputText] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  // effects
-
-  // (only run once)
-  useEffect(() => {
-    getLocalTasks();
-  }, []);
-  // when we get a new task, update
-  useEffect(() => {
-    saveLocalTasks();
-  }, [tasks]);
-
-  // save to local storage
-  const saveLocalTasks = () => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
-  const getLocalTasks = () => {
-    if (localStorage.getItem("tasks") === null) {
-      localStorage.setItem("tasks", JSON.stringify([]));
-    } else {
-      let localTask = JSON.parse(localStorage.getItem("tasks"));
-      setTasks(localTask);
-    }
-  };
-  // i want to add the tasks array to my plan object...
-
   return (
     <>
       <div className="App">

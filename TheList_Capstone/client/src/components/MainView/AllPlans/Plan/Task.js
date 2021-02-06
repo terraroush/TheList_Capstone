@@ -3,19 +3,20 @@ import { Button } from "reactstrap";
 import "./Plan.css";
 
 const Task = ({ planItem, task, tasks, setTasks }) => {
+  // handlers
   const deleteHandler = () => {
     setTasks(tasks.filter((el) => el.id !== task.id));
   };
   const completeHandler = () => {
     setTasks(
-      tasks.map((item) => {
-        if (item.id === task.id) {
+      tasks.map((t) => {
+        if (t.id === task.id) {
           return {
-            ...item,
-            completed: !item.completed,
+            ...t,
+            completed: !t.completed,
           };
         }
-        return item;
+        return t;
       })
     );
   };

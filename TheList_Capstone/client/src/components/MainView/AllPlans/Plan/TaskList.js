@@ -10,7 +10,7 @@ const TaskList = ({ tasks, setTasks }) => {
         {tasks.map((task) => (
           <Task
             key={task.id}
-            planItem={task.planItem}
+            name={task.name}
             tasks={tasks}
             task={task}
             setTasks={setTasks}

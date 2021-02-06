@@ -3,26 +3,46 @@ import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
 import "./Plan.css";
 
 const TaskForm = ({ inputText, setInputText, tasks, setTasks }) => {
+  // handlers
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
   const submitTaskHandler = (e) => {
     e.preventDefault();
-    setTasks([...tasks, { planItem: inputText, id: Math.random() * 1000 }]);
+    setTasks([...tasks, { name: inputText }]);
     setInputText("");
+    constructTaskObject();
   };
+  const constructTaskObject = () => {
+    if (taskId) {
+      updateTask({
+        id: planItem.id,
+        name: planItem.name,
+        planId: "",
+      });
+    } else {
+      addTask({
+        id: planItem.id,
+        name: planItem.name,
+        planId: "",
+      }).then(() => {
+        setTasks();
+      });
+    }
+  };
+  if (!task) return null;
 
   return (
     <>
       <Form inline>
         <FormGroup>
-          <Label for="toDoInput" hidden>
-            toDoInput
+          <Label for="planItemInput" hidden>
+            planItemInput
           </Label>
           <Input
             value={inputText}
-            name="toDoInput"
-            id="toDoInput"
+            name="planItemInput"
+            id="planItemInput"
             onChange={inputTextHandler}
             type="text"
             placeholder="add to your list"
