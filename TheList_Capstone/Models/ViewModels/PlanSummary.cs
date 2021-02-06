@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace TheList_Capstone.Models.ViewModels
 {
-    public class UserListSummary
+    public class PlanSummary
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -17,7 +17,7 @@ namespace TheList_Capstone.Models.ViewModels
         public int AuthorId { get; set; }
         public string AuthorName { get; set; }
         public DateTime DateCreated { get; set; }
-        public ListKind ListKind { get; set; }
+        public PlanType PlanType { get; set; }
         //public string PreviewText => AbbreviatedList + "...";
     }
 }

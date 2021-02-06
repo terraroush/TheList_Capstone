@@ -8,48 +8,47 @@ using TheList_Capstone.Models;
 
 namespace TheList_Capstone.Repositories
 {
-    public class ListKindRepository : IListKindRepository
+    public class PlanTypeRepository : IPlanTypeRepository
     {
         private ApplicationDbContext _context;
 
-        public ListKindRepository(ApplicationDbContext context)
+        public PlanTypeRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // This data entity need only provide a set number of predefined listKinds
+        // This data entity need only provide a set number of predefined planType
 
-        public ListKind GetById(int id)
+        public PlanType GetById(int id)
         {
-            return _context.ListKind
+            return _context.PlanType
                 .Where(l => l.Id == id)
                 .FirstOrDefault();
         }
 
-        public List<ListKind> GetAll()
+        public List<PlanType> GetAll()
         {
-            return _context.ListKind
-                .OrderByDescending(ul => ul.Name)
+            return _context.PlanType
                 .ToList();
         }
 
         //As far as I can tell, I won't need to add, update or delete listKinds
 
-        //public void Add(ListKind listItem)
+        //public void Add(PlanType planType)
         //{
-        //    _context.Add(listItem);
+        //    _context.Add(planType);
         //    _context.SaveChanges();
         //}
 
-        //public void Update(ListKind listItem)
+        //public void Update(PlanType planType)
         //{
-        //    _context.Entry(listItem).State = EntityState.Modified;
+        //    _context.Entry(planType).State = EntityState.Modified;
         //    _context.SaveChanges();
         //}
 
-        //public void Delete(ListKind listItem)
+        //public void Delete(PlanType planType)
         //{
-        //    _context.ListKind.Remove(listItem);
+        //    _context.PlanType.Remove(planType);
         //    _context.SaveChanges();
         //}
     }

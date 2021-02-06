@@ -1,0 +1,7 @@
+.detailsFormContainer {
+  display: flex;
+  flex-direction: column;
+}
+.detailsFormChild {
+  display: flex;
+}

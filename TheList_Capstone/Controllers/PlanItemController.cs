@@ -12,14 +12,14 @@ namespace TheList_Capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ListItemController : ControllerBase
+    public class PlanItemController : ControllerBase
     {
-        private IListItemRepository _listItemRepository;
+        private IPlanItemRepository _planItemRepository;
         private IUserProfileRepository _userProfileRepository;
 
-        public ListItemController(IListItemRepository listItemRepository, IUserProfileRepository userProfileRepository)
+        public PlanItemController(IPlanItemRepository planItemRepository, IUserProfileRepository userProfileRepository)
         {
-            _listItemRepository = listItemRepository;
+            _planItemRepository = planItemRepository;
             _userProfileRepository = userProfileRepository;
 
         }
@@ -27,41 +27,41 @@ namespace TheList_Capstone.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var listItems = _listItemRepository.GetAll();
-            return Ok(listItems);
+            var planItems = _planItemRepository.GetAll();
+            return Ok(planItems);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var listItem = _listItemRepository.GetById(id);
-            if (listItem == null)
+            var planItem = _planItemRepository.GetById(id);
+            if (planItem == null)
             {
                 return NotFound();
             }
 
-            return Ok(listItem);
+            return Ok(planItem);
         }
 
         [HttpPost]
-        public IActionResult Add(ListItem listItem)
+        public IActionResult Add(PlanItem planItem)
         {
-            _listItemRepository.Add(listItem);
-            return Ok(listItem);
+            _planItemRepository.Add(planItem);
+            return Ok(planItem);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, ListItem listItem)
+        public IActionResult Put(int id, PlanItem planItem)
         {
-            // ListItem's Id coming from URL must match the ListItem object's
-            if (id != listItem.Id)
+            // PlanItem's Id coming from URL must match the PlanItem object's
+            if (id != planItem.Id)
             {
                 return BadRequest();
             }
 
             try
             {
-                _listItemRepository.Update(listItem);
+                _planItemRepository.Update(planItem);
                 return NoContent();
             }
             catch(Exception ex)
@@ -73,14 +73,14 @@ namespace TheList_Capstone.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var listItem = _listItemRepository.GetById(id);
+            var planItem = _planItemRepository.GetById(id);
 
-            if (listItem == null)
+            if (planItem == null)
             {
                 return NotFound();
             }
 
-            _listItemRepository.Delete(listItem);
+            _planItemRepository.Delete(planItem);
             return NoContent();
         }
     }

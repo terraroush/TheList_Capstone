@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListDetails = () => {
+const PlanDetails = () => {
   return (
     <>
       <h4>List Details</h4>
@@ -9,4 +9,4 @@ const ListDetails = () => {
   );
 };
 
-export default ListDetails;
+export default PlanDetails;

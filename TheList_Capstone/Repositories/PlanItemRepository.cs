@@ -8,44 +8,44 @@ using TheList_Capstone.Models;
 
 namespace TheList_Capstone.Repositories
 {
-    public class ListItemRepository : IListItemRepository
+    public class PlanItemRepository : IPlanItemRepository
     {
         private ApplicationDbContext _context;
 
-        public ListItemRepository(ApplicationDbContext context)
+        public PlanItemRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public ListItem GetById(int id)
+        public PlanItem GetById(int id)
         {
-            return _context.ListItem
+            return _context.PlanItem
                 .Where(l => l.Id == id)
                 .FirstOrDefault();
         }
 
-        public List<ListItem> GetAll()
+        public List<PlanItem> GetAll()
         {
-            return _context.ListItem
+            return _context.PlanItem
                 .OrderByDescending(ul => ul.Name)
                 .ToList();
         }
 
-        public void Add(ListItem listItem)
+        public void Add(PlanItem planItem)
         {
-            _context.Add(listItem);
+            _context.Add(planItem);
             _context.SaveChanges();
         }
 
-        public void Update(ListItem listItem)
+        public void Update(PlanItem planItem)
         {
-            _context.Entry(listItem).State = EntityState.Modified;
+            _context.Entry(planItem).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void Delete(ListItem listItem)
+        public void Delete(PlanItem planItem)
         {
-            _context.ListItem.Remove(listItem);
+            _context.PlanItem.Remove(planItem);
             _context.SaveChanges();
         }
     }

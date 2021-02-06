@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheList_Capstone.Models
 {
-    public class UserList
+    public class Plan
     {
         public int Id { get; set; }
 
@@ -33,11 +33,11 @@ namespace TheList_Capstone.Models
         public UserProfile UserProfile { get; set; }
 
         [Required]
-        public int ListKindId { get; set; }
+        public int PlanTypeId { get; set; }
 
-        public ListKind ListKind { get; set; }
+        public PlanType PlanType { get; set; }
 
-        public List<ListItem> ListItems { get; set; }
+        public List<PlanItem> PlanItems { get; set; }
 
     }
 }

@@ -3,9 +3,9 @@ using TheList_Capstone.Models;
 
 namespace TheList_Capstone.Repositories
 {
-    public interface IListKindRepository
+    public interface IPlanTypeRepository
     {
-        List<ListKind> GetAll();
-        ListKind GetById(int id);
+        List<PlanType> GetAll();
+        PlanType GetById(int id);
     }
 }

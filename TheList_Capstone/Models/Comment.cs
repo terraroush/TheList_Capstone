@@ -20,8 +20,8 @@ namespace TheList_Capstone.Models
         public UserProfile UserProfile { get; set; }
 
         [Required]
-        public int UserListId { get; set; }
+        public int PlanId { get; set; }
 
-        public UserList UserList { get; set; }
+        public Plan Plan { get; set; }
     }
 }
