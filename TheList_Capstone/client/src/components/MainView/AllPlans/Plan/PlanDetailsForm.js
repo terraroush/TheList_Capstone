@@ -1,13 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Form, FormGroup, Input, Label, CustomInput, Button } from "reactstrap";
 import { PlanContext } from "../../../../providers/PlanProvider";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "./DetailsForm.css";
 
 const PlanDetailsForm = () => {
-  const { addPlan, getPlansById, updatePlan } = useContext(PlanContext);
+  const { addPlan, getPlansById, getAllPlans, updatePlan } = useContext(
+    PlanContext
+  );
   const activeUser = +localStorage.getItem("userProfileId");
   const { planId } = useParams();
+  const history = useHistory();
 
   const [plan, setPlan] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +49,7 @@ const PlanDetailsForm = () => {
         active: plan.active,
         public: plan.public,
         userProfileId: activeUser,
-        listKindId: 1,
+        planTypeId: 1,
       }).then((res) => {
         if (!res) {
           setIsLoading(false);
@@ -63,14 +66,16 @@ const PlanDetailsForm = () => {
         active: true,
         public: true,
         userProfileId: activeUser,
-        listKindId: 1,
+        planTypeId: 1,
       }).then(() => {
         setIsLoading(false);
         setPlan();
+        // history.push("/listcenter/createlist");
       });
     }
   };
-  console.log(plan);
+  if (!plan) return null;
+  // console.log(plan);
 
   return (
     <>
@@ -101,19 +106,6 @@ const PlanDetailsForm = () => {
             label="Grocery List"
           />
         </FormGroup>
-        {/* <FormGroup className="detailsFormChild">
-          <Label for="dateCreated" hidden>
-            Today's Date
-          </Label>
-          <input
-            type="date"
-            onChange={handleControlledInputChange}
-            name="dateCreated"
-            id="dateCreated"
-            placeholder="Today's Date"
-            required
-          />
-        </FormGroup> */}
 
         <FormGroup className="detailsFormChild">
           <Label for="deadline" hidden>
@@ -135,10 +127,10 @@ const PlanDetailsForm = () => {
             Public
           </Label>
         </FormGroup>
+        <Button disabled={isLoading} type="submit">
+          {planId ? "Save" : "Add"}
+        </Button>
       </Form>
-      <Button disabled={isLoading} type="submit">
-        {planId ? "Save" : "Add"}
-      </Button>
     </>
   );
 };

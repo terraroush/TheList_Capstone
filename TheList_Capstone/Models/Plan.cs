@@ -37,7 +37,7 @@ namespace TheList_Capstone.Models
 
         public PlanType PlanType { get; set; }
 
-        public List<PlanItem> PlanItem { get; set; }
+        public List<PlanItem> PlanItems { get; set; }
 
     }
 }

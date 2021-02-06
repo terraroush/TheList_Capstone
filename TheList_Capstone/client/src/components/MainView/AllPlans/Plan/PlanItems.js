@@ -1,6 +1,7 @@
 import React from "react";
 import { CardText, CardBody } from "reactstrap";
 
+// plan object coming in from PlanCard; currently supplying all plans by this user
 const PlanItems = ({ plan }) => (
   <CardBody>
     {plan.planItems.length > 0

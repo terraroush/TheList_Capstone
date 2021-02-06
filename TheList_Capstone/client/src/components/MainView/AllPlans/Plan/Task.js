@@ -2,8 +2,7 @@ import React from "react";
 import { Button } from "reactstrap";
 import "./Plan.css";
 
-const Task = ({ text, task, tasks, setTasks }) => {
-  // events
+const Task = ({ planItem, task, tasks, setTasks }) => {
   const deleteHandler = () => {
     setTasks(tasks.filter((el) => el.id !== task.id));
   };
@@ -24,7 +23,7 @@ const Task = ({ text, task, tasks, setTasks }) => {
   return (
     <div className="task">
       <li className={`task-item ${task.completed ? "completed" : ""}`}>
-        {text}
+        {planItem}
       </li>
       <Button onClick={completeHandler} className="complete-btn">
         <i className="fas fa-check"></i>

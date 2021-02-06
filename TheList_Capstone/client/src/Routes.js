@@ -18,7 +18,7 @@ import AllPlans from "./components/MainView/AllPlans/AllPlans";
 import Connections from "./components/MainView/Connections/Connections";
 import PlanDetails from "./components/MainView/PlanDetails/PlanDetails";
 import NotFound from "./pages/NotFound";
-// import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
+import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
 import PlanContainer from "./components/MainView/AllPlans/Plan/PlanContainer";
 // import Footer from "./components/Footer";
 
@@ -52,9 +52,9 @@ const Routes = () => {
         <Route path="/listcenter/createlist" exact>
           {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
         </Route>
-        {/* <Route path="/listcenter/listory" exact>
+        <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <PlanList /> : <Redirect to="/login" />}
-        </Route> */}
+        </Route>
         {/* <Route path="/listcenter/friendslists" exact>
           {isLoggedIn ? <TaskCard /> : <Redirect to="/login" />}
         </Route> */}

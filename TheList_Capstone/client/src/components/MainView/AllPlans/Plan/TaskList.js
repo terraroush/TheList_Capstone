@@ -3,14 +3,14 @@ import { ListGroup } from "reactstrap";
 import Task from "./Task";
 import "./Plan.css";
 
-const TaskCard = ({ tasks, setTasks }) => {
+const TaskList = ({ tasks, setTasks }) => {
   return (
     <div className="task-container">
       <ListGroup className="task-list">
         {tasks.map((task) => (
           <Task
             key={task.id}
-            text={task.text}
+            planItem={task.planItem}
             tasks={tasks}
             task={task}
             setTasks={setTasks}
@@ -21,4 +21,4 @@ const TaskCard = ({ tasks, setTasks }) => {
   );
 };
 
-export default TaskCard;
+export default TaskList;

@@ -36,7 +36,7 @@ namespace TheList_Capstone.Controllers
         public IActionResult Get()
         {
            
-                var userLists = _planRepository.GetAll();
+                var plans = _planRepository.GetAll();
                 return Ok(plans);
            
         }

@@ -1,39 +1,39 @@
-// import React, { useContext, useEffect } from "react";
-// import { useHistory } from "react-router-dom";
-// import { PlanContext } from "../../../../providers/PlanProvider";
-// import { Button } from "reactstrap";
-// import PlanCard from "./PlanCard";
+import React, { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { PlanContext } from "../../../../providers/PlanProvider";
+import { Button } from "reactstrap";
+import PlanCard from "./PlanCard";
 
-// const PlanList = () => {
-//   const { plans, getPlansByUserId } = useContext(PlanContext);
+const PlanList = () => {
+  const { plans, getPlansByUserId } = useContext(PlanContext);
 
-//   const history = useHistory();
-//   const activeUser = localStorage.getItem("userProfileId");
+  const history = useHistory();
+  const activeUser = localStorage.getItem("userProfileId");
 
-//   useEffect(() => {
-//     getPlansByUserId(activeUser);
-//   }, []);
+  useEffect(() => {
+    getPlansByUserId(activeUser);
+  }, []);
 
-//   if (!plans) return null;
+  if (!plans) return null;
 
-//   return (
-//     <article>
-//       <h1>My Listory</h1>
-//       <Button
-//         size="small"
-//         outline
-//         color="info"
-//         onClick={() => history.push("/alllists/createlist")}
-//       >
-//         New List
-//       </Button>
+  return (
+    <article>
+      <h1>My Listory</h1>
+      <Button
+        size="small"
+        outline
+        color="info"
+        onClick={() => history.push("/alllists/createlist")}
+      >
+        New List
+      </Button>
 
-//       <div>
-//         {plans.map((plan) => (
-//           <PlanCard key={plan.id} plan={plan} />
-//         ))}
-//       </div>
-//     </article>
-//   );
-// };
-// export default PlanList;
+      <div>
+        {plans.map((plan) => (
+          <PlanCard key={plan.id} plan={plan} />
+        ))}
+      </div>
+    </article>
+  );
+};
+export default PlanList;

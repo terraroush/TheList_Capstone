@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
 import "./Plan.css";
 
 // components
-import PlanForm from "./PlanForm";
+import TaskForm from "./TaskForm";
 import PlanDetailsForm from "./PlanDetailsForm";
-import TaskCard from "./TaskCard";
+import TaskList from "./TaskList";
 
 const PlanContainer = () => {
   // state
@@ -18,7 +18,7 @@ const PlanContainer = () => {
   useEffect(() => {
     getLocalTasks();
   }, []);
-
+  // when we get a new task, update
   useEffect(() => {
     saveLocalTasks();
   }, [tasks]);
@@ -35,19 +35,20 @@ const PlanContainer = () => {
       setTasks(localTask);
     }
   };
+  // i want to add the tasks array to my plan object...
 
   return (
     <>
       <div className="App">
         <PlanDetailsForm />
-        <PlanForm
+        <TaskForm
           tasks={tasks}
           setTasks={setTasks}
           setInputText={setInputText}
           inputText={inputText}
         />
-        <TaskCard tasks={tasks} setTasks={setTasks} />
-        <Button type="submit">Save</Button>
+        <TaskList tasks={tasks} setTasks={setTasks} />
+        {/* <Button type="submit">Save</Button> */}
       </div>
     </>
   );

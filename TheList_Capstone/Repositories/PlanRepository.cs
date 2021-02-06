@@ -23,7 +23,7 @@ namespace TheList_Capstone.Repositories
         public List<Plan> GetAll()
         {
             return _context.Plan
-                .Include(ul => ul.PlanItem)
+                .Include(ul => ul.PlanItems)
                 .Include(ul => ul.UserProfile)
                 .Include(ul => ul.PlanType)
                 .OrderByDescending(ul => ul.DateCreated)
@@ -32,7 +32,7 @@ namespace TheList_Capstone.Repositories
         public List<Plan> GetByUserProfileId(int id)
         {
             return _context.Plan
-                .Include(ul => ul.PlanItem)
+                .Include(ul => ul.PlanItems)
                 .Include(ul => ul.UserProfile)
                 .Where(ul => ul.UserProfileId == id)
                 .OrderByDescending(ul => ul.DateCreated)
@@ -42,7 +42,7 @@ namespace TheList_Capstone.Repositories
         public Plan GetById(int id)
         {
             return _context.Plan
-                .Include(ul => ul.PlanItem)
+                .Include(ul => ul.PlanItems)
                 .Include(ul => ul.UserProfile)
                 .Include(ul => ul.PlanType)
                 .Where(ul => ul.Id == id)
