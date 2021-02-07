@@ -13,17 +13,18 @@ import PlanCard from "./PlanCard";
 // and we need the current plan.
 const PlanContainer = () => {
   const { currentPlan, getPlanById } = useContext(PlanContext);
-  const planId = useParams();
+  const params = useParams();
+  const planId = +params.planId;
 
   useEffect(() => {
-    getPlanById(+planId.planId);
+    getPlanById(planId);
   }, []);
   console.log(currentPlan);
   if (!currentPlan) return null;
   return (
     <div className="App">
       <PlanCard plan={currentPlan} />
-      {/* <TaskForm task={task} /> */}
+      <TaskForm planId={planId} />
       {/* <TaskList tasks={tasks} setTasks={setTasks} /> */}
     </div>
   );
