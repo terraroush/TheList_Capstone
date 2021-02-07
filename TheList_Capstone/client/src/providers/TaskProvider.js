@@ -65,7 +65,11 @@ export function TaskProvider(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(task),
-      }).then(getAllTasks);
+      })
+        .then((res) => res.json())
+        .then((tasks) => {
+          setTasks(tasks).then(getAllTasks);
+        });
     });
   };
 

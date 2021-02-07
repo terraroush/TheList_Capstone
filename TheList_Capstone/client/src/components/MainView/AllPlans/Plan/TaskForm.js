@@ -40,7 +40,7 @@ const TaskForm = ({ task, planId }) => {
   const constructTaskObject = () => {
     if (task) {
       updateTask({
-        id: taskId,
+        id: currentTask.id,
         name: currentTask.name,
         planId,
       }).then((res) => {

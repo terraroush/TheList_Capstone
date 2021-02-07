@@ -29,7 +29,7 @@ const PlanContainer = () => {
       <PlanCard plan={currentPlan} />
       <TaskForm planId={planId} />
       {currentPlan.planItems.map((planItem) => (
-        <TaskForm key={currentPlan.id} planId={planId} task={planItem} />
+        <TaskForm key={planItem.id} planId={planId} task={planItem} />
       ))}
     </div>
   );

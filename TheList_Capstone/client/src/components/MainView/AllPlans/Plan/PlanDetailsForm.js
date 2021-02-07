@@ -60,7 +60,6 @@ const PlanDetailsForm = () => {
       });
     } else {
       addPlan({
-        id: plan.id,
         title: plan.title,
         dateCreated: new Date(),
         deadline: plan.deadline,
