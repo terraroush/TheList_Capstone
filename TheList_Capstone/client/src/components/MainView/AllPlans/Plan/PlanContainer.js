@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { PlanContext } from "../../../../providers/PlanProvider";
+import { TaskContext } from "../../../../providers/TaskProvider";
 import { useParams } from "react-router-dom";
 import "./Plan.css";
 
@@ -13,19 +14,22 @@ import PlanCard from "./PlanCard";
 // and we need the current plan.
 const PlanContainer = () => {
   const { currentPlan, getPlanById } = useContext(PlanContext);
+  const { tasks } = useContext(TaskContext);
   const params = useParams();
   const planId = +params.planId;
 
   useEffect(() => {
     getPlanById(planId);
-  }, []);
+  }, [tasks]);
   console.log(currentPlan);
   if (!currentPlan) return null;
   return (
     <div className="App">
       <PlanCard plan={currentPlan} />
       <TaskForm planId={planId} />
-      {/* <TaskList tasks={tasks} setTasks={setTasks} /> */}
+      {currentPlan.planItems.map((plan) => (
+        <TaskForm planId={planId} task={plan} />
+      ))}
     </div>
   );
 };

@@ -56,6 +56,7 @@ const TaskForm = ({ task, planId }) => {
         planId,
       }).then(() => {
         setIsLoading(false);
+        setCurrentTask(defaultTask);
       });
     }
   };
