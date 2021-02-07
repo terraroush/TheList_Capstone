@@ -21,14 +21,16 @@ const PlanContainer = () => {
   useEffect(() => {
     getPlanById(planId);
   }, [tasks]);
-  console.log(currentPlan);
+  console.log("current plan", currentPlan, "planId", planId);
+
   if (!currentPlan) return null;
+
   return (
     <div className="App">
       <PlanCard plan={currentPlan} />
       <TaskForm planId={planId} />
-      {currentPlan.planItems.map((plan) => (
-        <TaskForm planId={planId} task={plan} />
+      {currentPlan.planItems.map((planItem) => (
+        <TaskForm planId={planId} task={planItem} />
       ))}
     </div>
   );

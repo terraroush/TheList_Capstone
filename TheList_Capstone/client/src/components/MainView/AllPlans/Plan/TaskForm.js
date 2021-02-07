@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { TaskContext } from "../../../../providers/TaskProvider";
-import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";
 
 const TaskForm = ({ task, planId }) => {
@@ -38,7 +38,7 @@ const TaskForm = ({ task, planId }) => {
   }, []);
 
   const constructTaskObject = () => {
-    if (taskId) {
+    if (task) {
       updateTask({
         id: taskId,
         name: currentTask.name,
@@ -60,7 +60,7 @@ const TaskForm = ({ task, planId }) => {
       });
     }
   };
-  console.log("the current task", currentTask);
+  console.log("the current task", currentTask, "state task", task);
   return (
     <Form inline onSubmit={submitTaskObjectHandler}>
       <FormGroup>
@@ -78,7 +78,11 @@ const TaskForm = ({ task, planId }) => {
         />
       </FormGroup>
       <Button className="plan-button" type="submit" disabled={isLoading}>
-        <i className="fas fa-plus-square"></i>
+        {!task ? (
+          <i className="fas fa-plus-square" />
+        ) : (
+          <i className="fas fa-edit-square" />
+        )}
       </Button>
     </Form>
   );

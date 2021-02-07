@@ -8,7 +8,7 @@ export function PlanProvider(props) {
 
   const { getToken } = useContext(UserProfileContext);
   const [plans, setPlans] = useState([]);
-  const [currentPlan, setCurrentPlan] = useState([]);
+  const [currentPlan, setCurrentPlan] = useState();
 
   const getAllPlans = () => {
     getToken().then((token) =>
