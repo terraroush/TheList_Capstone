@@ -1,56 +1,36 @@
-import React, { useState, useEffect } from "react";
-// import { Button } from "reactstrap";
+import React, { useState, useContext, useEffect } from "react";
+import { PlanContext } from "../../../../providers/PlanProvider";
+import { TaskContext } from "../../../../providers/TaskProvider";
+import { useParams } from "react-router-dom";
 import "./Plan.css";
 
 // components
 import TaskForm from "./TaskForm";
-import PlanDetailsForm from "./PlanDetailsForm";
+// import PlanDetailsForm from "./PlanDetailsForm";
 import TaskList from "./TaskList";
+import PlanCard from "./PlanCard";
 
+// need to get all tasks for current plan;
+// and we need the current plan.
 const PlanContainer = () => {
-  // state
-  const [inputText, setInputText] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const { currentPlan, getPlanById } = useContext(PlanContext);
+  const { tasks } = useContext(TaskContext);
+  const params = useParams();
+  const planId = +params.planId;
 
-  // effects
-
-  // (only run once)
   useEffect(() => {
-    getLocalTasks();
-  }, []);
-  // when we get a new task, update
-  useEffect(() => {
-    saveLocalTasks();
+    getPlanById(planId);
   }, [tasks]);
-
-  // save to local storage
-  const saveLocalTasks = () => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
-  const getLocalTasks = () => {
-    if (localStorage.getItem("tasks") === null) {
-      localStorage.setItem("tasks", JSON.stringify([]));
-    } else {
-      let localTask = JSON.parse(localStorage.getItem("tasks"));
-      setTasks(localTask);
-    }
-  };
-  // i want to add the tasks array to my plan object...
-
+  console.log(currentPlan);
+  if (!currentPlan) return null;
   return (
-    <>
-      <div className="App">
-        <PlanDetailsForm />
-        <TaskForm
-          tasks={tasks}
-          setTasks={setTasks}
-          setInputText={setInputText}
-          inputText={inputText}
-        />
-        <TaskList tasks={tasks} setTasks={setTasks} />
-        {/* <Button type="submit">Save</Button> */}
-      </div>
-    </>
+    <div className="App">
+      <PlanCard plan={currentPlan} />
+      <TaskForm planId={planId} />
+      {currentPlan.planItems.map((plan) => (
+        <TaskForm planId={planId} task={plan} />
+      ))}
+    </div>
   );
 };
 export default PlanContainer;

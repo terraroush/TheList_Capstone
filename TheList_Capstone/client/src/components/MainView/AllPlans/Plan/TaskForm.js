@@ -1,43 +1,86 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { TaskContext } from "../../../../providers/TaskProvider";
 import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
 import "./Plan.css";
 
-const TaskForm = ({ inputText, setInputText, tasks, setTasks }) => {
-  const inputTextHandler = (e) => {
-    setInputText(e.target.value);
+const TaskForm = ({ task, planId }) => {
+  const { addTask, updateTask } = useContext(TaskContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const defaultTask = {
+    name: "",
+    planId: planId,
   };
-  const submitTaskHandler = (e) => {
-    e.preventDefault();
-    setTasks([...tasks, { planItem: inputText, id: Math.random() * 1000 }]);
-    setInputText("");
+  const [currentTask, setCurrentTask] = useState(defaultTask);
+
+  let taskId;
+
+  const handleControlledInputChange = (e) => {
+    const newTask = { ...currentTask };
+    newTask[e.target.name] = e.target.value;
+    setCurrentTask(newTask);
   };
 
+  const submitTaskObjectHandler = (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+    constructTaskObject();
+  };
+
+  useEffect(() => {
+    if (task) {
+      setIsLoading(false);
+      taskId = task.id;
+      setCurrentTask(task);
+    } else {
+      setIsLoading(false);
+      setCurrentTask(defaultTask);
+    }
+  }, []);
+
+  const constructTaskObject = () => {
+    if (taskId) {
+      updateTask({
+        id: taskId,
+        name: currentTask.name,
+        planId,
+      }).then((res) => {
+        if (!res) {
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+        }
+      });
+    } else {
+      addTask({
+        name: currentTask.name,
+        planId,
+      }).then(() => {
+        setIsLoading(false);
+        setCurrentTask(defaultTask);
+      });
+    }
+  };
+  console.log("the current task", currentTask);
   return (
-    <>
-      <Form inline>
-        <FormGroup>
-          <Label for="toDoInput" hidden>
-            toDoInput
-          </Label>
-          <Input
-            value={inputText}
-            name="toDoInput"
-            id="toDoInput"
-            onChange={inputTextHandler}
-            type="text"
-            placeholder="add to your list"
-            className="plan-input"
-          />
-        </FormGroup>
-        <Button
-          onClick={submitTaskHandler}
-          className="plan-button"
-          type="submit"
-        >
-          <i className="fas fa-plus-square"></i>
-        </Button>
-      </Form>
-    </>
+    <Form inline onSubmit={submitTaskObjectHandler}>
+      <FormGroup>
+        <Label for="name" hidden>
+          name
+        </Label>
+        <Input
+          value={currentTask.name}
+          name="name"
+          id="name"
+          onChange={handleControlledInputChange}
+          type="text"
+          placeholder="add to your list"
+          className="plan-input"
+        />
+      </FormGroup>
+      <Button className="plan-button" type="submit" disabled={isLoading}>
+        <i className="fas fa-plus-square"></i>
+      </Button>
+    </Form>
   );
 };
 

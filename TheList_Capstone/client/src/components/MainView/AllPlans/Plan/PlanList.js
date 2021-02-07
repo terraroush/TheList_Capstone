@@ -23,7 +23,7 @@ const PlanList = () => {
         size="small"
         outline
         color="info"
-        onClick={() => history.push("/alllists/createlist")}
+        onClick={() => history.push("/listcenter/createlist")}
       >
         New List
       </Button>

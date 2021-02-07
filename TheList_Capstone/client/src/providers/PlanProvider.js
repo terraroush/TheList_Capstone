@@ -8,6 +8,7 @@ export function PlanProvider(props) {
 
   const { getToken } = useContext(UserProfileContext);
   const [plans, setPlans] = useState([]);
+  const [currentPlan, setCurrentPlan] = useState([]);
 
   const getAllPlans = () => {
     getToken().then((token) =>
@@ -24,7 +25,7 @@ export function PlanProvider(props) {
     );
   };
 
-  const getPlansById = (id) => {
+  const getPlanById = (id) => {
     getToken().then((token) =>
       fetch(`${apiUrl}/${id}`, {
         method: "GET",
@@ -33,8 +34,8 @@ export function PlanProvider(props) {
         },
       })
         .then((res) => res.json())
-        .then((plans) => {
-          setPlans(plans);
+        .then((plan) => {
+          setCurrentPlan(plan);
         })
     );
   };
@@ -93,8 +94,9 @@ export function PlanProvider(props) {
     <PlanContext.Provider
       value={{
         getAllPlans,
-        getPlansById,
+        getPlanById,
         getPlansByUserId,
+        currentPlan,
         addPlan,
         setPlans,
         plans,
