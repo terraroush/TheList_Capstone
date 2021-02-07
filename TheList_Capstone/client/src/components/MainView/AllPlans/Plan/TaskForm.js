@@ -60,9 +60,13 @@ const TaskForm = ({ task, planId }) => {
       });
     }
   };
-  console.log("the current task", currentTask, "state task", task);
+
   return (
-    <Form inline onSubmit={submitTaskObjectHandler}>
+    <Form
+      className="planForm-container"
+      inline
+      onSubmit={submitTaskObjectHandler}
+    >
       <FormGroup>
         <Label for="name" hidden>
           name
@@ -81,9 +85,18 @@ const TaskForm = ({ task, planId }) => {
         {!task ? (
           <i className="fas fa-plus-square" />
         ) : (
-          <i className="fas fa-edit-square" />
+          <i className="fas fa-pen-square" />
         )}
       </Button>
+      {task && (
+        <Button
+          className="trash plan-button"
+          type="submit"
+          disabled={isLoading}
+        >
+          <i className="fas fa-trash" />
+        </Button>
+      )}
     </Form>
   );
 };

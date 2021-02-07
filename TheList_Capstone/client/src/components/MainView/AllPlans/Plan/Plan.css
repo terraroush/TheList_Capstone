@@ -1,41 +1,10 @@
-form {
-  min-height: 15vh;
+.planForm-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-form input,
-form button {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: none;
-  background: white;
-  /* border-radius: 10px 0 0 10px; */
-}
-form button {
-  color: rgba(195, 224, 204, 1);
-  background: #f7fffe;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  /* border-radius: 0 10px 10px 0; */
-}
-form button:hover {
-  background: rgba(195, 224, 204, 1);
-  color: white;
-}
-.task-container {
-  display: flex;
-  justify-content: center;
-  /* border-radius: 10px; */
-  /* align-items: center; */
-}
 
-.task-list {
-  min-width: 30%;
-  list-style: none;
-}
-
-.task {
+.plan-input {
   margin: 0.1rem;
   background: white;
   font-size: 1rem;
@@ -46,21 +15,17 @@ form button:hover {
   transition: all 1s ease;
   /* border-radius: 10px; */
 }
-.filter-task {
-  padding: 0.5rem;
-}
-.task li {
-  flex: 1;
-}
 
-.trash-btn,
-.complete-btn {
-  background: #404d41;
+.plan-button {
+  background: #668a6a;
   color: white;
   border: none;
   padding: 0.5rem;
   cursor: pointer;
   font-size: 1rem;
+}
+.trash {
+  background: #404d41;
 }
 .complete-btn {
   background: rgba(195, 224, 204, 1);
@@ -68,12 +33,6 @@ form button:hover {
 .task-item {
   padding: 0rem 0.5rem;
 }
-
-.fa-trash,
-.fa-check {
-  pointer-events: none;
-}
-
 .completed {
   text-decoration: line-through;
   opacity: 0.5;
