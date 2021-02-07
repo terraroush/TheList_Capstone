@@ -7,7 +7,6 @@ import "./Plan.css";
 // components
 import TaskForm from "./TaskForm";
 // import PlanDetailsForm from "./PlanDetailsForm";
-import TaskList from "./TaskList";
 import PlanCard from "./PlanCard";
 
 // need to get all tasks for current plan;
@@ -22,7 +21,9 @@ const PlanContainer = () => {
     getPlanById(planId);
   }, [tasks]);
   console.log(currentPlan);
-  if (!currentPlan) return null;
+
+  if (currentPlan === undefined) return null;
+
   return (
     <div className="App">
       <PlanCard plan={currentPlan} />
