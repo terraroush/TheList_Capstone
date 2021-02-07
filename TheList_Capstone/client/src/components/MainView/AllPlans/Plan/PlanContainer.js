@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from "react";
-// import { Button } from "reactstrap";
+import React, { useState, useContext, useEffect } from "react";
+import { PlanContext } from "../../../../providers/PlanProvider";
+import { useParams } from "react-router-dom";
 import "./Plan.css";
 
 // components
 import TaskForm from "./TaskForm";
-import PlanDetailsForm from "./PlanDetailsForm";
+// import PlanDetailsForm from "./PlanDetailsForm";
 import TaskList from "./TaskList";
+import PlanCard from "./PlanCard";
 
+// need to get all tasks for current plan;
+// and we need the current plan.
 const PlanContainer = () => {
-  // state
-  const [inputText, setInputText] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [task, setTask] = useState({});
+  const { currentPlan, getPlanById } = useContext(PlanContext);
+  const planId = useParams();
 
+  useEffect(() => {
+    getPlanById(+planId.planId);
+  }, []);
+  console.log(currentPlan);
+  if (!currentPlan) return null;
   return (
-    <>
-      <div className="App">
-        <PlanDetailsForm />
-        <TaskForm
-          tasks={tasks}
-          setTasks={setTasks}
-          setInputText={setInputText}
-          inputText={inputText}
-          task={task}
-          setTask={setTask}
-        />
-        <TaskList tasks={tasks} setTasks={setTasks} />
-      </div>
-    </>
+    <div className="App">
+      <PlanCard plan={currentPlan} />
+      {/* <TaskForm task={task} /> */}
+      {/* <TaskList tasks={tasks} setTasks={setTasks} /> */}
+    </div>
   );
 };
 export default PlanContainer;

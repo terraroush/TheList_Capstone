@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { TaskContext } from "../../../../providers/TaskProvider";
 import { Form, FormGroup, Label, Input, Button, CustomInput } from "reactstrap";
 import { useParams } from "react-router-dom";
-import { TaskContext } from "../../../../providers/TaskProvider";
 import "./Plan.css";
 
 const TaskForm = ({ task, setTask, inputText, setInputText }) => {
@@ -10,6 +10,7 @@ const TaskForm = ({ task, setTask, inputText, setInputText }) => {
   const { taskId, planId } = useParams();
 
   // handlers;
+
   const handleControlledInputChange = (e) => {
     const newTask = { ...task };
     newTask[e.target.name] = e.target.value;
@@ -17,10 +18,9 @@ const TaskForm = ({ task, setTask, inputText, setInputText }) => {
   };
 
   const submitTaskObjectHandler = (e) => {
-    e.preventDefault();
     setIsLoading(true);
+    e.preventDefault();
     constructTaskObject();
-    setInputText("");
   };
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const TaskForm = ({ task, setTask, inputText, setInputText }) => {
       setIsLoading(false);
     }
   }, [taskId]);
+
   const constructTaskObject = () => {
     if (taskId) {
       updateTask({
@@ -46,7 +47,6 @@ const TaskForm = ({ task, setTask, inputText, setInputText }) => {
       });
     } else {
       addTask({
-        id: task.id,
         name: task.name,
         planId,
       }).then(() => {
@@ -54,8 +54,6 @@ const TaskForm = ({ task, setTask, inputText, setInputText }) => {
       });
     }
   };
-  if (!task) return null;
-  console.log(task);
 
   return (
     <>
@@ -75,7 +73,7 @@ const TaskForm = ({ task, setTask, inputText, setInputText }) => {
           />
         </FormGroup>
         <Button
-          onClick={submitTaskObjectHandler}
+          onSubmit={submitTaskObjectHandler}
           className="plan-button"
           type="submit"
           disabled={isLoading}

@@ -14,15 +14,14 @@ import { PlanContext } from "./providers/PlanProvider";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./components/MainView/Home/Home";
-import AllPlans from "./components/MainView/AllPlans/AllPlans";
 import Connections from "./components/MainView/Connections/Connections";
-import PlanDetails from "./components/MainView/PlanDetails/PlanDetails";
 import NotFound from "./pages/NotFound";
 import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
 import PlanContainer from "./components/MainView/AllPlans/Plan/PlanContainer";
 import PlanDetailsForm from "./components/MainView/AllPlans/Plan/PlanDetailsForm";
 import TaskForm from "./components/MainView/AllPlans/Plan/TaskForm";
 import PlanCard from "./components/MainView/AllPlans/Plan/PlanCard";
+// import PlanDetails from "./components/MainView/AllPlans/Plan/PlanDetails";
 // import Footer from "./components/Footer";
 
 const Routes = () => {
@@ -46,9 +45,9 @@ const Routes = () => {
           {isLoggedIn ? <Home /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/listcenter" exact>
+        {/* <Route path="/listcenter" exact>
           {isLoggedIn ? <PlanCard /> : <Redirect to="/login" />}
-        </Route>
+        </Route> */}
 
         <Route path="/listcenter/createlist" exact>
           {isLoggedIn ? <PlanDetailsForm /> : <Redirect to="/login" />}
@@ -57,7 +56,7 @@ const Routes = () => {
           {isLoggedIn ? <PlanDetailsForm /> : <Redirect to="/login" />}
         </Route>
         <Route path="/listcenter/createlist/:planId(\d+)" exact>
-          {isLoggedIn ? <TaskForm /> : <Redirect to="/login" />}
+          {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/listcenter/listory/:planId(\d+)" exact>
@@ -73,7 +72,7 @@ const Routes = () => {
         </Route>
 
         <Route path="/listdetails" exact>
-          {isLoggedIn ? <PlanDetails /> : <Redirect to="/login" />}
+          {isLoggedIn ? <div></div> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">
