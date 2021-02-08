@@ -35,10 +35,8 @@ namespace TheList_Capstone.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-           
-                var plans = _planRepository.GetAll();
-                return Ok(plans);
-           
+            var plans = _planRepository.GetAll();
+            return Ok(plans);
         }
 
         [HttpGet("{id}")]
@@ -55,13 +53,27 @@ namespace TheList_Capstone.Controllers
         [HttpGet("getbyrecent/{id}")]
         public IActionResult GetRecentPlans(int id)
         {
+            var validUser = _userProfileRepository.GetById(id);
+            if (validUser == null)
+            {
+                return NotFound();
+            }
+
             var plans = _planRepository.GetMostRecent(id);
             if (plans == null)
             {
                 return NotFound();
             }
 
-            return Ok(plans);
+            try
+            {
+                return Ok(plans);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+
         }
 
         [HttpGet("getbyuser/{id}")]
