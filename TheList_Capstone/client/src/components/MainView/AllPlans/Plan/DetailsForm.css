@@ -1,7 +1,16 @@
 .detailsFormContainer {
   display: flex;
   flex-direction: column;
+  max-width: 40%;
+  /* align-items: center; */
 }
 .detailsFormChild {
   display: flex;
 }
+.details-button {
+  max-width: 20%;
+}
+
+/* .grocery .public {
+  display: inline-flex;
+} */

@@ -28,12 +28,7 @@ const App = () => {
         { name: "Friends' Lists", to: "/friendsLists" },
       ],
     },
-    {
-      name: "List Details",
-      to: "/listdetails",
-      icon: "/icons/details.svg",
-      subMenuItems: [],
-    },
+
     {
       name: "Connections",
       to: "/connections",

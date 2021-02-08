@@ -4,10 +4,7 @@ import { TaskContext } from "../../../../providers/TaskProvider";
 import { useParams } from "react-router-dom";
 import "./Plan.css";
 
-// components
 import TaskForm from "./TaskForm";
-// import PlanDetailsForm from "./PlanDetailsForm";
-import TaskList from "./TaskList";
 import PlanCard from "./PlanCard";
 
 // need to get all tasks for current plan;

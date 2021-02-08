@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserProfileContext } from "./providers/UserProfileProvider";
-import { PlanContext } from "./providers/PlanProvider";
 
 // Components
 import Login from "./pages/Login";
@@ -16,11 +15,10 @@ import Register from "./pages/Register";
 import Home from "./components/MainView/Home/Home";
 import Connections from "./components/MainView/Connections/Connections";
 import NotFound from "./pages/NotFound";
-import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
 import PlanContainer from "./components/MainView/AllPlans/Plan/PlanContainer";
 import PlanDetailsForm from "./components/MainView/AllPlans/Plan/PlanDetailsForm";
-import TaskForm from "./components/MainView/AllPlans/Plan/TaskForm";
-import PlanCard from "./components/MainView/AllPlans/Plan/PlanCard";
+import ListCenter from "./pages/ListCenter";
+import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
 // import PlanDetails from "./components/MainView/AllPlans/Plan/PlanDetails";
 // import Footer from "./components/Footer";
 
@@ -46,7 +44,7 @@ const Routes = () => {
         </Route>
 
         {/* <Route path="/listcenter" exact>
-          {isLoggedIn ? <PlanCard /> : <Redirect to="/login" />}
+          {isLoggedIn ? <ListCenter /> : <Redirect to="/login" />}
         </Route> */}
 
         <Route path="/listcenter/createlist" exact>
@@ -59,7 +57,7 @@ const Routes = () => {
           {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/listcenter/listory/:planId(\d+)" exact>
+        <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <PlanList /> : <Redirect to="/login" />}
         </Route>
 

@@ -90,7 +90,26 @@ const PlanDetailsForm = () => {
             defaultValue={plan.title}
           />
         </FormGroup>
+
         <FormGroup className="detailsFormChild">
+          <Label for="deadline" hidden>
+            Due Date
+          </Label>
+          <input
+            value={plan.deadline}
+            onChange={handleControlledInputChange}
+            name="deadline"
+            id="deadline"
+            type="text"
+            onFocus={(e) => {
+              e.currentTarget.type = "date";
+              e.currentTarget.focus();
+            }}
+            placeholder="Due Date(optional)"
+          />
+        </FormGroup>
+
+        <FormGroup className="detailsFormChild grocery">
           <CustomInput
             type="switch"
             id="planTypeId"
@@ -101,27 +120,14 @@ const PlanDetailsForm = () => {
           />
         </FormGroup>
 
-        <FormGroup className="detailsFormChild">
-          <Label for="deadline" hidden>
-            Due Date
-          </Label>
-          <input
-            type="date"
-            value={plan.deadline}
-            onChange={handleControlledInputChange}
-            name="deadline"
-            id="deadline"
-            placeholder="Due Date"
-          />
-        </FormGroup>
-
-        <FormGroup check className="detailsFormChild">
+        <FormGroup check className="detailsFormChild public">
           <Input type="checkbox" name="public" id="public" />
           <Label for="public" check>
             Public
           </Label>
         </FormGroup>
-        <Button disabled={isLoading} type="submit">
+
+        <Button className="details-button" disabled={isLoading} type="submit">
           {planId ? "Save" : "Add"}
         </Button>
       </Form>

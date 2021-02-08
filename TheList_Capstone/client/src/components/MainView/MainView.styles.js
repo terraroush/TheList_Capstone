@@ -5,6 +5,8 @@ export const MainViewContainer = styled.div`
   width: ${(p) => (!p.isLoggedIn ? "100%" : "80%")};
   padding: 100px;
   text-align: center;
+  overflow: auto;
+  max-height: 90vh;
 
   h1 {
     font-size: 2rem;
