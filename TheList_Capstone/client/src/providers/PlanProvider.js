@@ -9,6 +9,7 @@ export function PlanProvider(props) {
   const { getToken } = useContext(UserProfileContext);
   const [plans, setPlans] = useState([]);
   const [currentPlan, setCurrentPlan] = useState();
+  const [recentPlans, setRecentPlans] = useState();
 
   const getAllPlans = () => {
     getToken().then((token) =>
@@ -63,7 +64,7 @@ export function PlanProvider(props) {
       })
         .then((res) => res.json())
         .then((plans) => {
-          setPlans(plans);
+          setRecentPlans(plans);
         })
     );
   };
@@ -112,6 +113,8 @@ export function PlanProvider(props) {
         getPlansByUserId,
         getRecentPlansByUserId,
         currentPlan,
+        recentPlans,
+        setRecentPlans,
         addPlan,
         setPlans,
         plans,

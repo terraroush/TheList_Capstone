@@ -43,9 +43,9 @@ const Routes = () => {
           {isLoggedIn ? <Home /> : <Redirect to="/login" />}
         </Route>
 
-        {/* <Route path="/listcenter" exact>
+        <Route path="/listcenter" exact>
           {isLoggedIn ? <ListCenter /> : <Redirect to="/login" />}
-        </Route> */}
+        </Route>
 
         <Route path="/listcenter/createlist" exact>
           {isLoggedIn ? <PlanDetailsForm /> : <Redirect to="/login" />}

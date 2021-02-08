@@ -17,7 +17,7 @@ const PlanList = () => {
   if (!plans) return null;
 
   return (
-    <article>
+    <section className="listory-container">
       <h1>My Listory</h1>
       <Button
         size="small"
@@ -33,7 +33,7 @@ const PlanList = () => {
           <PlanCard key={plan.id} plan={plan} />
         ))}
       </div>
-    </article>
+    </section>
   );
 };
 export default PlanList;

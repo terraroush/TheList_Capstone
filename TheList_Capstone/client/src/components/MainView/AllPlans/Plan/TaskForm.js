@@ -47,16 +47,15 @@ const TaskForm = ({ task, planId }) => {
         id: currentTask.id,
         name: currentTask.name,
         planId,
-      }).then(history.push(`/listcenter/createlist/${currentTask.id}`));
-      // .then((res) => {
-      //   if (!res) {
-      //     setIsLoading(false);
-      //   } else {
-      //     setIsLoading(false);
-      //     history.push(`/listcenter/createlist/${currentTask.id}`);
-      //     toast.success("good call on that edit");
-      //   }
-      // });
+      })
+        .then(() => toast.success("good call on that edit"))
+        .then((res) => {
+          if (!res) {
+            setIsLoading(false);
+          } else {
+            setIsLoading(false);
+          }
+        });
     } else {
       addTask({
         name: currentTask.name,

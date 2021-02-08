@@ -1,8 +1,9 @@
-.detailsFormContainer {
+.detailsFormContainer .listory-container {
   display: flex;
   flex-direction: column;
   max-width: 40%;
-  /* align-items: center; */
+  align-items: center;
+  justify-content: center;
 }
 .detailsFormChild {
   display: flex;

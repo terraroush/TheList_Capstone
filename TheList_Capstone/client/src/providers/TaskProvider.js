@@ -57,7 +57,7 @@ export function TaskProvider(props) {
   };
 
   const updateTask = (task) => {
-    getToken().then((token) => {
+    return getToken().then((token) => {
       fetch(`${apiUrl}/${task.id}`, {
         method: "PUT",
         headers: {
@@ -65,18 +65,18 @@ export function TaskProvider(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(task),
-      }).then(getAllTasks);
+      });
     });
   };
 
   const deleteTask = (task) => {
-    getToken().then((token) => {
+    return getToken().then((token) => {
       fetch(`${apiUrl}/${task.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then(getAllTasks);
+      });
     });
   };
 
