@@ -23,29 +23,40 @@ namespace TheList_Capstone.Repositories
         public List<Plan> GetAll()
         {
             return _context.Plan
-                .Include(ul => ul.PlanItems)
-                .Include(ul => ul.UserProfile)
-                .Include(ul => ul.PlanType)
-                .OrderByDescending(ul => ul.DateCreated)
+                .Include(p => p.PlanItems)
+                .Include(p => p.UserProfile)
+                .Include(p => p.PlanType)
+                .OrderByDescending(p => p.DateCreated)
                 .ToList();
         }
         public List<Plan> GetByUserProfileId(int id)
         {
             return _context.Plan
-                .Include(ul => ul.PlanItems)
-                .Include(ul => ul.UserProfile)
-                .Where(ul => ul.UserProfileId == id)
-                .OrderByDescending(ul => ul.DateCreated)
+                .Include(p => p.PlanItems)
+                .Include(p => p.UserProfile)
+                .Where(p => p.UserProfileId == id)
+                .OrderByDescending(p => p.DateCreated)
+                .ToList();
+        }
+
+        public List<Plan> GetMostRecent(int id)
+        {
+            return _context.Plan
+                .Include(p => p.PlanItems)
+                .Include(p => p.UserProfile)
+                .Where(p => p.UserProfileId == id)
+                .OrderByDescending(p => p.DateCreated)
+                .Take(1)
                 .ToList();
         }
 
         public Plan GetById(int id)
         {
             return _context.Plan
-                .Include(ul => ul.PlanItems)
-                .Include(ul => ul.UserProfile)
-                .Include(ul => ul.PlanType)
-                .Where(ul => ul.Id == id)
+                .Include(p => p.PlanItems)
+                .Include(p => p.UserProfile)
+                .Include(p => p.PlanType)
+                .Where(p => p.Id == id)
                 .FirstOrDefault();
         }
 

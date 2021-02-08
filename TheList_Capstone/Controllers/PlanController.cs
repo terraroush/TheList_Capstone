@@ -52,11 +52,22 @@ namespace TheList_Capstone.Controllers
        
             return Ok(plan);
         }
+        [HttpGet("getbyrecent/{id}")]
+        public IActionResult GetRecentPlans(int id)
+        {
+            var plans = _planRepository.GetMostRecent(id);
+            if (plans == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(plans);
+        }
 
         [HttpGet("getbyuser/{id}")]
         public IActionResult GetByUser(int id)
         {
-            // need to check if the id exisits
+            // need to check if the id exists
             var validUser = _userProfileRepository.GetById(id);
             if (validUser == null)
             {

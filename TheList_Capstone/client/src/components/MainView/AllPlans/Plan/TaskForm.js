@@ -1,11 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { TaskContext } from "../../../../providers/TaskProvider";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";
 
 const TaskForm = ({ task, planId }) => {
-  const { addTask, updateTask } = useContext(TaskContext);
+  const { addTask, updateTask, deleteTask } = useContext(TaskContext);
   const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
+
   const defaultTask = {
     name: "",
     planId: planId,
@@ -43,13 +47,16 @@ const TaskForm = ({ task, planId }) => {
         id: currentTask.id,
         name: currentTask.name,
         planId,
-      }).then((res) => {
-        if (!res) {
-          setIsLoading(false);
-        } else {
-          setIsLoading(false);
-        }
-      });
+      }).then(history.push(`/listcenter/createlist/${currentTask.id}`));
+      // .then((res) => {
+      //   if (!res) {
+      //     setIsLoading(false);
+      //   } else {
+      //     setIsLoading(false);
+      //     history.push(`/listcenter/createlist/${currentTask.id}`);
+      //     toast.success("good call on that edit");
+      //   }
+      // });
     } else {
       addTask({
         name: currentTask.name,
@@ -92,6 +99,12 @@ const TaskForm = ({ task, planId }) => {
         <Button
           className="trash plan-button"
           type="submit"
+          onClick={(e) => {
+            if (window.confirm("delete this task?"))
+              deleteTask(currentTask.id).then(() => {
+                toast.success("I hope you said goodbye");
+              });
+          }}
           disabled={isLoading}
         >
           <i className="fas fa-trash" />

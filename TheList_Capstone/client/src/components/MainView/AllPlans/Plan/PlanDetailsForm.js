@@ -14,15 +14,7 @@ const PlanDetailsForm = () => {
 
   const [plan, setPlan] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  //   const [isChecked, setIsChecked] = useState(false);
-  //   const [groceryValue, setGroceryValue] = useState(false);
-
-  //   const toggleGrocerySwitch = (e) => {
-  //     groceryValue && setGroceryValue(false);
-  //   };
-  //   const handlePublicCheck = (e) => {
-  //     isChecked && setIsChecked(true);
-  //   };
+  // const [isChecked, setIsChecked] = useState(false);
 
   const handleControlledInputChange = (e) => {
     const newPlan = { ...plan };
@@ -75,7 +67,7 @@ const PlanDetailsForm = () => {
     }
   };
   if (!plan) return null;
-  // console.log(plan);
+  // console.log(isChecked);
 
   return (
     <>
@@ -101,9 +93,11 @@ const PlanDetailsForm = () => {
         <FormGroup className="detailsFormChild">
           <CustomInput
             type="switch"
-            id="grocerySwitch"
-            name="grocerySwitch"
+            id="planTypeId"
+            name="planTypeId"
             label="Grocery List"
+            checked={plan.planTypeId}
+            onChange={handleControlledInputChange}
           />
         </FormGroup>
 

@@ -8,7 +8,7 @@ const NotFound = () => {
       <Alert color="warning">
         <h4 className="alert-heading">Oh dang!</h4>
         <p>We can't find this anywhere...check back in at </p>
-        <Button color="success" as={Link} to="/" primary>
+        <Button as={Link} to="/" primary>
           Home
         </Button>
       </Alert>

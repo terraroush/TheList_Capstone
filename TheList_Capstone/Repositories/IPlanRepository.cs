@@ -8,6 +8,7 @@ namespace TheList_Capstone.Repositories
     {
         List<Plan> GetAll();
         List<Plan> GetByUserProfileId(int id);
+        List<Plan> GetMostRecent(int id);
         Plan GetById(int id);
         void Add(Plan plan);
         void Update(Plan plan);
