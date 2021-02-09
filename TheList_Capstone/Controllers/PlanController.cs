@@ -141,7 +141,7 @@ namespace TheList_Capstone.Controllers
                 return NotFound();
             }
             
-            _planRepository.Delete(planToDelete);
+            _planRepository.Delete(id);
             return NoContent();
         }
     }

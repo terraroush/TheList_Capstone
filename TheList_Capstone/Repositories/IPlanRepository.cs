@@ -12,6 +12,6 @@ namespace TheList_Capstone.Repositories
         Plan GetById(int id);
         void Add(Plan plan);
         void Update(Plan plan);
-        void Delete(Plan plan);
+        void Delete(int id);
     }
 }
