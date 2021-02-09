@@ -70,13 +70,14 @@ export function TaskProvider(props) {
   };
 
   const deleteTask = (task) => {
+    debugger;
     return getToken().then((token) => {
-      fetch(`${apiUrl}/${task.id}`, {
+      fetch(`${apiUrl}/${task}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      }).then(() => getAllTasks());
     });
   };
 
