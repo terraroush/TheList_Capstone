@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { TaskContext } from "../../../../providers/TaskProvider";
-import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";
@@ -8,7 +7,6 @@ import "./Plan.css";
 const TaskForm = ({ task, planId }) => {
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
   const [isLoading, setIsLoading] = useState(true);
-  const history = useHistory();
 
   const defaultTask = {
     name: "",

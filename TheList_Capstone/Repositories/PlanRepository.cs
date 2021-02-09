@@ -74,8 +74,12 @@ namespace TheList_Capstone.Repositories
             _context.SaveChanges();
         }
 
-        public void Delete(Plan plan)
+        public void Delete(int id)
         {
+            var plan = GetById(id);
+            var planItems = _context.PlanItem.Where(pi => pi.PlanId == plan.Id).ToList();
+
+            _context.PlanItem.RemoveRange(planItems);
             _context.Plan.Remove(plan);
             _context.SaveChanges();
         }

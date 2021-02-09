@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Form, FormGroup, Input, Label, CustomInput, Button } from "reactstrap";
 import { PlanContext } from "../../../../providers/PlanProvider";
 import { useParams, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./DetailsForm.css";
 
 const PlanDetailsForm = () => {
@@ -42,14 +43,23 @@ const PlanDetailsForm = () => {
         public: plan.public,
         userProfileId: activeUser,
         planTypeId: 1,
-      }).then((res) => {
-        if (!res) {
-          setIsLoading(false);
-        } else {
-          setIsLoading(false);
-          history.push(`/listcenter/createlist/${plan.id}`);
-        }
-      });
+      })
+        // .then((res) => {
+        //   if (!res) {
+        //     setIsLoading(false);
+        //   } else {
+        //     setIsLoading(false);
+        //     history.push(`/listcenter/createlist/${plan.id}`);
+        //   }
+        // });
+        .then(() => toast.success("good call on that edit"))
+        .then((res) => {
+          if (!res) {
+            setIsLoading(false);
+          } else {
+            setIsLoading(false);
+          }
+        });
     } else {
       addPlan({
         title: plan.title,
