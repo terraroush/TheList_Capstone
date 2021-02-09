@@ -74,6 +74,7 @@ namespace TheList_Capstone.Controllers
         public IActionResult Delete(int id)
         {
             var planItem = _planItemRepository.GetById(id);
+            // need to still check if item belongs to current user
 
             if (planItem == null)
             {

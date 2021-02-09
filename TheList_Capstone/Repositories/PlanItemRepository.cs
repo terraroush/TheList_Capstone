@@ -44,8 +44,9 @@ namespace TheList_Capstone.Repositories
             _context.SaveChanges();
         }
 
-        public void Delete(PlanItem planItem)
+        public void Delete(int id)
         {
+            var planItem = GetById(id);
             _context.PlanItem.Remove(planItem);
             _context.SaveChanges();
         }
