@@ -1,17 +1,33 @@
-.detailsFormContainer .listory-container {
-  display: flex;
-  flex-direction: column;
+.detailsFormContainer {
+  display: grid;
   max-width: 40%;
-  align-items: center;
-  justify-content: center;
-}
-.detailsFormChild {
-  display: flex;
-}
-.details-button {
-  max-width: 20%;
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "title title"
+    "due due"
+    "grocery public"
+    "details-button"; */
 }
 
-/* .grocery .public {
-  display: inline-flex;
-} */
+.title {
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+.due {
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+.grocery {
+  grid-column: 1/2;
+  grid-row: 3/4;
+}
+.public {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+.details-button {
+  grid-column: 1/2;
+  grid-row: 4/5;
+  /* max-width: 20%; */
+}

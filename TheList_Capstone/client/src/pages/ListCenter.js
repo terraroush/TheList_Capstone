@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { PlanContext } from "../providers/PlanProvider";
 import { TaskContext } from "../providers/TaskProvider";
+import "../components/MainView/AllPlans/Plan/ListCenter.css";
 
 import TaskForm from "../components/MainView/AllPlans/Plan/TaskForm";
 import PlanCard from "../components/MainView/AllPlans/Plan/PlanCard";
@@ -17,7 +18,7 @@ const ListCenter = () => {
   if (!recentPlans) return null;
 
   return (
-    <div className="App">
+    <div className="recentPlanContainer">
       <h2>Your Most Recent Plan</h2>
 
       {recentPlans.map((recentPlan) => (

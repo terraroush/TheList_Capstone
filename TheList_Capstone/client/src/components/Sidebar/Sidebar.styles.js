@@ -16,6 +16,7 @@ export const SidebarContainer = styled.div`
   color: #2e3630;
   position: relative; // Toggler
   transition: 0.2s ease-in all;
+  // overflow: hidden;
 `;
 
 export const SidebarHeader = styled.h3`

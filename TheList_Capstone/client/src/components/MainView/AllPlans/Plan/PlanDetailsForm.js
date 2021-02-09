@@ -79,7 +79,7 @@ const PlanDetailsForm = () => {
           constructPlanObject();
         }}
       >
-        <FormGroup className="detailsFormChild">
+        <FormGroup className="title">
           <Input
             type="text"
             id="title"
@@ -91,7 +91,7 @@ const PlanDetailsForm = () => {
           />
         </FormGroup>
 
-        <FormGroup className="detailsFormChild">
+        <FormGroup className="due">
           <Label for="deadline" hidden>
             Due Date
           </Label>
@@ -109,7 +109,7 @@ const PlanDetailsForm = () => {
           />
         </FormGroup>
 
-        <FormGroup className="detailsFormChild grocery">
+        <FormGroup className="grocery">
           <CustomInput
             type="switch"
             id="planTypeId"
@@ -120,7 +120,7 @@ const PlanDetailsForm = () => {
           />
         </FormGroup>
 
-        <FormGroup check className="detailsFormChild public">
+        <FormGroup check className="public">
           <Input type="checkbox" name="public" id="public" />
           <Label for="public" check>
             Public
