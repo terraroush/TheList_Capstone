@@ -70,7 +70,6 @@ export function TaskProvider(props) {
   };
 
   const deleteTask = (task) => {
-    debugger;
     return getToken().then((token) => {
       fetch(`${apiUrl}/${task}`, {
         method: "DELETE",

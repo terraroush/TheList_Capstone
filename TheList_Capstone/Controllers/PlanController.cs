@@ -112,22 +112,8 @@ namespace TheList_Capstone.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Plan plan)
         {
-            var listAuthor = plan.UserProfileId;
-
-            if (id != listAuthor)
-            {
-                return BadRequest();
-            }
-
-            // Get plan by Id to ensure it's in database
-            var planToEdit = _planRepository.GetById(id);
-
-            if (planToEdit == null)
-            {
-                return NotFound();
-            }
-
-            _planRepository.Update(planToEdit);
+     
+            _planRepository.Update(plan);
             return NoContent();
         }
 

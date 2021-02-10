@@ -27,7 +27,7 @@ export function PlanProvider(props) {
   };
 
   const getPlanById = (id) => {
-    getToken().then((token) =>
+    return getToken().then((token) =>
       fetch(`${apiUrl}/${id}`, {
         method: "GET",
         headers: {
@@ -37,6 +37,7 @@ export function PlanProvider(props) {
         .then((res) => res.json())
         .then((plan) => {
           setCurrentPlan(plan);
+          return plan;
         })
     );
   };
@@ -82,7 +83,8 @@ export function PlanProvider(props) {
   };
 
   const updatePlan = (plan) => {
-    getToken().then((token) => {
+    debugger;
+    return getToken().then((token) => {
       fetch(`${apiUrl}/${plan.id}`, {
         method: "PUT",
         headers: {
@@ -95,8 +97,8 @@ export function PlanProvider(props) {
   };
 
   const deletePlan = (plan) => {
-    getToken().then((token) => {
-      fetch(`${apiUrl}/${plan.id}`, {
+    return getToken().then((token) => {
+      fetch(`${apiUrl}/${plan}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

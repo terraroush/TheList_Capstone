@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "./DetailsForm.css";
 
 const PlanDetailsForm = () => {
-  const { addPlan, getPlansById, getAllPlans, updatePlan } = useContext(
+  const { addPlan, getPlanById, currentPlan, updatePlan } = useContext(
     PlanContext
   );
   const activeUser = +localStorage.getItem("userProfileId");
@@ -15,7 +15,7 @@ const PlanDetailsForm = () => {
 
   const [plan, setPlan] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
   const handleControlledInputChange = (e) => {
     const newPlan = { ...plan };
@@ -25,17 +25,20 @@ const PlanDetailsForm = () => {
 
   useEffect(() => {
     if (planId) {
-      getPlansById(planId).then(() => setIsLoading(false));
+      getPlanById(+planId).then((res) => {
+        setIsLoading(false);
+        setPlan(res);
+      });
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [planId]);
 
   const constructPlanObject = () => {
     setIsLoading(true);
-    if (planId) {
+    if (+planId) {
       updatePlan({
-        id: plan.id,
+        id: +planId,
         title: plan.title,
         dateCreated: plan.dateCreated,
         deadline: plan.deadline,
@@ -44,15 +47,8 @@ const PlanDetailsForm = () => {
         userProfileId: activeUser,
         planTypeId: 1,
       })
-        // .then((res) => {
-        //   if (!res) {
-        //     setIsLoading(false);
-        //   } else {
-        //     setIsLoading(false);
-        //     history.push(`/listcenter/createlist/${plan.id}`);
-        //   }
-        // });
         .then(() => toast.success("good call on that edit"))
+        .then(() => history.push(`/listcenter/createlist/${plan.id}`))
         .then((res) => {
           if (!res) {
             setIsLoading(false);
@@ -66,7 +62,7 @@ const PlanDetailsForm = () => {
         dateCreated: new Date(),
         deadline: plan.deadline,
         active: true,
-        public: true,
+        public: plan.public,
         userProfileId: activeUser,
         planTypeId: 1,
       }).then((planObj) => {
@@ -77,7 +73,7 @@ const PlanDetailsForm = () => {
     }
   };
   if (!plan) return null;
-  // console.log(isChecked);
+  console.log(isChecked);
 
   return (
     <>
@@ -131,7 +127,14 @@ const PlanDetailsForm = () => {
         </FormGroup>
 
         <FormGroup check className="public">
-          <Input type="checkbox" name="public" id="public" />
+          <Input
+            value={plan.public}
+            type="checkbox"
+            name="public"
+            id="public"
+            checked={isChecked}
+            onChange={() => isChecked && setIsChecked(isChecked)}
+          />
           <Label for="public" check>
             Public
           </Label>

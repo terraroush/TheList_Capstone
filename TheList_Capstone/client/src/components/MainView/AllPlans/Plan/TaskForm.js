@@ -97,10 +97,10 @@ const TaskForm = ({ task, planId }) => {
           className="trash plan-button"
           type="submit"
           onClick={(e) => {
-            if (window.confirm("delete this task?")) debugger;
-            deleteTask(currentTask.id).then(() => {
-              toast.success("I hope you said goodbye");
-            });
+            if (window.confirm("delete this task?"))
+              deleteTask(currentTask.id).then(() => {
+                toast.success("I hope you said goodbye");
+              });
           }}
           disabled={isLoading}
         >
