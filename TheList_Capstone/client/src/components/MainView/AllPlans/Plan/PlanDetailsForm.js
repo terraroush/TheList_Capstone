@@ -14,8 +14,10 @@ const PlanDetailsForm = () => {
 
   const [plan, setPlan] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const [isChecked, setIsChecked] = useState(false);
+  const [isGrocery, setIsGrocery] = useState(false);
   const [isPublic, setIsPublic] = useState(false);
+  const [groceryId, setGroceryId] = useState("grocery");
+  const [publicId, setPublicId] = useState("public");
 
   const handleControlledInputChange = (e) => {
     const newPlan = { ...plan };
@@ -64,7 +66,7 @@ const PlanDetailsForm = () => {
         active: true,
         public: isPublic,
         userProfileId: activeUser,
-        planTypeId: 1,
+        planTypeId: isGrocery ? 1 : 0,
       }).then((planObj) => {
         setIsLoading(false);
         setPlan();
@@ -73,8 +75,7 @@ const PlanDetailsForm = () => {
     }
   };
   if (!plan) return null;
-  // console.log(isChecked);
-  console.log(isPublic);
+  console.log(isGrocery);
 
   return (
     <>
@@ -120,7 +121,7 @@ const PlanDetailsForm = () => {
           />
         </FormGroup>
 
-        <FormGroup className="grocery">
+        {/* <FormGroup className="grocery">
           <CustomInput
             type="switch"
             id="planTypeId"
@@ -129,37 +130,33 @@ const PlanDetailsForm = () => {
             checked={plan.planTypeId}
             onChange={handleControlledInputChange}
           />
+        </FormGroup> */}
+
+        <FormGroup className="grocery">
+          <Switch
+            isOn={isGrocery}
+            id={groceryId}
+            value={plan.grocery}
+            name="grocery"
+            handleToggle={() => setIsGrocery(!isGrocery)}
+          />
+          <Label for="grocery" check>
+            Grocery List
+          </Label>
         </FormGroup>
 
         <FormGroup className="public">
           <Switch
             isOn={isPublic}
+            id={publicId}
             value={plan.public}
             name="public"
             handleToggle={() => setIsPublic(!isPublic)}
           />
-        </FormGroup>
-        {/* <FormGroup check className="public">
-          <Input
-            value={plan.public}
-            type="checkbox"
-            name="public"
-            id="public"
-            checked={isChecked}
-            onChange={(e) => {
-              handleControlledInputChange({
-                target: {
-                  name: e.target.name,
-                  value: e.target.checked,
-                },
-              });
-            }}
-            // onChange={() => setIsChecked(!isChecked)}
-          />
           <Label for="public" check>
             Public
           </Label>
-        </FormGroup> */}
+        </FormGroup>
 
         <Button className="details-button" disabled={isLoading} type="submit">
           {planId ? "Save" : "Add"}

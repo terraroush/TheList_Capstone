@@ -19,7 +19,8 @@ const ListCenter = () => {
 
   return (
     <div className="recentPlanContainer">
-      <h2>Your Most Recent Plan</h2>
+      <h3>Your Most Recent Plan</h3>
+      <br />
 
       {recentPlans.map((recentPlan) => (
         <PlanCard key={recentPlan.id} plan={recentPlan} />

@@ -20,9 +20,11 @@ const PlanCard = ({ plan }) => {
   return (
     <Card className="planCard-container">
       <CardHeader className="buttons-container">
-        <CardTitle tag="h5">{plan.title}</CardTitle>
+        <CardTitle tag="h5" className="card-title">
+          {plan.title}
+        </CardTitle>
         <Button
-          className="plan-button"
+          className="plan-button edit-btn"
           type="submit"
           onClick={() => {
             history.push(`/listcenter/edit/${plan.id}`);
@@ -31,7 +33,7 @@ const PlanCard = ({ plan }) => {
           <i className="fas fa-pen-square" />
         </Button>
         <Button
-          className="plan-button"
+          className="plan-button delete-btn"
           type="submit"
           onClick={(e) => {
             if (window.confirm("Delete plan with everything in it?"))

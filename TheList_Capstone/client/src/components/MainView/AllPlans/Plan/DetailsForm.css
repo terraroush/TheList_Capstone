@@ -1,13 +1,6 @@
 .detailsFormContainer {
   display: grid;
   max-width: 40%;
-  /* grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    "title title"
-    "due due"
-    "grocery public"
-    "details-button"; */
 }
 
 .title {
