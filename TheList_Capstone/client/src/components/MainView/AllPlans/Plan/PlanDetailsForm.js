@@ -66,7 +66,7 @@ const PlanDetailsForm = () => {
         active: true,
         public: isPublic,
         userProfileId: activeUser,
-        planTypeId: isGrocery ? 1 : 0,
+        planTypeId: isGrocery ? 1 : 2,
       }).then((planObj) => {
         setIsLoading(false);
         setPlan();
