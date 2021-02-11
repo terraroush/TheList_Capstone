@@ -1,7 +1,7 @@
 .planCard-container {
   /* display: flex; */
   /* flex-direction: column; */
-  max-width: 40%;
+  max-width: 29em;
   height: 15em;
   margin: 0 0.5em 0.5em 0;
   font-size: small;

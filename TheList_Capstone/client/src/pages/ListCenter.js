@@ -25,7 +25,7 @@ const ListCenter = () => {
         <PlanCard key={recentPlan.id} plan={recentPlan} />
       ))}
       {recentPlans.map((recentPlan) => (
-        <TaskForm key={recentPlan.id} />
+        <TaskForm key={recentPlan.id} planId={recentPlan.id} />
       ))}
       {recentPlans.map((recentPlan) =>
         recentPlan.planItems.map((planItem) => (

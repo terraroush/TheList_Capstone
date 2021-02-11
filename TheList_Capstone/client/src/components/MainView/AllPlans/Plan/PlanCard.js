@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 import "./PlanCard.css";
 
 const PlanCard = ({ plan }) => {
-  const { getPlansByUserId, deletePlan } = useContext(PlanContext);
+  const { deletePlan } = useContext(PlanContext);
   const history = useHistory();
 
   return (
@@ -35,9 +35,13 @@ const PlanCard = ({ plan }) => {
           type="submit"
           onClick={(e) => {
             if (window.confirm("Delete plan with everything in it?"))
-              deletePlan(plan.id).then(() => {
-                toast.success("I hope you said goodbye");
-              });
+              deletePlan(plan.id)
+                .then(() => {
+                  toast.success("I hope you said goodbye");
+                })
+                .then(() => {
+                  history.push("/listcenter/listory");
+                });
           }}
         >
           <i className="fas fa-trash" />

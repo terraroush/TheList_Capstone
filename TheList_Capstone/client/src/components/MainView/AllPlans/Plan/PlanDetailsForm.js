@@ -4,18 +4,18 @@ import { PlanContext } from "../../../../providers/PlanProvider";
 import { useParams, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./DetailsForm.css";
+import Switch from "./Switch";
 
 const PlanDetailsForm = () => {
-  const { addPlan, getPlanById, currentPlan, updatePlan } = useContext(
-    PlanContext
-  );
+  const { addPlan, getPlanById, updatePlan } = useContext(PlanContext);
   const activeUser = +localStorage.getItem("userProfileId");
   const { planId } = useParams();
   const history = useHistory();
 
   const [plan, setPlan] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [isChecked, setIsChecked] = useState(true);
+  // const [isChecked, setIsChecked] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
 
   const handleControlledInputChange = (e) => {
     const newPlan = { ...plan };
@@ -26,8 +26,8 @@ const PlanDetailsForm = () => {
   useEffect(() => {
     if (planId) {
       getPlanById(+planId).then((res) => {
-        setIsLoading(false);
         setPlan(res);
+        setIsLoading(false);
       });
     } else {
       setIsLoading(false);
@@ -62,7 +62,7 @@ const PlanDetailsForm = () => {
         dateCreated: new Date(),
         deadline: plan.deadline,
         active: true,
-        public: plan.public,
+        public: isPublic,
         userProfileId: activeUser,
         planTypeId: 1,
       }).then((planObj) => {
@@ -73,10 +73,13 @@ const PlanDetailsForm = () => {
     }
   };
   if (!plan) return null;
-  console.log(isChecked);
+  // console.log(isChecked);
+  console.log(isPublic);
 
   return (
     <>
+      <h3>{planId ? "Edit Details" : "List Details"}</h3>
+      <br />
       <Form
         className="detailsFormContainer"
         onSubmit={(e) => {
@@ -94,6 +97,8 @@ const PlanDetailsForm = () => {
             placeholder="List Title"
             onChange={handleControlledInputChange}
             defaultValue={plan.title}
+            required
+            autoFocus
           />
         </FormGroup>
 
@@ -126,19 +131,35 @@ const PlanDetailsForm = () => {
           />
         </FormGroup>
 
-        <FormGroup check className="public">
+        <FormGroup className="public">
+          <Switch
+            isOn={isPublic}
+            value={plan.public}
+            name="public"
+            handleToggle={() => setIsPublic(!isPublic)}
+          />
+        </FormGroup>
+        {/* <FormGroup check className="public">
           <Input
             value={plan.public}
             type="checkbox"
             name="public"
             id="public"
             checked={isChecked}
-            onChange={() => isChecked && setIsChecked(isChecked)}
+            onChange={(e) => {
+              handleControlledInputChange({
+                target: {
+                  name: e.target.name,
+                  value: e.target.checked,
+                },
+              });
+            }}
+            // onChange={() => setIsChecked(!isChecked)}
           />
           <Label for="public" check>
             Public
           </Label>
-        </FormGroup>
+        </FormGroup> */}
 
         <Button className="details-button" disabled={isLoading} type="submit">
           {planId ? "Save" : "Add"}

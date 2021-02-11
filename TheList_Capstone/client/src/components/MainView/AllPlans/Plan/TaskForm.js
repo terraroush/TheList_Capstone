@@ -57,7 +57,7 @@ const TaskForm = ({ task, planId }) => {
     } else {
       addTask({
         name: currentTask.name,
-        planId,
+        planId: planId,
       }).then(() => {
         setIsLoading(false);
         setCurrentTask(defaultTask);
