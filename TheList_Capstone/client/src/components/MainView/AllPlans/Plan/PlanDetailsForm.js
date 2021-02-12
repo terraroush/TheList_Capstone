@@ -75,7 +75,6 @@ const PlanDetailsForm = () => {
     }
   };
   if (!plan) return null;
-  console.log(isGrocery);
 
   return (
     <>

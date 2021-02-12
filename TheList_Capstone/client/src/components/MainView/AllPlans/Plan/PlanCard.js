@@ -69,9 +69,15 @@ const PlanCard = ({ plan }) => {
           <ListGroupItem className="p-2">
             {plan.active ? "Active" : "Expired"}
           </ListGroupItem>
+
           <ListGroupItem className="p-2">
             {plan.public ? "Public" : "Private"}
           </ListGroupItem>
+
+          {plan.planTypeId === 1 && (
+            <ListGroupItem className="p-2">Grocery List</ListGroupItem>
+          )}
+
           <ListGroupItem className="p-2">
             Author: {plan.userProfile.userName}
           </ListGroupItem>
