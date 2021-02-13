@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Form, FormGroup, Input, Label, CustomInput, Button } from "reactstrap";
+import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import { PlanContext } from "../../../../providers/PlanProvider";
 import { useParams, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -70,7 +70,11 @@ const PlanDetailsForm = () => {
       }).then((planObj) => {
         setIsLoading(false);
         setPlan();
-        history.push(`/listcenter/createlist/${planObj.id}`);
+        {
+          planObj.planTypeId === 1
+            ? history.push(`/listcenter/createlist/grocery/${planObj.id}`)
+            : history.push(`/listcenter/createlist/${planObj.id}`);
+        }
       });
     }
   };
@@ -119,17 +123,6 @@ const PlanDetailsForm = () => {
             placeholder="Due Date(optional)"
           />
         </FormGroup>
-
-        {/* <FormGroup className="grocery">
-          <CustomInput
-            type="switch"
-            id="planTypeId"
-            name="planTypeId"
-            label="Grocery List"
-            checked={plan.planTypeId}
-            onChange={handleControlledInputChange}
-          />
-        </FormGroup> */}
 
         <FormGroup className="grocery">
           <Switch

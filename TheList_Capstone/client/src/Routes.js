@@ -19,7 +19,6 @@ import PlanContainer from "./components/MainView/AllPlans/Plan/PlanContainer";
 import PlanDetailsForm from "./components/MainView/AllPlans/Plan/PlanDetailsForm";
 import ListCenter from "./pages/ListCenter";
 import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
-// import PlanDetails from "./components/MainView/AllPlans/Plan/PlanDetails";
 // import Footer from "./components/Footer";
 
 const Routes = () => {
@@ -56,14 +55,17 @@ const Routes = () => {
         <Route path="/listcenter/createlist/:planId(\d+)" exact>
           {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
         </Route>
+        <Route path="/listcenter/createlist/grocery/:planId(\d+)" exact>
+          {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
+        </Route>
 
         <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <PlanList /> : <Redirect to="/login" />}
         </Route>
 
-        <Route path="/listcenter/friendslists" exact>
+        {/* <Route path="/listcenter/friendslists" exact>
           {isLoggedIn ? <div></div> : <Redirect to="/login" />}
-        </Route>
+        </Route> */}
 
         <Route path="/connections" exact>
           {isLoggedIn ? <Connections /> : <Redirect to="/login" />}

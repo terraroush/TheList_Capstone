@@ -1,11 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import { TaskContext } from "../../../../providers/TaskProvider";
+import { GroceryContext } from "../../../../providers/GroceryProvider";
 import { toast } from "react-toastify";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";
+import IngredientList from "./IngredientList";
 
 const TaskForm = ({ task, planId }) => {
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
+  const { getIngredientFromGrocery } = useContext(GroceryContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const defaultTask = {
@@ -38,6 +41,12 @@ const TaskForm = ({ task, planId }) => {
       setCurrentTask(defaultTask);
     }
   }, []);
+
+  useEffect(() => {
+    getIngredientFromGrocery(currentTask.name);
+  }, [currentTask]);
+
+  // console.log(currentTask.name);
 
   const constructTaskObject = () => {
     if (task) {
@@ -92,6 +101,7 @@ const TaskForm = ({ task, planId }) => {
           <i className="fas fa-pen-square" />
         )}
       </Button>
+      <IngredientList />
       {task && (
         <Button
           className="trash plan-button"
