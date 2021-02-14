@@ -11,10 +11,13 @@ namespace TheList_Capstone.Models
         public int Id { get; set; }
 
         [Required]
-        public int UserProfileId { get; set; }
+        public int ConnecterUserProfileId { get; set; }
 
-        public UserProfile UserProfile { get; set; }
+        public UserProfile ConnecterUserProfile { get; set; }
+        [Required]
+        public int ProviderUserProfileId { get; set; }
 
-        public int SubscriberId { get; set; }
+        public UserProfile ProviderUserProfile { get; set; }
+
     }
 }

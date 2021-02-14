@@ -22,9 +22,9 @@ const PlanContainer = () => {
   if (!currentPlan) return null;
 
   return (
-    <div className="App">
+    <div className="planContainer-container">
       <PlanCard plan={currentPlan} />
-      <TaskForm planId={planId} />
+      <TaskForm className="stationaryForm" planId={planId} />
       {currentPlan.planItems.map((planItem) => (
         <TaskForm key={planItem.id} planId={planId} task={planItem} />
       ))}

@@ -1,7 +1,20 @@
+.planContainer-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 .planForm-container {
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.flexThis {
+  display: flex;
+}
+
+.ingredientList-container {
+  align-self: flex-end;
 }
 
 .plan-input {
@@ -79,3 +92,7 @@ select {
 /* .select:hover::after {
   transform: scale(1.5);
 } */
+
+.stationaryForm {
+  position: fixed;
+}

@@ -12,6 +12,7 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { PlanProvider } from "./providers/PlanProvider";
 import { TaskProvider } from "./providers/TaskProvider";
 import { GroceryProvider } from "./providers/GroceryProvider";
+import { ConnectionProvider } from "./providers/ConnectionProvider";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -22,15 +23,17 @@ ReactDOM.render(
   <React.StrictMode>
     <ToastContainer position="bottom-right" hideProgressBar />
     <UserProfileProvider>
-      <GroceryProvider>
-        <PlanProvider>
-          <TaskProvider>
-            <Router>
-              <App />
-            </Router>
-          </TaskProvider>
-        </PlanProvider>
-      </GroceryProvider>
+      <ConnectionProvider>
+        <GroceryProvider>
+          <PlanProvider>
+            <TaskProvider>
+              <Router>
+                <App />
+              </Router>
+            </TaskProvider>
+          </PlanProvider>
+        </GroceryProvider>
+      </ConnectionProvider>
     </UserProfileProvider>
   </React.StrictMode>,
   document.getElementById("root")

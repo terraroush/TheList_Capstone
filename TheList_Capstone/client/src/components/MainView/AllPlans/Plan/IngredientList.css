@@ -1,0 +1,12 @@
+.ingredient-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1em 0;
+  padding: 1em;
+  border: 1px solid lightgrey;
+  background-color: white;
+}
+
+.ingredient {
+  cursor: pointer;
+}

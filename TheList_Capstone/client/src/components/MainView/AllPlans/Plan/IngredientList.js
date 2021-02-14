@@ -1,14 +1,11 @@
-import React from "react";
-import { useContext } from "react";
-import { GroceryContext } from "../../../../providers/GroceryProvider";
+import React, { useState } from "react";
 import Ingredient from "./Ingredient";
+import "./IngredientList.css";
 
-const IngredientList = () => {
-  const { ingredientData, setIngredientData } = useContext(GroceryContext);
-  console.log(ingredientData[0]);
+const IngredientList = ({ ingredientData }) => {
   return (
-    <section>
-      {ingredientData[0].map((ingredient) => {
+    <section className="ingredient-container">
+      {ingredientData[0]?.map((ingredient) => {
         return <Ingredient key={ingredient.id} ingredient={ingredient} />;
       })}
     </section>

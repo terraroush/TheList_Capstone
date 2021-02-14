@@ -24,7 +24,7 @@ namespace TheList_Capstone.Repositories
         public UserProfile GetByUserProfileId(int id)
         {
             UserProfile user = _context.UserProfile
-                .FirstOrDefault(uid => uid.Id == id);
+                .FirstOrDefault(up => up.Id == id);
             return user;
         }
 

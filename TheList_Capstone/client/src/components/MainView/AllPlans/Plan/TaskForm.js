@@ -8,7 +8,11 @@ import IngredientList from "./IngredientList";
 
 const TaskForm = ({ task, planId }) => {
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
-  const { getIngredientFromGrocery } = useContext(GroceryContext);
+  const {
+    ingredientData,
+    setIngredientData,
+    getIngredientFromGrocery,
+  } = useContext(GroceryContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const defaultTask = {
@@ -46,8 +50,6 @@ const TaskForm = ({ task, planId }) => {
     getIngredientFromGrocery(currentTask.name);
   }, [currentTask]);
 
-  // console.log(currentTask.name);
-
   const constructTaskObject = () => {
     if (task) {
       updateTask({
@@ -80,7 +82,7 @@ const TaskForm = ({ task, planId }) => {
       inline
       onSubmit={submitTaskObjectHandler}
     >
-      <FormGroup>
+      <FormGroup className="flexThis">
         <Label for="name" hidden>
           name
         </Label>
@@ -101,7 +103,7 @@ const TaskForm = ({ task, planId }) => {
           <i className="fas fa-pen-square" />
         )}
       </Button>
-      <IngredientList />
+
       {task && (
         <Button
           className="trash plan-button"
@@ -116,6 +118,12 @@ const TaskForm = ({ task, planId }) => {
         >
           <i className="fas fa-trash" />
         </Button>
+      )}
+      {ingredientData && (
+        <IngredientList
+          className="ingredientList-container"
+          ingredientData={ingredientData}
+        />
       )}
     </Form>
   );

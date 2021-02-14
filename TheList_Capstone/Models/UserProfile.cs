@@ -27,5 +27,9 @@ namespace TheList_Capstone.Models
 
         public string ProfilePicUrl { get; set; }
 
+        public List<Plan> Plans { get; set; }
+
+        public List<Connection> Connections { get; set; }
+
     }
 }
