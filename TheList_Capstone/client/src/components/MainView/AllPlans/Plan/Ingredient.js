@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const Ingredient = ({ ingredient }) => {
-  const [chosenIngredient, setChosenIngredient] = useState();
-
+const Ingredient = ({ ingredient, chosenIngredient, setChosenIngredient }) => {
   const handleChosenIngredient = (e) => {
     setChosenIngredient(ingredient.name);
   };

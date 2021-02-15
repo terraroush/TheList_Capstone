@@ -24,9 +24,18 @@ const PlanContainer = () => {
   return (
     <div className="planContainer-container">
       <PlanCard plan={currentPlan} />
-      <TaskForm className="stationaryForm" planId={planId} />
+      <TaskForm
+        className="stationaryForm"
+        planId={planId}
+        isGrocery={currentPlan.planType.isGrocery}
+      />
       {currentPlan.planItems.map((planItem) => (
-        <TaskForm key={planItem.id} planId={planId} task={planItem} />
+        <TaskForm
+          key={planItem.id}
+          planId={planId}
+          task={planItem}
+          isGrocery={currentPlan.planType.isGrocery}
+        />
       ))}
     </div>
   );

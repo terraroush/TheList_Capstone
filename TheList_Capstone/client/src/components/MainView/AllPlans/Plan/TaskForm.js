@@ -6,7 +6,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";
 import IngredientList from "./IngredientList";
 
-const TaskForm = ({ task, planId }) => {
+const TaskForm = ({ task, planId, isGrocery }) => {
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
   const {
     ingredientData,
@@ -14,6 +14,7 @@ const TaskForm = ({ task, planId }) => {
     getIngredientFromGrocery,
   } = useContext(GroceryContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [chosenIngredient, setChosenIngredient] = useState();
 
   const defaultTask = {
     name: "",
@@ -47,7 +48,7 @@ const TaskForm = ({ task, planId }) => {
   }, []);
 
   useEffect(() => {
-    getIngredientFromGrocery(currentTask.name);
+    isGrocery && getIngredientFromGrocery(currentTask.name);
   }, [currentTask]);
 
   const constructTaskObject = () => {
@@ -123,6 +124,8 @@ const TaskForm = ({ task, planId }) => {
         <IngredientList
           className="ingredientList-container"
           ingredientData={ingredientData}
+          chosenIngredient={chosenIngredient}
+          setChosenIngredient={setChosenIngredient}
         />
       )}
     </Form>
