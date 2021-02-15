@@ -26,10 +26,10 @@ namespace TheList_Capstone.Controllers
         [HttpGet("getbyuser/{userProfileId}")]
         public IActionResult GetById(int userProfileId)
         {
-            if (GetCurrentUserProfile().Id != userProfileId)
-            {
-                return null;
-            }
+            //if (GetCurrentUserProfile().Id != userProfileId)
+            //{
+            //    return null;
+            //}
 
             List<Connection> connections = _connectionRepo.GetByUserId(userProfileId);
             if (connections != null)
@@ -45,10 +45,10 @@ namespace TheList_Capstone.Controllers
         [HttpGet("getconnections/{userProfileId}")]
         public IActionResult GetConnections(int userProfileId)
         {
-            if (GetCurrentUserProfile().Id != userProfileId)
-            {
-                return null;
-            }
+            //if (GetCurrentUserProfile().Id != userProfileId)
+            //{
+            //    return null;
+            //}
 
             List<Connection> connections = _connectionRepo.GetConnectedPlans(userProfileId);
             if (connections != null)

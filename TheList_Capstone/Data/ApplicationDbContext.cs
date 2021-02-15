@@ -18,5 +18,13 @@ namespace TheList_Capstone.Data
         public DbSet<Comment> Comment { get; set; }
         public DbSet<PlanItem> PlanItem { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Connection>()
+                .HasOne(c => c.ConnecterUserProfile)
+                .WithMany(up => up.Connections)
+                .HasForeignKey(c => c.ConnecterUserProfileId);
+        }
+
     }
 }
