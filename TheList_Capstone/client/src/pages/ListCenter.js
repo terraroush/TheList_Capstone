@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { PlanContext } from "../providers/PlanProvider";
 import { TaskContext } from "../providers/TaskProvider";
+import { GroceryProvider } from "../providers/GroceryProvider";
 import "../components/MainView/AllPlans/Plan/ListCenter.css";
 
 import TaskForm from "../components/MainView/AllPlans/Plan/TaskForm";
@@ -25,14 +26,22 @@ const ListCenter = () => {
       {recentPlans.map((recentPlan) => (
         <PlanCard key={recentPlan.id} plan={recentPlan} />
       ))}
-      {recentPlans.map((recentPlan) => (
-        <TaskForm key={recentPlan.id} planId={recentPlan.id} />
-      ))}
-      {recentPlans.map((recentPlan) =>
-        recentPlan.planItems.map((planItem) => (
-          <TaskForm key={planItem.id} planId={recentPlan.id} task={planItem} />
-        ))
-      )}
+      <GroceryProvider>
+        {recentPlans.map((recentPlan) => (
+          <TaskForm key={recentPlan.id} planId={recentPlan.id} />
+        ))}
+      </GroceryProvider>
+      <GroceryProvider>
+        {recentPlans.map((recentPlan) =>
+          recentPlan.planItems.map((planItem) => (
+            <TaskForm
+              key={planItem.id}
+              planId={recentPlan.id}
+              task={planItem}
+            />
+          ))
+        )}
+      </GroceryProvider>
     </div>
   );
 };

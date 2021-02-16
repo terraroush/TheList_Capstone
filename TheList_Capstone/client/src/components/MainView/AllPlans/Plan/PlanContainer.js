@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { PlanContext } from "../../../../providers/PlanProvider";
 import { TaskContext } from "../../../../providers/TaskProvider";
+import { GroceryProvider } from "../../../../providers/GroceryProvider";
 import { useParams } from "react-router-dom";
 import "./Plan.css";
 
@@ -24,18 +25,21 @@ const PlanContainer = () => {
   return (
     <div className="planContainer-container">
       <PlanCard plan={currentPlan} />
-      <TaskForm
-        className="stationaryForm"
-        planId={planId}
-        isGrocery={currentPlan.planType.isGrocery}
-      />
-      {currentPlan.planItems.map((planItem) => (
+      <GroceryProvider>
         <TaskForm
-          key={planItem.id}
+          className="stationaryForm"
           planId={planId}
-          task={planItem}
           isGrocery={currentPlan.planType.isGrocery}
         />
+      </GroceryProvider>
+      {currentPlan.planItems.map((planItem) => (
+        <GroceryProvider key={planItem.id}>
+          <TaskForm
+            planId={planId}
+            task={planItem}
+            isGrocery={currentPlan.planType.isGrocery}
+          />
+        </GroceryProvider>
       ))}
     </div>
   );

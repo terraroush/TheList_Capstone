@@ -11,7 +11,6 @@ import "./Global.scss";
 import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { PlanProvider } from "./providers/PlanProvider";
 import { TaskProvider } from "./providers/TaskProvider";
-import { GroceryProvider } from "./providers/GroceryProvider";
 import { ConnectionProvider } from "./providers/ConnectionProvider";
 
 const firebaseConfig = {
@@ -24,15 +23,13 @@ ReactDOM.render(
     <ToastContainer position="bottom-right" hideProgressBar />
     <UserProfileProvider>
       <ConnectionProvider>
-        <GroceryProvider>
-          <PlanProvider>
-            <TaskProvider>
-              <Router>
-                <App />
-              </Router>
-            </TaskProvider>
-          </PlanProvider>
-        </GroceryProvider>
+        <PlanProvider>
+          <TaskProvider>
+            <Router>
+              <App />
+            </Router>
+          </TaskProvider>
+        </PlanProvider>
       </ConnectionProvider>
     </UserProfileProvider>
   </React.StrictMode>,

@@ -7,7 +7,6 @@ import "./Plan.css";
 import IngredientList from "./IngredientList";
 
 const TaskForm = ({ task, planId, isGrocery }) => {
-  console.log(task);
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
   const {
     ingredientData,
@@ -43,7 +42,9 @@ const TaskForm = ({ task, planId, isGrocery }) => {
   }, []);
 
   useEffect(() => {
-    isGrocery && getIngredientFromGrocery(currentTask.name);
+    if (!task) {
+      isGrocery && getIngredientFromGrocery(currentTask.name);
+    }
   }, [currentTask]);
 
   const constructTaskObject = () => {
