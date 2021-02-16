@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ConnectionContext } from "../../../providers/ConnectionProvider";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
-const Connections = () => {
+const Connections = ({ connections, setConnections }) => {
+  const { getAllConnections } = useContext(ConnectionContext);
+
+  useEffect(() => {
+    getAllConnections();
+  }, []);
+  console.log(connections);
   return (
     <>
-      <h4>Your Connections</h4>
+      <h3>Your Connections</h3>
       <ListGroup>
-        <ListGroupItem>friend 1</ListGroupItem>
-        <ListGroupItem>friend 2</ListGroupItem>
-        <ListGroupItem>friend 3</ListGroupItem>
-        <ListGroupItem>friend 4</ListGroupItem>
-        <ListGroupItem>friend 5</ListGroupItem>
+        <ListGroupItem></ListGroupItem>
       </ListGroup>
     </>
   );

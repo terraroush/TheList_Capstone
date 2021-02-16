@@ -7,6 +7,7 @@ import "./Plan.css";
 import IngredientList from "./IngredientList";
 
 const TaskForm = ({ task, planId, isGrocery }) => {
+  console.log(task);
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
   const {
     ingredientData,
@@ -14,21 +15,15 @@ const TaskForm = ({ task, planId, isGrocery }) => {
     getIngredientFromGrocery,
   } = useContext(GroceryContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [chosenIngredient, setChosenIngredient] = useState();
 
   const defaultTask = {
     name: "",
     planId: planId,
   };
+
   const [currentTask, setCurrentTask] = useState(defaultTask);
 
   let taskId;
-
-  const handleControlledInputChange = (e) => {
-    const newTask = { ...currentTask };
-    newTask[e.target.name] = e.target.value;
-    setCurrentTask(newTask);
-  };
 
   const submitTaskObjectHandler = (e) => {
     setIsLoading(true);
@@ -67,12 +62,10 @@ const TaskForm = ({ task, planId, isGrocery }) => {
           }
         });
     } else {
-      addTask({
-        name: currentTask.name,
-        planId: planId,
-      }).then(() => {
+      addTask(currentTask).then(() => {
         setIsLoading(false);
         setCurrentTask(defaultTask);
+        setIngredientData([]);
       });
     }
   };
@@ -91,7 +84,12 @@ const TaskForm = ({ task, planId, isGrocery }) => {
           value={currentTask.name}
           name="name"
           id="name"
-          onChange={handleControlledInputChange}
+          onChange={(e) =>
+            setCurrentTask({
+              name: e.target.value,
+              planId,
+            })
+          }
           type="text"
           placeholder="add to your list"
           className="plan-input"
@@ -124,8 +122,9 @@ const TaskForm = ({ task, planId, isGrocery }) => {
         <IngredientList
           className="ingredientList-container"
           ingredientData={ingredientData}
-          chosenIngredient={chosenIngredient}
-          setChosenIngredient={setChosenIngredient}
+          chosenIngredient={currentTask}
+          setChosenIngredient={setCurrentTask}
+          planId={planId}
         />
       )}
     </Form>

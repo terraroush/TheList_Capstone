@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Ingredient = ({ ingredient, chosenIngredient, setChosenIngredient }) => {
+const Ingredient = ({
+  ingredient,
+  chosenIngredient,
+  setChosenIngredient,
+  planId,
+}) => {
   const handleChosenIngredient = (e) => {
-    setChosenIngredient(ingredient.name);
+    setChosenIngredient({
+      name: ingredient.name,
+      planId,
+    });
   };
-  {
-    console.log(chosenIngredient);
-  }
+
   return (
     <div
       value={chosenIngredient}
