@@ -1,6 +1,6 @@
 .planCard-container {
   max-width: 29em;
-  height: 15em;
+  height: auto;
   margin: 0 0.5em 0.5em 0;
   font-size: small;
   overflow: auto;
@@ -26,19 +26,7 @@
 .card-title {
   flex-basis: 85%;
 }
-.expandable {
-  border-style: none;
-  margin: 5px;
+.Collapsible__trigger {
+  margin: 1em;
+  cursor: pointer;
 }
-.active,
-.expandable:hover {
-  background-color: #ccc;
-}
-.sneakAwayContent {
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-/* .wrap-collapsible {
-} */

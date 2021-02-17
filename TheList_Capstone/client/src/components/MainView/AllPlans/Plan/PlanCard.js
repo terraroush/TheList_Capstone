@@ -7,9 +7,8 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
-  Input,
-  Label,
 } from "reactstrap";
+import Collapsible from "react-collapsible";
 import { toast } from "react-toastify";
 import { PlanContext } from "../../../../providers/PlanProvider";
 import { useHistory } from "react-router-dom";
@@ -52,41 +51,42 @@ const PlanCard = ({ plan }) => {
           <i className="fas fa-trash" />
         </Button>
       </CardHeader>
-
-      <CardBody>
-        <ListGroup>
-          <ListGroupItem className="p-2">
-            Created: {plan.dateCreated}
-          </ListGroupItem>
-          {plan.dateUpdated && (
+      <Collapsible trigger="+">
+        <CardBody>
+          <ListGroup className="stuff">
             <ListGroupItem className="p-2">
-              Last Update: {plan.dateUpdated}
+              Created: {plan.dateCreated}
             </ListGroupItem>
-          )}
+            {plan.dateUpdated && (
+              <ListGroupItem className="p-2">
+                Last Update: {plan.dateUpdated}
+              </ListGroupItem>
+            )}
 
-          {plan.deadline && (
+            {plan.deadline && (
+              <ListGroupItem className="p-2">
+                Due Date: {plan.deadline}
+              </ListGroupItem>
+            )}
+
             <ListGroupItem className="p-2">
-              Due Date: {plan.deadline}
+              {plan.active ? "Active" : "Expired"}
             </ListGroupItem>
-          )}
 
-          <ListGroupItem className="p-2">
-            {plan.active ? "Active" : "Expired"}
-          </ListGroupItem>
+            <ListGroupItem className="p-2">
+              {plan.public ? "Public" : "Private"}
+            </ListGroupItem>
 
-          <ListGroupItem className="p-2">
-            {plan.public ? "Public" : "Private"}
-          </ListGroupItem>
+            {plan.planTypeId === 1 && (
+              <ListGroupItem className="p-2">Grocery List</ListGroupItem>
+            )}
 
-          {plan.planTypeId === 1 && (
-            <ListGroupItem className="p-2">Grocery List</ListGroupItem>
-          )}
-
-          <ListGroupItem className="p-2">
-            Author: {plan.userProfile.userName}
-          </ListGroupItem>
-        </ListGroup>
-      </CardBody>
+            <ListGroupItem className="p-2 last">
+              Author: {plan.userProfile.userName}
+            </ListGroupItem>
+          </ListGroup>
+        </CardBody>
+      </Collapsible>
     </Card>
   );
 };

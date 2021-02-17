@@ -56,25 +56,6 @@ namespace TheList_Capstone.Controllers
             }
         }
 
-        [HttpGet("getconnections/{userProfileId}")]
-        public IActionResult GetConnections(int userProfileId)
-        {
-            //if (GetCurrentUserProfile().Id != userProfileId)
-            //{
-            //    return null;
-            //}
-
-            List<Connection> connections = _connectionRepo.GetConnectedPlans(userProfileId);
-            if (connections != null)
-            {
-                return Ok(connections);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         [HttpPost]
         public IActionResult Post(Connection connection)
         {
