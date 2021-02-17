@@ -15,6 +15,7 @@ const PlanList = () => {
   }, []);
 
   if (!plans) return null;
+  console.log(plans);
 
   return (
     <section className="listory-container">

@@ -81,7 +81,7 @@ const PlanDetailsForm = () => {
   if (!plan) return null;
 
   return (
-    <>
+    <article>
       <h3>{planId ? "Edit Details" : "List Details"}</h3>
       <br />
       <Form
@@ -154,7 +154,7 @@ const PlanDetailsForm = () => {
           {planId ? "Save" : "Add"}
         </Button>
       </Form>
-    </>
+    </article>
   );
 };
 export default PlanDetailsForm;

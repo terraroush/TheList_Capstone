@@ -7,6 +7,8 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
+  Input,
+  Label,
 } from "reactstrap";
 import { toast } from "react-toastify";
 import { PlanContext } from "../../../../providers/PlanProvider";
@@ -50,6 +52,7 @@ const PlanCard = ({ plan }) => {
           <i className="fas fa-trash" />
         </Button>
       </CardHeader>
+
       <CardBody>
         <ListGroup>
           <ListGroupItem className="p-2">
