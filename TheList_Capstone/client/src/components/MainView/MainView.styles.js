@@ -13,6 +13,9 @@ display: flex;
   h1 {
     font-size: 2rem;
   }
+  h3 {
+    text-align: center;
+  }
 
   //remove scrollbar, but not the functionality
   &::-webkit-scrollbar {

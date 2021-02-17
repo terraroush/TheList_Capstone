@@ -1,5 +1,9 @@
 .detailsFormContainer {
   display: grid;
+  border: 1px solid lightgray;
+  background-color: white;
+  padding: 2em;
+  border-radius: 5px;
 }
 
 .title {
@@ -21,5 +25,4 @@
 .details-button {
   grid-column: 1/2;
   grid-row: 4/5;
-  /* max-width: 20%; */
 }

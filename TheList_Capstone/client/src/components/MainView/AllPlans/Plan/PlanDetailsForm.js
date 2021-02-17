@@ -71,9 +71,7 @@ const PlanDetailsForm = () => {
         setIsLoading(false);
         setPlan();
         {
-          planObj.planTypeId === 1
-            ? history.push(`/listcenter/createlist/grocery/${planObj.id}`)
-            : history.push(`/listcenter/createlist/${planObj.id}`);
+          history.push(`/listcenter/createlist/${planObj.id}`);
         }
       });
     }

@@ -15,12 +15,12 @@ import Register from "./pages/Register";
 import Home from "./components/MainView/Home/Home";
 import Connections from "./components/MainView/Connections/Connections";
 import NotFound from "./pages/NotFound";
-import PlanContainer from "./components/MainView/AllPlans/Plan/PlanContainer";
 import PlanDetailsForm from "./components/MainView/AllPlans/Plan/PlanDetailsForm";
 import ListCenter from "./pages/ListCenter";
 import PlanList from "./components/MainView/AllPlans/Plan/PlanList";
 import ConnectionList from "./components/MainView/Connections/ConnectionList";
 import ConnectionsPlanList from "./components/MainView/Connections/ConnectionsPlanList";
+import UserPlan from "./components/MainView/AllPlans/Plan/UserPlan";
 // import Footer from "./components/Footer";
 
 const Routes = () => {
@@ -55,10 +55,10 @@ const Routes = () => {
           {isLoggedIn ? <PlanDetailsForm /> : <Redirect to="/login" />}
         </Route>
         <Route path="/listcenter/createlist/:planId(\d+)" exact>
-          {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
+          {isLoggedIn ? <UserPlan /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/listcenter/createlist/grocery/:planId(\d+)" exact>
-          {isLoggedIn ? <PlanContainer /> : <Redirect to="/login" />}
+        <Route path="/listcenter/createlist/:planId(\d+)" exact>
+          {isLoggedIn ? <div></div> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/listcenter/listory" exact>

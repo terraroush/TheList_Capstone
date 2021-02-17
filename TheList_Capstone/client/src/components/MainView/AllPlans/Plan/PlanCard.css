@@ -29,4 +29,5 @@
 .Collapsible__trigger {
   margin: 1em;
   cursor: pointer;
+  font-size: x-large;
 }

@@ -23,7 +23,6 @@ const PlanCard = ({ plan }) => {
       <CardHeader className="buttons-container">
         <CardTitle tag="h5" className="card-title">
           {plan.title}
-          {/* <button className="expandable">+</button> */}
         </CardTitle>
         <Button
           className="plan-button edit-btn"

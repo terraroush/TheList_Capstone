@@ -4,6 +4,11 @@ body {
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
   background: rgba(241, 241, 239, 1);
+
+  //remove scrollbar, but not the functionality
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 h1,
 h2,
