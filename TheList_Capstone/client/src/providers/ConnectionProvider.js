@@ -4,14 +4,15 @@ import { UserProfileContext } from "./UserProfileProvider";
 export const ConnectionContext = createContext();
 
 export function ConnectionProvider(props) {
-  const apiUrl = "/api/planitem";
+  const apiUrl = "/api/connection";
 
   const { getToken } = useContext(UserProfileContext);
+  // const userProfileId = +localStorage.getItem("userProfileId");
   const [connections, setConnections] = useState([]);
 
-  const getAllConnections = () => {
+  const getAllConnections = (userProfileId) => {
     getToken().then((token) =>
-      fetch(`${apiUrl}`, {
+      fetch(`${apiUrl}/getplansfromconnections/${userProfileId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

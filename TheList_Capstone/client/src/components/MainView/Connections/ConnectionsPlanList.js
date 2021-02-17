@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { ConnectionContext } from "../../../providers/ConnectionProvider";
-import ConnectionUserName from "./ConnectionUserName";
+import ConnectionCard from "./ConnectionCard";
 
-const ConnectionList = () => {
+const ConnectionsPlanList = () => {
   const { connections, getAllConnections } = useContext(ConnectionContext);
 
   const userProfileId = +localStorage.getItem("userProfileId");
@@ -14,17 +14,15 @@ const ConnectionList = () => {
 
   return (
     <article>
-      <h3>Your Connections</h3>
+      <h3>Connections List Feed</h3>
       <br />
 
       <div>
         {connections?.map((connection) => {
-          return (
-            <ConnectionUserName key={connection.id} connection={connection} />
-          );
+          return <ConnectionCard key={connection.id} connection={connection} />;
         })}
       </div>
     </article>
   );
 };
-export default ConnectionList;
+export default ConnectionsPlanList;

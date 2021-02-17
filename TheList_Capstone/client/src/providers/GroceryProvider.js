@@ -14,7 +14,6 @@ export const GroceryProvider = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setIngredientData((ingredientData) => [data, ...ingredientData]);
-        // console.log(data);
       });
   };
 

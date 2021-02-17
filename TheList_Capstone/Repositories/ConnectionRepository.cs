@@ -16,13 +16,15 @@ namespace TheList_Capstone.Repositories
             _context = context;
         }
 
-        public List<Plan> GetPlansFromConnectedAuthors(int userId)
+        public List<Plan> GetPlansFromConnectedUsers(int userId)
         {
             return _context.Connection
                 .Where(c => c.ConnecterUserProfileId == userId)
                 .Include(c => c.ProviderUserProfile)
                     .ThenInclude(up => up.Plans)
+                    .ThenInclude(up => up.PlanItems)
                 .SelectMany(c => c.ProviderUserProfile.Plans)
+                .OrderByDescending(up => up.DateCreated)
                 .ToList();
         }
 
@@ -50,12 +52,6 @@ namespace TheList_Capstone.Repositories
             _context.SaveChanges();
         }
 
-        public List<Connection> GetConnectedPlans(int userId)
-        {
-            return _context.Connection.Where(c => c.ConnecterUserProfileId == userId)
-                .Include(c => c.ProviderUserProfile)
-                .Include(c => c.ProviderUserProfile.Plans)
-                .ToList();
-        }
+       
     }
 }

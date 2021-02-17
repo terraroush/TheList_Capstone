@@ -42,6 +42,20 @@ namespace TheList_Capstone.Controllers
             }
         }
 
+        [HttpGet("getplansfromconnections/{userProfileId}")]
+        public IActionResult GetPlansFromConnections(int userProfileId)
+        {
+            List<Plan> connections = _connectionRepo.GetPlansFromConnectedUsers(userProfileId);
+            if (connections != null)
+            {
+                return Ok(connections);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         [HttpGet("getconnections/{userProfileId}")]
         public IActionResult GetConnections(int userProfileId)
         {

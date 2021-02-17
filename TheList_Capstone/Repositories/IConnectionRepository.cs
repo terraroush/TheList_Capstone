@@ -11,6 +11,6 @@ namespace TheList_Capstone.Repositories
 
         void Update(Connection connection);
 
-        List<Connection> GetConnectedPlans(int userId);
+        List<Plan> GetPlansFromConnectedUsers(int userId);
     }
 }
