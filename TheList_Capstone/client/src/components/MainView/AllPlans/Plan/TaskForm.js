@@ -22,8 +22,6 @@ const TaskForm = ({ task, planId, isGrocery }) => {
 
   const [currentTask, setCurrentTask] = useState(defaultTask);
 
-  let taskId;
-
   const submitTaskObjectHandler = (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -33,7 +31,6 @@ const TaskForm = ({ task, planId, isGrocery }) => {
   useEffect(() => {
     if (task) {
       setIsLoading(false);
-      taskId = task.id;
       setCurrentTask(task);
     } else {
       setIsLoading(false);
@@ -49,11 +46,8 @@ const TaskForm = ({ task, planId, isGrocery }) => {
 
   const constructTaskObject = () => {
     if (task) {
-      updateTask({
-        id: currentTask.id,
-        name: currentTask.name,
-        planId,
-      })
+      currentTask.id = task.id;
+      updateTask(currentTask)
         .then(() => toast.success("good call on that edit"))
         .then((res) => {
           if (!res) {
@@ -61,6 +55,7 @@ const TaskForm = ({ task, planId, isGrocery }) => {
           } else {
             setIsLoading(false);
           }
+          setIngredientData([]);
         });
     } else {
       addTask(currentTask).then(() => {
@@ -70,6 +65,7 @@ const TaskForm = ({ task, planId, isGrocery }) => {
       });
     }
   };
+  console.log(ingredientData);
 
   return (
     <Form
@@ -119,7 +115,7 @@ const TaskForm = ({ task, planId, isGrocery }) => {
           <i className="fas fa-trash" />
         </Button>
       )}
-      {ingredientData && (
+      {ingredientData.length > 0 && ingredientData[0].length > 0 && (
         <IngredientList
           className="ingredientList-container"
           ingredientData={ingredientData}

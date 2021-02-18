@@ -20,10 +20,12 @@ namespace TheList_Capstone.Repositories
         {
             return _context.Connection
                 .Where(c => c.ConnecterUserProfileId == userId)
+                .Include(c => c.ConnecterUserProfile)
                 .Include(c => c.ProviderUserProfile)
                     .ThenInclude(up => up.Plans)
                     .ThenInclude(up => up.PlanItems)
                 .SelectMany(c => c.ProviderUserProfile.Plans)
+                .Include(c => c.UserProfile)
                 .OrderByDescending(up => up.DateCreated)
                 .ToList();
         }
@@ -38,8 +40,11 @@ namespace TheList_Capstone.Repositories
 
         public List<Connection> GetByUserId(int userId)
         {
-            return _context.Connection
-                .Where(c => c.ConnecterUserProfileId == userId).ToList();
+            return _context.Connection.Select(c => c.ProviderUserProfile).Distinct()
+                .SelectMany(key => _context.Connection.Where(c => c.ProviderUserProfile == key).Take(1))
+                .Where(c => c.ConnecterUserProfileId == userId)
+                .Include(c => c.ProviderUserProfile)
+                .ToList();
         }
         public void Add(Connection connection)
         {

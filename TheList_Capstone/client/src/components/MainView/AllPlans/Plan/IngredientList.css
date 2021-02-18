@@ -5,6 +5,8 @@
   padding: 1em;
   border: 1px solid lightgrey;
   background-color: white;
+  position: fixed;
+  transform: translateY(40px);
 }
 
 .ingredient {

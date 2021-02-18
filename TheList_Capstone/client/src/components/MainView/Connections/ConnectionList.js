@@ -3,12 +3,12 @@ import { ConnectionContext } from "../../../providers/ConnectionProvider";
 import ConnectionUserName from "./ConnectionUserName";
 
 const ConnectionList = () => {
-  const { connections, getAllConnections } = useContext(ConnectionContext);
+  const { connections, getConnectionsById } = useContext(ConnectionContext);
 
   const userProfileId = +localStorage.getItem("userProfileId");
-
+  //this will fetch unique connections
   useEffect(() => {
-    getAllConnections(userProfileId);
+    getConnectionsById(userProfileId);
   }, []);
   console.log(connections);
 

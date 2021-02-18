@@ -57,6 +57,7 @@ export function TaskProvider(props) {
   };
 
   const updateTask = (task) => {
+    console.log(task);
     return getToken().then((token) => {
       fetch(`${apiUrl}/${task.id}`, {
         method: "PUT",

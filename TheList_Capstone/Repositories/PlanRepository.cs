@@ -44,6 +44,7 @@ namespace TheList_Capstone.Repositories
             return _context.Plan
                 .Include(p => p.PlanItems)
                 .Include(p => p.UserProfile)
+                .Include(p => p.PlanType)
                 .Where(p => p.UserProfileId == id)
                 .OrderByDescending(p => p.DateCreated)
                 .Take(1)
