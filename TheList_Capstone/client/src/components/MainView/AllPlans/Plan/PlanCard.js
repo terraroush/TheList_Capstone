@@ -26,7 +26,6 @@ const PlanCard = ({ plan }) => {
         </CardTitle>
       </CardHeader>
       <Collapsible trigger={<i className="fas fa-angle-down" />}>
-        {/* <i className="fas fa-plus-square" /> */}
         <CardBody>
           <ListGroup className="stuff">
             <ListGroupItem className="p-2">
@@ -57,7 +56,7 @@ const PlanCard = ({ plan }) => {
             )}
 
             <ListGroupItem className="p-2 last">
-              Author: {plan.userProfile.userName}
+              Author: {plan.userProfile?.userName}
             </ListGroupItem>
           </ListGroup>
           <Button

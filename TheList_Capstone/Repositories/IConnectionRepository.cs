@@ -5,12 +5,14 @@ namespace TheList_Capstone.Repositories
 {
     public interface IConnectionRepository
     {
-        void Add(Connection connection);
+        public void Add(Connection connection);
 
-        List<Connection> GetByUserId(int userId);
+        public List<Connection> GetByUserId(int userId);
 
-        void Update(Connection connection);
+        public List<Plan> GetPlansFromConnectedUsers(int userId);
 
-        List<Plan> GetPlansFromConnectedUsers(int userId);
+        public void Delete(int id);
+
+        public Connection GetByConnectionId(int id);
     }
 }

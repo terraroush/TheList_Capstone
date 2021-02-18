@@ -5,7 +5,7 @@ namespace TheList_Capstone.Repositories
 {
     public interface IPlanTypeRepository
     {
-        List<PlanType> GetAll();
-        PlanType GetById(int id);
+        public List<PlanType> GetAll();
+        public PlanType GetById(int id);
     }
 }

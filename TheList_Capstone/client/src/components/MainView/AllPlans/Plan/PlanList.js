@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { PlanContext } from "../../../../providers/PlanProvider";
 import { Button } from "reactstrap";
 import PlanCard from "./PlanCard";
+import PlanContainer from "./PlanContainer";
 
 const PlanList = () => {
   const { plans, getPlansByUserId } = useContext(PlanContext);
@@ -12,7 +13,7 @@ const PlanList = () => {
 
   useEffect(() => {
     getPlansByUserId(activeUser);
-  }, []);
+  }, [plans]);
 
   if (!plans) return null;
 
@@ -31,7 +32,7 @@ const PlanList = () => {
 
       <div>
         {plans.map((plan) => (
-          <PlanCard key={plan.id} plan={plan} />
+          <PlanContainer key={plan.id} plan={plan} />
         ))}
       </div>
     </section>

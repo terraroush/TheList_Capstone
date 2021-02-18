@@ -6,12 +6,12 @@ namespace TheList_Capstone.Repositories
 {
     public interface IPlanRepository
     {
-        List<Plan> GetAll();
-        List<Plan> GetByUserProfileId(int id);
-        List<Plan> GetMostRecent(int id);
-        Plan GetById(int id);
-        void Add(Plan plan);
-        void Update(Plan plan);
-        void Delete(int id);
+        public List<Plan> GetAll();
+        public List<Plan> GetByUserProfileId(int id);
+        public List<Plan> GetMostRecent(int id);
+        public Plan GetById(int id);
+        public void Add(Plan plan);
+        public void Update(Plan plan);
+        public void Delete(int id);
     }
 }

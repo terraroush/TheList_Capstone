@@ -11,15 +11,15 @@ const PlanContainer = ({ plan }) => (
       <TaskForm
         className="stationaryForm"
         planId={plan.id}
-        isGrocery={plan.planType.isGrocery}
+        isGrocery={plan.planType?.isGrocery}
       />
     </GroceryProvider>
-    {plan.planItems.map((planItem) => (
+    {plan.planItems?.map((planItem) => (
       <GroceryProvider key={planItem.id}>
         <TaskForm
           planId={plan.id}
           task={planItem}
-          isGrocery={plan.planType.isGrocery}
+          isGrocery={plan.planType?.isGrocery}
         />
       </GroceryProvider>
     ))}

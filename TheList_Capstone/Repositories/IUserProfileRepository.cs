@@ -5,10 +5,10 @@ namespace TheList_Capstone.Repositories
 {
     public interface IUserProfileRepository
     {
-        void Add(UserProfile userProfile);
-        UserProfile GetByFirebaseUserId(string firebaseUserId);
-        UserProfile GetByUserProfileId(int id);
-        List<UserProfile> GetAll();
-        UserProfile GetById(int id);
+        public void Add(UserProfile userProfile);
+        public UserProfile GetByFirebaseUserId(string firebaseUserId);
+        public UserProfile GetByUserProfileId(int id);
+        public List<UserProfile> GetAll();
+        public UserProfile GetById(int id);
     }
 }

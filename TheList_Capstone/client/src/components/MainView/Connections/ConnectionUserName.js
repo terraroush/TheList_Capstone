@@ -12,7 +12,7 @@ import {
 const ConnectionUserName = ({ connection }) => {
   const { deleteConnection } = useContext(ConnectionContext);
 
-  if (!connection) return null;
+  if (!connection.providerUserProfile) return null;
   return (
     <Card>
       <CardHeader>

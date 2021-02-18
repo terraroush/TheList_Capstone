@@ -71,24 +71,26 @@ namespace TheList_Capstone.Controllers
             return CreatedAtAction("Get", new { id = connection.Id }, connection);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Connection connection)
-        {
-
-            if (id != connection.Id)
-            {
-                return BadRequest();
-            }
-
-            _connectionRepo.Update(connection);
-            return NoContent();
-        }
-
-
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userRepo.GetByFirebaseUserId(firebaseUserId);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var user = GetCurrentUserProfile();
+            var connectionToDelete = _connectionRepo.GetByConnectionId(id);
+
+            if (connectionToDelete.ConnecterUserProfileId != user.Id)
+            {
+                return Unauthorized();
+            }
+
+            _connectionRepo.Delete(id);
+            return NoContent();
+
         }
     }
 }

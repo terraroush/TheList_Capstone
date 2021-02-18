@@ -5,10 +5,10 @@ namespace TheList_Capstone.Repositories
 {
     public interface IPlanItemRepository
     {
-        void Add(PlanItem planItem);
-        void Delete(int id);
-        List<PlanItem> GetAll();
-        PlanItem GetById(int id);
-        void Update(PlanItem planItem);
+        public void Add(PlanItem planItem);
+        public void Delete(int id);
+        public List<PlanItem> GetAll();
+        public PlanItem GetById(int id);
+        public void Update(PlanItem planItem);
     }
 }

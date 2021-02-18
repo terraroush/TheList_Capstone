@@ -18,12 +18,8 @@
 }
 .buttons-container {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
-.card-title {
-  flex-basis: 85%;
-}
+
 .Collapsible__trigger {
   margin: 1em;
   cursor: pointer;

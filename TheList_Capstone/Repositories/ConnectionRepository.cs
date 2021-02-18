@@ -31,6 +31,11 @@ namespace TheList_Capstone.Repositories
                 .ToList();
         }
 
+        public Connection GetByConnectionId(int id)
+        {
+            return _context.Connection.Where(c => c.Id == id).FirstOrDefault();
+        }
+
         public Connection GetConnection(int userId, int authorId)
         {
             return _context.Connection
@@ -52,12 +57,12 @@ namespace TheList_Capstone.Repositories
             _context.Add(connection);
             _context.SaveChanges();
         }
-        public void Update(Connection connection)
+
+        public void Delete(int id)
         {
-            _context.Entry(connection).State = EntityState.Modified;
+            var connection = _context.Connection.FirstOrDefault(c => c.Id == id);
+            _context.Connection.Remove(connection);
             _context.SaveChanges();
         }
-
-       
     }
 }
