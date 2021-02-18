@@ -7,7 +7,7 @@ namespace TheList_Capstone.Repositories
     {
         public void Add(Connection connection);
 
-        public List<Connection> GetByUserId(int userId);
+        public List<Connection> GetConnectedByUserId(int userId);
 
         public List<Plan> GetPlansFromConnectedUsers(int userId);
 

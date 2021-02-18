@@ -7,6 +7,7 @@
   background-color: white;
   position: fixed;
   transform: translateY(40px);
+  z-index: 100;
 }
 
 .ingredient {

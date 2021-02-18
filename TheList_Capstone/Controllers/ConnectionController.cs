@@ -23,18 +23,52 @@ namespace TheList_Capstone.Controllers
             _userRepo = userRepo;
         }
 
-        [HttpGet("getbyuser/{userProfileId}")]
-        public IActionResult GetById(int userProfileId)
+        [HttpGet("getconnectedbyuser/{userProfileId}")]
+        public IActionResult GetConnectedById(int userProfileId)
         {
-            //if (GetCurrentUserProfile().Id != userProfileId)
-            //{
-            //    return null;
-            //}
-
-            List<Connection> connections = _connectionRepo.GetByUserId(userProfileId);
+            List<Connection> connections = _connectionRepo.GetConnectedByUserId(userProfileId);
             if (connections != null)
             {
                 return Ok(connections);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("getnotconnectedbyuser/{userProfileId}")]
+        public IActionResult GetNotConnectedById(int userProfileId)
+        {
+            //get our connected users, then get all users
+            //filter by connections that user doesn't have
+            //then if we have them, return them
+            List<Connection> connections = _connectionRepo.GetConnectedByUserId(userProfileId);
+            List<UserProfile> allUsers = _userRepo.GetAll();
+
+            var relationships = connections.Where(c => c.ConnecterUserProfileId == userProfileId).ToList();
+            // this isn't excluding the current user -- why???
+            var excludedCurrentUser = allUsers.Where(up => up.Id != userProfileId).ToList();
+
+            List<UserProfile> availableUsersToConnectTo = new List<UserProfile>();
+
+            foreach(var user in excludedCurrentUser)
+            {
+                foreach(var r in relationships)
+                {
+                    if (user.Id != r.ProviderUserProfileId)
+                    {
+                        availableUsersToConnectTo.Add(user);
+                    }
+                }
+                    if (relationships.Count == 0)
+                    {
+                        availableUsersToConnectTo.Add(user);
+                    }
+            }
+            if (connections != null)
+            {
+                return Ok(availableUsersToConnectTo);
             }
             else
             {

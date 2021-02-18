@@ -44,7 +44,7 @@ namespace TheList_Capstone.Repositories
                 .FirstOrDefault();
         }
 
-        public List<Connection> GetByUserId(int userId)
+        public List<Connection> GetConnectedByUserId(int userId)
         {
             return _context.Connection.Select(c => c.ProviderUserProfile).Distinct()
                 .SelectMany(key => _context.Connection.Where(c => c.ProviderUserProfile == key).Take(1))
@@ -52,6 +52,7 @@ namespace TheList_Capstone.Repositories
                 .Include(c => c.ProviderUserProfile)
                 .ToList();
         }
+
         public void Add(Connection connection)
         {
             _context.Add(connection);

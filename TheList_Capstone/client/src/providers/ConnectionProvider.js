@@ -26,7 +26,21 @@ export function ConnectionProvider(props) {
 
   const getConnectionsById = (id) => {
     getToken().then((token) =>
-      fetch(`${apiUrl}/getbyuser/${id}`, {
+      fetch(`${apiUrl}/getconnectedbyuser/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((connections) => {
+          setConnections(connections);
+        })
+    );
+  };
+  const getNotConnectionsById = (id) => {
+    getToken().then((token) =>
+      fetch(`${apiUrl}/getnotconnectedbyuser/${id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -72,6 +86,7 @@ export function ConnectionProvider(props) {
       value={{
         getAllConnections,
         getConnectionsById,
+        getNotConnectionsById,
         addConnection,
         setConnections,
         connections,
