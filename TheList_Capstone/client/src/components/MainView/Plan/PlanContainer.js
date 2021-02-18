@@ -1,5 +1,5 @@
 import React from "react";
-import { GroceryProvider } from "../../../../providers/GroceryProvider";
+import { GroceryProvider } from "../../../providers/GroceryProvider";
 import TaskForm from "./TaskForm";
 import PlanCard from "./PlanCard";
 import "./Plan.css";

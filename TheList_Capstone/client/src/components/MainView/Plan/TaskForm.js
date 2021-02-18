@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { TaskContext } from "../../../../providers/TaskProvider";
-import { GroceryContext } from "../../../../providers/GroceryProvider";
+import { TaskContext } from "../../../providers/TaskProvider";
+import { GroceryContext } from "../../../providers/GroceryProvider";
 import { toast } from "react-toastify";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";

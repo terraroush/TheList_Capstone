@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { PlanContext } from "../providers/PlanProvider";
-import "./MainView/AllPlans/Plan/PlanCard.css";
+import "./MainView/Plan/PlanCard.css";
 import { useContext } from "react";
 
 // need to pass in the plan id

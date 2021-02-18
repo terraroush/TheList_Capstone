@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { ConnectionContext } from "../../../providers/ConnectionProvider";
-import PlanContainer from "../AllPlans/Plan/PlanContainer";
+import PlanContainer from "../Plan/PlanContainer";
 
 const ConnectionsPlanList = () => {
   const { connections, getAllConnections } = useContext(ConnectionContext);

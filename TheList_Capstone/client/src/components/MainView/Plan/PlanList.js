@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { PlanContext } from "../../../../providers/PlanProvider";
+import { PlanContext } from "../../../providers/PlanProvider";
 import { Button } from "reactstrap";
-import PlanCard from "./PlanCard";
 import PlanContainer from "./PlanContainer";
 
 const PlanList = () => {

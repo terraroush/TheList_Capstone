@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import Collapsible from "react-collapsible";
 import { toast } from "react-toastify";
-import { PlanContext } from "../../../../providers/PlanProvider";
+import { PlanContext } from "../../../providers/PlanProvider";
 import { useHistory } from "react-router-dom";
 import "./PlanCard.css";
 

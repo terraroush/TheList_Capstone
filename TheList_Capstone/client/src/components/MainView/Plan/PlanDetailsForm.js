@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
-import { PlanContext } from "../../../../providers/PlanProvider";
+import { PlanContext } from "../../../providers/PlanProvider";
 import { useParams, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./DetailsForm.css";

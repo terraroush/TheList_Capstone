@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
-import { PlanContext } from "../../../../providers/PlanProvider";
-import { TaskContext } from "../../../../providers/TaskProvider";
+import React, { useContext, useEffect } from "react";
+import { PlanContext } from "../../../providers/PlanProvider";
+import { TaskContext } from "../../../providers/TaskProvider";
 import { useParams } from "react-router-dom";
 import PlanContainer from "./PlanContainer";
 

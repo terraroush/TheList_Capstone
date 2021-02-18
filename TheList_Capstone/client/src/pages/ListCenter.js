@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { PlanContext } from "../providers/PlanProvider";
 import { TaskContext } from "../providers/TaskProvider";
-import "../components/MainView/AllPlans/Plan/ListCenter.css";
-import PlanContainer from "../components/MainView/AllPlans/Plan/PlanContainer";
+import PlanContainer from "../components/MainView/Plan/PlanContainer";
 
 const ListCenter = () => {
   const { recentPlans, getRecentPlansByUserId } = useContext(PlanContext);
