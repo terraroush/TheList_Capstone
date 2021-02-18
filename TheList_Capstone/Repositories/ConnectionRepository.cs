@@ -25,6 +25,7 @@ namespace TheList_Capstone.Repositories
                     .ThenInclude(up => up.Plans)
                     .ThenInclude(up => up.PlanItems)
                 .SelectMany(c => c.ProviderUserProfile.Plans)
+                .Include(c => c.PlanType)
                 .Include(c => c.UserProfile)
                 .OrderByDescending(up => up.DateCreated)
                 .ToList();

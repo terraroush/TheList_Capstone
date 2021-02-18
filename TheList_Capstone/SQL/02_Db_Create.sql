@@ -63,7 +63,7 @@ CREATE TABLE [Plan] (
 
 CREATE TABLE [PlanItem] (
   [Id] integer PRIMARY KEY identity,
-  [Name] nvarchar(50) NOT NULL,
+  [Name] nvarchar(100) NOT NULL,
   [PlanId] INTEGER NOT NULL,
 
   CONSTRAINT [FK_PlanItem_Plan] FOREIGN KEY (PlanId) REFERENCES [Plan] ([Id])

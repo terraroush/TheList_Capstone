@@ -65,7 +65,6 @@ const TaskForm = ({ task, planId, isGrocery }) => {
       });
     }
   };
-  console.log(ingredientData);
 
   return (
     <Form

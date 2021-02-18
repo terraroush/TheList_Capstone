@@ -18,8 +18,11 @@
 }
 
 .plan-input {
+  display: flex;
+  min-width: 20em;
   margin: 0.1rem;
   background: white;
+  flex-wrap: wrap;
   font-size: 1rem;
   color: black;
   display: flex;
@@ -95,4 +98,7 @@ select {
 
 .stationaryForm {
   position: fixed;
+}
+.fa-angle-down {
+  color: lightgrey;
 }

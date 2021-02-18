@@ -24,33 +24,9 @@ const PlanCard = ({ plan }) => {
         <CardTitle tag="h5" className="card-title">
           {plan.title}
         </CardTitle>
-        <Button
-          className="plan-button edit-btn"
-          type="submit"
-          onClick={() => {
-            history.push(`/listcenter/edit/${plan.id}`);
-          }}
-        >
-          <i className="fas fa-pen-square" />
-        </Button>
-        <Button
-          className="plan-button delete-btn"
-          type="submit"
-          onClick={(e) => {
-            if (window.confirm("Delete plan with everything in it?"))
-              deletePlan(plan.id)
-                .then(() => {
-                  toast.success("I hope you said goodbye");
-                })
-                .then(() => {
-                  history.push("/listcenter/listory");
-                });
-          }}
-        >
-          <i className="fas fa-trash" />
-        </Button>
       </CardHeader>
-      <Collapsible trigger="+">
+      <Collapsible trigger={<i className="fas fa-angle-down" />}>
+        {/* <i className="fas fa-plus-square" /> */}
         <CardBody>
           <ListGroup className="stuff">
             <ListGroupItem className="p-2">
@@ -84,6 +60,31 @@ const PlanCard = ({ plan }) => {
               Author: {plan.userProfile.userName}
             </ListGroupItem>
           </ListGroup>
+          <Button
+            className="plan-button edit-btn"
+            type="submit"
+            onClick={() => {
+              history.push(`/listcenter/edit/${plan.id}`);
+            }}
+          >
+            <i className="fas fa-pen-square" />
+          </Button>
+          <Button
+            className="plan-button delete-btn"
+            type="submit"
+            onClick={(e) => {
+              if (window.confirm("Delete plan with everything in it?"))
+                deletePlan(plan.id)
+                  .then(() => {
+                    toast.success("I hope you said goodbye");
+                  })
+                  .then(() => {
+                    history.push("/listcenter/listory");
+                  });
+            }}
+          >
+            <i className="fas fa-trash" />
+          </Button>
         </CardBody>
       </Collapsible>
     </Card>

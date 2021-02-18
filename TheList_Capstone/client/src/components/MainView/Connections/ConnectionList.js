@@ -10,7 +10,6 @@ const ConnectionList = () => {
   useEffect(() => {
     getConnectionsById(userProfileId);
   }, []);
-  console.log(connections);
 
   return (
     <article>

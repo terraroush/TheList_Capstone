@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { ConnectionContext } from "../../../providers/ConnectionProvider";
-import ConnectionCard from "./ConnectionCard";
+import PlanContainer from "../AllPlans/Plan/PlanContainer";
 
 const ConnectionsPlanList = () => {
   const { connections, getAllConnections } = useContext(ConnectionContext);
@@ -9,19 +9,15 @@ const ConnectionsPlanList = () => {
 
   useEffect(() => {
     getAllConnections(userProfileId);
-  }, []);
-  console.log(connections);
+  }, [connections]);
 
   return (
     <article>
-      <h3>Connections List Feed</h3>
+      <h3>Friends List Feed</h3>
       <br />
-
-      <div>
-        {connections?.map((connection) => {
-          return <ConnectionCard key={connection.id} connection={connection} />;
-        })}
-      </div>
+      {connections?.map((connection) => {
+        return <PlanContainer key={connection.id} plan={connection} />;
+      })}
     </article>
   );
 };

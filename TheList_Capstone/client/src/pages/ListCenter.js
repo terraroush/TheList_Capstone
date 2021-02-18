@@ -16,13 +16,13 @@ const ListCenter = () => {
   if (!recentPlans) return null;
 
   return (
-    <div className="recentPlanContainer">
+    <article className="recentPlanContainer">
       <h3>Your Most Recent Plan</h3>
       <br />
       {recentPlans.map((recentPlan) => (
         <PlanContainer key={recentPlan.id} plan={recentPlan} />
       ))}
-    </div>
+    </article>
   );
 };
 export default ListCenter;
