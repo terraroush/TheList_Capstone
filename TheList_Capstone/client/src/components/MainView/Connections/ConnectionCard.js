@@ -1,27 +1,30 @@
 import React, { useContext } from "react";
 import { ConnectionContext } from "../../../providers/ConnectionProvider";
-import { Card, CardHeader, CardTitle } from "reactstrap";
+import {
+  Card,
+  CardTitle,
+  CardLink,
+  CardHeader,
+  CardBody,
+  CardText,
+} from "reactstrap";
 
-const ConnectionCard = ({ connection }) => {
+const ConnectionCard = ({ connection, name, email, userName }) => {
   const { deleteConnection } = useContext(ConnectionContext);
 
+  if (!connection) return null;
   return (
-    <>
-      <Card>
-        <CardHeader>
-          <CardTitle>{connection.title}</CardTitle>
-        </CardHeader>
-      </Card>
-
-      <button
-        onClick={(e) => {
-          if (window.confirm("Would you like to delete this connection?"))
-            deleteConnection(connection);
-        }}
-      >
-        delete
-      </button>
-    </>
+    <Card>
+      <CardHeader>
+        <CardTitle>{name}</CardTitle>
+      </CardHeader>
+      <CardBody>
+        <CardText>{email}</CardText>
+        <CardText>
+          --- see {userName}'s <CardLink>lists</CardLink> ---
+        </CardText>
+      </CardBody>
+    </Card>
   );
 };
 export default ConnectionCard;

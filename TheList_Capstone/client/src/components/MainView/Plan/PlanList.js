@@ -12,7 +12,7 @@ const PlanList = () => {
 
   useEffect(() => {
     getPlansByUserId(activeUser);
-  }, [plans]);
+  }, []);
 
   if (!plans) return null;
 

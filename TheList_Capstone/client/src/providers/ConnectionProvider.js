@@ -8,6 +8,7 @@ export function ConnectionProvider(props) {
 
   const { getToken } = useContext(UserProfileContext);
   const [connections, setConnections] = useState([]);
+  const [possibleConnections, setPossibleConnections] = useState([]);
 
   const getAllConnections = (userProfileId) => {
     getToken().then((token) =>
@@ -47,8 +48,8 @@ export function ConnectionProvider(props) {
         },
       })
         .then((res) => res.json())
-        .then((connections) => {
-          setConnections(connections);
+        .then((possibleConnections) => {
+          setPossibleConnections(possibleConnections);
         })
     );
   };
@@ -90,6 +91,8 @@ export function ConnectionProvider(props) {
         addConnection,
         setConnections,
         connections,
+        possibleConnections,
+        setPossibleConnections,
         deleteConnection,
       }}
     >

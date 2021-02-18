@@ -9,7 +9,7 @@ const ConnectionsPlanList = () => {
   // This fetch gets a very tailored collection of connection data
   useEffect(() => {
     getAllConnections(userProfileId);
-  }, [connections]);
+  }, []);
 
   if (!connections) return null;
 

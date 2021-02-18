@@ -8,7 +8,6 @@ const Connections = ({ connections, setConnections }) => {
   useEffect(() => {
     getAllConnections();
   }, []);
-  console.log(connections);
   return (
     <>
       <h3>Your Connections</h3>
