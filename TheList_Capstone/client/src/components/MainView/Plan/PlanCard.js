@@ -60,7 +60,7 @@ const PlanCard = ({ plan }) => {
             </ListGroupItem>
           </ListGroup>
           <Button
-            className="plan-button edit-btn"
+            className="grey"
             type="submit"
             onClick={() => {
               history.push(`/listcenter/edit/${plan.id}`);
@@ -69,7 +69,7 @@ const PlanCard = ({ plan }) => {
             <i className="fas fa-pen-square" />
           </Button>
           <Button
-            className="plan-button delete-btn"
+            className="darkgrey"
             type="submit"
             onClick={(e) => {
               if (window.confirm("Delete plan with everything in it?"))

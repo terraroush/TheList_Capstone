@@ -16,7 +16,7 @@ const ListCenter = () => {
 
   return (
     <article className="recentPlanContainer">
-      <h3>Your Most Recent Plan</h3>
+      <h4>Your Most Recent Plan</h4>
       <br />
       {recentPlans.map((recentPlan) => (
         <PlanContainer key={recentPlan.id} plan={recentPlan} />

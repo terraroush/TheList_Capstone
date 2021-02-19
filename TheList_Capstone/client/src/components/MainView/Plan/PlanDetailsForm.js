@@ -80,7 +80,7 @@ const PlanDetailsForm = () => {
 
   return (
     <article>
-      <h3>{planId ? "Edit Details" : "List Details"}</h3>
+      <h4>{planId ? "Edit Details" : "List Details"}</h4>
       <br />
       <Form
         className="detailsFormContainer"

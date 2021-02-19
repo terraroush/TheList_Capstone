@@ -94,15 +94,15 @@ namespace TheList_Capstone.Controllers
         public IActionResult Post(Connection connection)
         {
            
-            var currentUser = GetCurrentUserProfile();
+            //var currentUser = GetCurrentUserProfile();
 
-            if (currentUser.Id != connection.ConnecterUserProfileId)
-            {
-                return NotFound();
-            }
+            //if (currentUser.Id != connection.ConnecterUserProfileId)
+            //{
+            //    return NotFound();
+            //}
 
             _connectionRepo.Add(connection);
-            return CreatedAtAction("Get", new { id = connection.Id }, connection);
+            return Ok(connection);
         }
 
         private UserProfile GetCurrentUserProfile()

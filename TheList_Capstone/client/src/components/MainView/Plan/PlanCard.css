@@ -25,3 +25,12 @@
   cursor: pointer;
   font-size: x-large;
 }
+
+.grey {
+  background: lightgrey;
+  border: none;
+}
+.darkgrey {
+  background: rgb(187, 186, 186);
+  border: none;
+}

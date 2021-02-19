@@ -83,7 +83,6 @@ export function PlanProvider(props) {
   };
 
   const updatePlan = (plan) => {
-    debugger;
     return getToken().then((token) => {
       fetch(`${apiUrl}/${plan.id}`, {
         method: "PUT",

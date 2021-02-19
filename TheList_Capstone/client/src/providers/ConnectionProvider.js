@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
+import { toast } from "react-toastify";
 import { UserProfileContext } from "./UserProfileProvider";
 
 export const ConnectionContext = createContext();
@@ -55,6 +56,7 @@ export function ConnectionProvider(props) {
   };
 
   const addConnection = (connection) => {
+    debugger;
     return getToken().then((token) =>
       fetch(`${apiUrl}`, {
         method: "POST",
@@ -63,11 +65,7 @@ export function ConnectionProvider(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(connection),
-      })
-        .then((res) => res.json())
-        .then((connections) => {
-          setConnections(connections);
-        })
+      }).then((res) => res.json())
     );
   };
 

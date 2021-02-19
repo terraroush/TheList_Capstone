@@ -7,22 +7,29 @@ import {
   CardHeader,
   CardBody,
   CardText,
+  Button,
 } from "reactstrap";
+import "./Connection.css";
 
-const ConnectionCard = ({ connection, name, email, userName }) => {
-  const { deleteConnection } = useContext(ConnectionContext);
+const ConnectionCard = ({ connection, name, email, userName, button }) => {
+  const { deleteConnection, addConnection } = useContext(ConnectionContext);
 
   if (!connection) return null;
   return (
-    <Card>
-      <CardHeader>
+    <Card className="flex-flow">
+      <CardHeader className="specify-width">
         <CardTitle>{name}</CardTitle>
+        <Button
+          className="connection-btns"
+          type="submit"
+          onClick={() => addConnection(connection)}
+        >
+          {<i className={button} />}
+        </Button>
       </CardHeader>
       <CardBody>
+        <CardText>AKA {userName}</CardText>
         <CardText>{email}</CardText>
-        <CardText>
-          --- see {userName}'s <CardLink>lists</CardLink> ---
-        </CardText>
       </CardBody>
     </Card>
   );

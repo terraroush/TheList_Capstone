@@ -13,7 +13,6 @@ import { UserProfileContext } from "./providers/UserProfileProvider";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./components/MainView/Home/Home";
-import Connections from "./components/MainView/Connections/Connections";
 import NotFound from "./pages/NotFound";
 import PlanDetailsForm from "./components/MainView/Plan/PlanDetailsForm";
 import ListCenter from "./pages/ListCenter";
@@ -21,7 +20,6 @@ import PlanList from "./components/MainView/Plan/PlanList";
 import ConnectionList from "./components/MainView/Connections/ConnectionList";
 import ConnectionsPlanList from "./components/MainView/Connections/ConnectionsPlanList";
 import UserPlan from "./components/MainView/Plan/UserPlan";
-// import Footer from "./components/Footer";
 
 const Routes = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -57,9 +55,6 @@ const Routes = () => {
         <Route path="/listcenter/createlist/:planId(\d+)" exact>
           {isLoggedIn ? <UserPlan /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/listcenter/createlist/:planId(\d+)" exact>
-          {isLoggedIn ? <div></div> : <Redirect to="/login" />}
-        </Route>
 
         <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <PlanList /> : <Redirect to="/login" />}
@@ -71,10 +66,6 @@ const Routes = () => {
 
         <Route path="/connections" exact>
           {isLoggedIn ? <ConnectionList /> : <Redirect to="/login" />}
-        </Route>
-
-        <Route path="/listdetails" exact>
-          {isLoggedIn ? <div></div> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

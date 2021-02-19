@@ -18,7 +18,7 @@ const PlanList = () => {
 
   return (
     <section className="listory-container">
-      <h3>My Listory</h3>
+      <h4>My Listory</h4>
       <br />
       <Button
         size="small"

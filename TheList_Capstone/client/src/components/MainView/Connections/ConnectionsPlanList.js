@@ -15,7 +15,7 @@ const ConnectionsPlanList = () => {
 
   return (
     <article>
-      <h3>Friends List Feed</h3>
+      <h4>Friends List Feed</h4>
       <br />
       {connections.map((connection) => (
         <PlanContainer key={connection.id} plan={connection} />

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { ConnectionContext } from "../../../providers/ConnectionProvider";
 import ConnectionCard from "./ConnectionCard";
+import "./Connection.css";
 
 const ConnectionList = () => {
   const {
@@ -22,27 +23,23 @@ const ConnectionList = () => {
 
   if (!connections) return null;
   if (!possibleConnections) return null;
-  console.log(
-    "connections: ",
-    connections,
-    "possibilities: ",
-    possibleConnections
-  );
 
   return (
     <article>
-      <h3>Your Connections</h3>
+      <h4>Your Connections</h4>
       <br />
       {connections.map((connection) => (
         <ConnectionCard
           key={connection.id}
           connection={connection}
-          name={connection.providerUserProfile.name}
-          email={connection.providerUserProfile.email}
-          userName={connection.providerUserProfile.userName}
+          name={connection.providerUserProfile?.name}
+          email={connection.providerUserProfile?.email}
+          userName={connection.providerUserProfile?.userName}
+          button={"fas fa-trash"}
         />
       ))}
-      <h3>Possible Connections</h3>
+      <br />
+      <h4>Possible Connections</h4>
       <br />
       {possibleConnections.map((possibility) => (
         <ConnectionCard
@@ -51,6 +48,7 @@ const ConnectionList = () => {
           name={possibility.name}
           email={possibility.email}
           userName={possibility.userName}
+          button={"fas fa-plus-square"}
         />
       ))}
     </article>

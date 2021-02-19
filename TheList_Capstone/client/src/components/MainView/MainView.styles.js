@@ -13,7 +13,7 @@ display: flex;
   h1 {
     font-size: 2rem;
   }
-  h3 {
+  h2, h3, h4 {
     text-align: center;
   }
 
