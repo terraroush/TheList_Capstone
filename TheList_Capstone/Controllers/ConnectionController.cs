@@ -50,25 +50,25 @@ namespace TheList_Capstone.Controllers
             // this isn't excluding the current user -- why???
             var excludedCurrentUser = allUsers.Where(up => up.Id != userProfileId).ToList();
 
-            List<UserProfile> availableUsersToConnectTo = new List<UserProfile>();
+            List<UserProfile> availableConnections = new List<UserProfile>();
 
             foreach(var user in excludedCurrentUser)
             {
-                foreach(var r in relationships)
+                // we need to do a find by providerUserProfileId on relationships; if we find something, don't add that user; if it's null, (not connected yet) add them to the list of available connections
+                var foundConnection = relationships.FirstOrDefault(u => u.ProviderUserProfileId == user.Id);
+                if (foundConnection == null)
                 {
-                    if (user.Id != r.ProviderUserProfileId)
-                    {
-                        availableUsersToConnectTo.Add(user);
-                    }
+                    availableConnections.Add(user);
                 }
-                    if (relationships.Count == 0)
-                    {
-                        availableUsersToConnectTo.Add(user);
-                    }
+
+                if (relationships.Count == 0)
+                {
+                    availableConnections.Add(user);
+                }
             }
             if (connections != null)
             {
-                return Ok(availableUsersToConnectTo);
+                return Ok(availableConnections);
             }
             else
             {

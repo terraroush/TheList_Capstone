@@ -56,8 +56,8 @@ CREATE TABLE [Plan] (
   [UserProfileId] INTEGER NOT NULL,
   [PlanTypeId] INTEGER NOT NULL,
 
-  CONSTRAINT [FK_Plan_UserProfile] FOREIGN KEY (UserProfileId) REFERENCES [UserProfile] ([Id]),
-  CONSTRAINT [FK_Plan_PlanType] FOREIGN KEY (PlanTypeId) REFERENCES [PlanType] ([Id])
+  CONSTRAINT [FK_Plan_UserProfile] FOREIGN KEY (UserProfileId) REFERENCES [UserProfile]([Id]),
+  CONSTRAINT [FK_Plan_PlanType] FOREIGN KEY (PlanTypeId) REFERENCES [PlanType]([Id])
 )
 
 
@@ -65,8 +65,9 @@ CREATE TABLE [PlanItem] (
   [Id] integer PRIMARY KEY identity,
   [Name] nvarchar(100) NOT NULL,
   [PlanId] INTEGER NOT NULL,
+  [IsComplete] bit NOT NULL
 
-  CONSTRAINT [FK_PlanItem_Plan] FOREIGN KEY (PlanId) REFERENCES [Plan] ([Id])
+  CONSTRAINT [FK_PlanItem_Plan] FOREIGN KEY (PlanId) REFERENCES [Plan]([Id])
 )
 
 
@@ -76,8 +77,8 @@ CREATE TABLE [Comment] (
   [UserProfileId] INTEGER NOT NULL,
   [PlanId] INTEGER NOT NULL,
 
-  CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY (UserProfileId) REFERENCES [UserProfile] ([Id]),
-  CONSTRAINT [FK_Comment_Plan] FOREIGN KEY (PlanId) REFERENCES [Plan] ([Id])
+  CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY (UserProfileId) REFERENCES [UserProfile]([Id]),
+  CONSTRAINT [FK_Comment_Plan] FOREIGN KEY (PlanId) REFERENCES [Plan]([Id])
 )
 GO
 
@@ -87,7 +88,12 @@ INSERT INTO [UserProfile]
   ([Id], [Name], [Email], [FirebaseUserId], [UserName], [ProfilePicUrl])
 VALUES 
   (1, 'Sophie Roush', 'sophie@email.com', 'MA9qsgE6vfbp2P1z0kv72bqRql43', 'Sophie', null),
-  (2, 'George Roush', 'george@email.com', 'vP3tkzRXWmRzwSLGwNTBS5fJs2N2', 'Georgie', null);
+  (2, 'George Roush', 'george@email.com', 'vP3tkzRXWmRzwSLGwNTBS5fJs2N2', 'Georgie', null),
+  (3, 'Terra Roush', 'terra@email.com', 'uP3tkzRXWmRzweLGwNTBS5fJs2N2', 'T-Money', null),
+  (4, 'Scott Roush', 'scott@email.com', 'eP3tkzRXJmRzwSLGwNTBS5fJs2N2', 'Sir Walter', null),
+  (5, 'Sam Ed', 'sam@email.com', 'dP3tkzRXWxRzwSLGwNTBS5fJs2N2', 'Same', null),
+  (6, 'Tristan Wy', 'tristan@email.com', 'nP3tyzRXWmRzwSLGwNTBS5fJs2N2', 'Natsirt', null);
+
 SET IDENTITY_INSERT [UserProfile] OFF
 
 SET IDENTITY_INSERT [Connection] ON
@@ -95,7 +101,9 @@ INSERT INTO [Connection]
   ([Id], [ConnecterUserProfileId], [ProviderUserProfileId])
 VALUES
   (1, 1, 2),
-  (2, 2, 1);
+  (2, 2, 1),
+  (3, 3, 4),
+  (4, 1, 3);
 SET IDENTITY_INSERT [Connection] OFF
 
 SET IDENTITY_INSERT [PlanType] ON
@@ -117,18 +125,18 @@ SET IDENTITY_INSERT [Plan] OFF
 
 SET IDENTITY_INSERT [PlanItem] ON
 INSERT INTO [PlanItem]
-  ([Id], [Name], [PlanId])
+  ([Id], [Name], [PlanId], [IsComplete])
 VALUES
-  (1, 'Broccoli', 1),
-  (2, 'Rice', 1),
-  (3, 'Mushrooms', 1),
-  (4, 'seven layer dip', 2),
-  (5, 'veggie side', 2),
-  (6, 'croquettes', 2),
-  (7, 'chocolate chip cookies', 2),
-  (8, 'post office', 3),
-  (9, 'interview question review', 3),
-  (10, 'update website', 3);
+  (1, 'Broccoli', 1, 0),
+  (2, 'Rice', 1, 0),
+  (3, 'Mushrooms', 1, 0),
+  (4, 'seven layer dip', 2, 0),
+  (5, 'veggie side', 2, 0),
+  (6, 'croquettes', 2, 0),
+  (7, 'chocolate chip cookies', 2, 0),
+  (8, 'post office', 3, 0),
+  (9, 'interview question review', 3, 0),
+  (10, 'update website', 3, 0);
 SET IDENTITY_INSERT [PlanItem] OFF
 
 SET IDENTITY_INSERT [Comment] ON
