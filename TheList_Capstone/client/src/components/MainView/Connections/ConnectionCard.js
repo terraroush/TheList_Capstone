@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import { ConnectionContext } from "../../../providers/ConnectionProvider";
+import React from "react";
 import {
   Card,
   CardTitle,
-  CardLink,
   CardHeader,
   CardBody,
   CardText,
@@ -11,19 +9,20 @@ import {
 } from "reactstrap";
 import "./Connection.css";
 
-const ConnectionCard = ({ connection, name, email, userName, button }) => {
-  const { deleteConnection, addConnection } = useContext(ConnectionContext);
-
+const ConnectionCard = ({
+  connection,
+  name,
+  email,
+  userName,
+  button,
+  onClick,
+}) => {
   if (!connection) return null;
   return (
     <Card className="flex-flow">
       <CardHeader className="specify-width">
         <CardTitle>{name}</CardTitle>
-        <Button
-          className="connection-btns"
-          type="submit"
-          onClick={() => addConnection(connection)}
-        >
+        <Button className="connection-btns" type="submit" onClick={onClick}>
           {<i className={button} />}
         </Button>
       </CardHeader>

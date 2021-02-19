@@ -9,6 +9,8 @@ const ConnectionList = () => {
     possibleConnections,
     getConnectionsById,
     getNotConnectionsById,
+    deleteConnection,
+    addConnection,
   } = useContext(ConnectionContext);
   const userProfileId = +localStorage.getItem("userProfileId");
 
@@ -19,7 +21,7 @@ const ConnectionList = () => {
 
   useEffect(() => {
     getNotConnectionsById(userProfileId);
-  }, []);
+  }, [connections]);
 
   if (!connections) return null;
   if (!possibleConnections) return null;
@@ -36,6 +38,7 @@ const ConnectionList = () => {
           email={connection.providerUserProfile?.email}
           userName={connection.providerUserProfile?.userName}
           button={"fas fa-trash"}
+          onClick={() => deleteConnection(connection)}
         />
       ))}
       <br />
@@ -49,6 +52,7 @@ const ConnectionList = () => {
           email={possibility.email}
           userName={possibility.userName}
           button={"fas fa-plus-square"}
+          onClick={() => addConnection(possibility)}
         />
       ))}
     </article>

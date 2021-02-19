@@ -10,6 +10,7 @@ export function ConnectionProvider(props) {
   const { getToken } = useContext(UserProfileContext);
   const [connections, setConnections] = useState([]);
   const [possibleConnections, setPossibleConnections] = useState([]);
+  const currentUserId = +localStorage.getItem("userProfileId");
 
   const getAllConnections = (userProfileId) => {
     getToken().then((token) =>
@@ -56,7 +57,10 @@ export function ConnectionProvider(props) {
   };
 
   const addConnection = (connection) => {
-    debugger;
+    const newConnection = {
+      connecterUserProfileId: currentUserId,
+      providerUserProfileId: connection.id,
+    };
     return getToken().then((token) =>
       fetch(`${apiUrl}`, {
         method: "POST",
@@ -64,19 +68,20 @@ export function ConnectionProvider(props) {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(connection),
-      }).then((res) => res.json())
+        body: JSON.stringify(newConnection),
+      }).then(() => getConnectionsById(currentUserId))
     );
   };
 
   const deleteConnection = (connection) => {
+    debugger;
     return getToken().then((token) => {
-      fetch(`${apiUrl}/${connection}`, {
+      fetch(`${apiUrl}/${connection.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then(() => getAllConnections());
+      }).then(() => getConnectionsById(currentUserId));
     });
   };
 

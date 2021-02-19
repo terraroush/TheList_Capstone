@@ -46,11 +46,18 @@ namespace TheList_Capstone.Repositories
 
         public List<Connection> GetConnectedByUserId(int userId)
         {
-            return _context.Connection.Select(c => c.ProviderUserProfile).Distinct()
-                .SelectMany(key => _context.Connection.Where(c => c.ProviderUserProfile == key).Take(1))
-                .Where(c => c.ConnecterUserProfileId == userId)
+            //return _context.Connection.Select(c => c.ProviderUserProfile).Distinct()
+            //    .SelectMany(key => _context.Connection.Where(c => c.ProviderUserProfile == key).Take(1))
+            //    .Where(c => c.ConnecterUserProfileId == userId)
+            //    .Include(c => c.ProviderUserProfile)
+            //    .ToList();
+
+            return _context.Connection
                 .Include(c => c.ProviderUserProfile)
+                .Include(c => c.ConnecterUserProfile)
+                .Where(c => c.ConnecterUserProfileId == userId)
                 .ToList();
+
         }
 
         public void Add(Connection connection)

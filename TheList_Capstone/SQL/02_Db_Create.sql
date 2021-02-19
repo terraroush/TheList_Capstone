@@ -65,7 +65,7 @@ CREATE TABLE [PlanItem] (
   [Id] integer PRIMARY KEY identity,
   [Name] nvarchar(100) NOT NULL,
   [PlanId] INTEGER NOT NULL,
-  [IsComplete] bit NOT NULL
+  [IsComplete] bit NOT NULL,
 
   CONSTRAINT [FK_PlanItem_Plan] FOREIGN KEY (PlanId) REFERENCES [Plan]([Id])
 )
@@ -127,14 +127,14 @@ SET IDENTITY_INSERT [PlanItem] ON
 INSERT INTO [PlanItem]
   ([Id], [Name], [PlanId], [IsComplete])
 VALUES
-  (1, 'Broccoli', 1, 0),
-  (2, 'Rice', 1, 0),
+  (1, 'Broccoli', 1, 1),
+  (2, 'Rice', 1, 1),
   (3, 'Mushrooms', 1, 0),
-  (4, 'seven layer dip', 2, 0),
+  (4, 'seven layer dip', 2, 1),
   (5, 'veggie side', 2, 0),
   (6, 'croquettes', 2, 0),
   (7, 'chocolate chip cookies', 2, 0),
-  (8, 'post office', 3, 0),
+  (8, 'post office', 3, 1),
   (9, 'interview question review', 3, 0),
   (10, 'update website', 3, 0);
 SET IDENTITY_INSERT [PlanItem] OFF

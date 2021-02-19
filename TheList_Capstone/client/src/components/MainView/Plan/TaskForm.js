@@ -18,6 +18,7 @@ const TaskForm = ({ task, planId, isGrocery }) => {
   const defaultTask = {
     name: "",
     planId: planId,
+    isComplete: false,
   };
 
   const [currentTask, setCurrentTask] = useState(defaultTask);
@@ -84,6 +85,7 @@ const TaskForm = ({ task, planId, isGrocery }) => {
             setCurrentTask({
               name: e.target.value,
               planId,
+              isComplete: false,
             })
           }
           type="text"
