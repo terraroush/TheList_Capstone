@@ -25,8 +25,11 @@
   color: black;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   transition: all 1s ease;
+}
+.plan-input-completed {
+  text-decoration: line-through;
+  text-decoration-color: rgb(24, 24, 24);
 }
 
 .plan-button {

@@ -16,6 +16,8 @@ const PlanList = () => {
   }, [task]);
 
   if (!plans) return null;
+  // hmm plans from context are first all plans from everyone
+  console.log(plans, activeUser);
 
   return (
     <section className="listory-container">

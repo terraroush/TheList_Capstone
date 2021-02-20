@@ -1,0 +1,22 @@
+.complete-checkbox {
+  display: none;
+}
+
+.complete-checkbox {
+  display: inline-block;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background: white;
+  vertical-align: middle;
+  margin-right: 0.25em;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border 0.3s ease;
+  border-radius: 50%;
+}
+.complete-checkbox:hover {
+  border: 5px solid rgba(0, 0, 0, 0.2);
+}

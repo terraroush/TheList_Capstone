@@ -47,11 +47,7 @@ export function TaskProvider(props) {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-        .then((res) => res.json())
-        .then((task) => {
-          setTask(task);
-        });
+      }).then((res) => setTask(res));
     });
   };
 

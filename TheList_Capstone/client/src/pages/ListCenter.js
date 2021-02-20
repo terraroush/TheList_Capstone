@@ -6,11 +6,11 @@ import PlanContainer from "../components/MainView/Plan/PlanContainer";
 const ListCenter = () => {
   const { recentPlans, getRecentPlansByUserId } = useContext(PlanContext);
   const activeUser = localStorage.getItem("userProfileId");
-  const { tasks } = useContext(TaskContext);
+  const { task } = useContext(TaskContext);
 
   useEffect(() => {
     getRecentPlansByUserId(activeUser);
-  }, [tasks]);
+  }, [task]);
 
   if (!recentPlans) return null;
 

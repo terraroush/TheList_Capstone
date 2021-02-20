@@ -45,9 +45,9 @@ const PlanCard = ({ plan }) => {
               </ListGroupItem>
             )}
 
-            <ListGroupItem className="p-2">
+            {/* <ListGroupItem className="p-2">
               {plan.active ? "Active" : "Expired"}
-            </ListGroupItem>
+            </ListGroupItem> */}
 
             <ListGroupItem className="p-2">
               {plan.public ? "Public" : "Private"}
@@ -63,7 +63,7 @@ const PlanCard = ({ plan }) => {
           </ListGroup>
           <Button
             className="grey"
-            type="submit"
+            type="button"
             onClick={() => {
               history.push(`/listcenter/edit/${plan.id}`);
             }}
@@ -72,7 +72,7 @@ const PlanCard = ({ plan }) => {
           </Button>
           <Button
             className="darkgrey"
-            type="submit"
+            type="button"
             onClick={(e) => {
               if (window.confirm("Delete plan with everything in it?"))
                 deletePlan(plan.id)

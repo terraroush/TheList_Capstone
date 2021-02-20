@@ -4,6 +4,7 @@ import { GroceryContext } from "../../../providers/GroceryProvider";
 import { toast } from "react-toastify";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Plan.css";
+import "./Checkbox.css";
 import IngredientList from "./IngredientList";
 
 const TaskForm = ({ task, planId, isGrocery }) => {
@@ -74,6 +75,24 @@ const TaskForm = ({ task, planId, isGrocery }) => {
       onSubmit={submitTaskObjectHandler}
     >
       <FormGroup className="flexThis">
+        <input
+          className="complete-checkbox"
+          type="checkbox"
+          name="isComplete"
+          id="isComplete"
+          checked={currentTask.isComplete}
+          // on change, update isComplete value for this item and change nothing else
+          onChange={() => {
+            currentTask.isComplete
+              ? (currentTask.isComplete = false)
+              : (currentTask.isComplete = true);
+            updateTask(currentTask).then((res) => {
+              setIngredientData([]);
+            });
+          }}
+        />
+
+        <label htmlFor="isComplete" />
         <Label for="name" hidden>
           name
         </Label>
@@ -90,7 +109,12 @@ const TaskForm = ({ task, planId, isGrocery }) => {
           }
           type="text"
           placeholder="add to your list"
-          className="plan-input"
+          className={
+            currentTask.isComplete
+              ? "plan-input plan-input-completed"
+              : "plan-input"
+          }
+          disabled={currentTask.isComplete}
         />
       </FormGroup>
       <Button className="plan-button" type="submit" disabled={isLoading}>
@@ -104,7 +128,7 @@ const TaskForm = ({ task, planId, isGrocery }) => {
       {task && (
         <Button
           className="trash plan-button"
-          type="submit"
+          type="button"
           onClick={(e) => {
             if (window.confirm("delete this task?"))
               deleteTask(currentTask.id).then(() => {

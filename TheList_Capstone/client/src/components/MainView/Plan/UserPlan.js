@@ -6,13 +6,13 @@ import PlanContainer from "./PlanContainer";
 
 const UserPlan = () => {
   const { currentPlan, getPlanById } = useContext(PlanContext);
-  const { tasks } = useContext(TaskContext);
+  const { task } = useContext(TaskContext);
   const params = useParams();
   const planId = +params.planId;
 
   useEffect(() => {
     getPlanById(planId);
-  }, [tasks]);
+  }, [task]);
 
   if (!currentPlan) return null;
 
