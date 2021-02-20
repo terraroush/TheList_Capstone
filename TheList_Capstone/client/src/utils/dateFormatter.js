@@ -3,5 +3,7 @@ export default function format(dateString) {
     day: "numeric",
     month: "short",
     year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   }).format(new Date(dateString));
 }

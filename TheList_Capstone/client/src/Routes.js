@@ -12,7 +12,6 @@ import { UserProfileContext } from "./providers/UserProfileProvider";
 // Components
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Home from "./components/MainView/Home/Home";
 import NotFound from "./pages/NotFound";
 import PlanDetailsForm from "./components/MainView/Plan/PlanDetailsForm";
 import ListCenter from "./pages/ListCenter";
@@ -39,7 +38,7 @@ const Routes = () => {
     <>
       <Switch>
         <Route path="/" exact>
-          {isLoggedIn ? <Home /> : <Redirect to="/login" />}
+          {isLoggedIn ? <ConnectionsPlanList /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/listcenter" exact>
@@ -58,10 +57,6 @@ const Routes = () => {
 
         <Route path="/listcenter/listory" exact>
           {isLoggedIn ? <PlanList /> : <Redirect to="/login" />}
-        </Route>
-
-        <Route path="/listcenter/friendslists" exact>
-          {isLoggedIn ? <ConnectionsPlanList /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/connections" exact>

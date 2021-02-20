@@ -71,6 +71,8 @@ namespace TheList_Capstone.Repositories
 
         public void Update(Plan plan)
         {
+            plan.DateUpdated = DateTime.Now;
+
             _context.Entry(plan).State = EntityState.Modified;
             _context.SaveChanges();
         }

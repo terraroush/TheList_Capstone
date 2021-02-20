@@ -7,10 +7,12 @@ const NotFound = () => {
     <div placeholder>
       <Alert color="warning">
         <h4 className="alert-heading">Oh dang!</h4>
-        <p>We can't find this anywhere...check back in at </p>
-        <Button as={Link} to="/" primary>
-          Home
-        </Button>
+        <p>
+          We can't find this anywhere...check back in at{" "}
+          <Link to="/" primary>
+            home{" "}
+          </Link>
+        </p>
       </Alert>
     </div>
   );

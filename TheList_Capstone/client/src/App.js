@@ -25,7 +25,6 @@ const App = () => {
       subMenuItems: [
         { name: "Add New List", to: "/createList" },
         { name: "Listory", to: "/listory" },
-        { name: "Friends' Lists", to: "/friendsLists" },
       ],
     },
 
