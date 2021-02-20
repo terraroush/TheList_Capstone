@@ -24,6 +24,7 @@ namespace TheList_Capstone.Repositories
                 .FirstOrDefault();
         }
 
+        // should only get from logged in user and their connections
         public List<PlanItem> GetAll()
         {
             return _context.PlanItem

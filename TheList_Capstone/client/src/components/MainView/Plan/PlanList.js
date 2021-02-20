@@ -3,16 +3,17 @@ import { useHistory } from "react-router-dom";
 import { PlanContext } from "../../../providers/PlanProvider";
 import { Button } from "reactstrap";
 import PlanContainer from "./PlanContainer";
+import { TaskContext } from "../../../providers/TaskProvider";
 
 const PlanList = () => {
   const { plans, getPlansByUserId } = useContext(PlanContext);
-
+  const { task } = useContext(TaskContext);
   const history = useHistory();
   const activeUser = +localStorage.getItem("userProfileId");
 
   useEffect(() => {
     getPlansByUserId(activeUser);
-  }, []);
+  }, [task]);
 
   if (!plans) return null;
 

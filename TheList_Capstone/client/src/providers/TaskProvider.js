@@ -7,37 +7,7 @@ export function TaskProvider(props) {
   const apiUrl = "/api/planitem";
 
   const { getToken } = useContext(UserProfileContext);
-  const [tasks, setTasks] = useState([]);
-
-  const getAllTasks = () => {
-    getToken().then((token) =>
-      fetch(`${apiUrl}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((tasks) => {
-          setTasks(tasks);
-        })
-    );
-  };
-
-  const getTasksById = (id) => {
-    getToken().then((token) =>
-      fetch(`${apiUrl}/${id}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((tasks) => {
-          setTasks(tasks);
-        })
-    );
-  };
+  const [task, setTask] = useState({});
 
   const addTask = (task) => {
     return getToken().then((token) =>
@@ -50,12 +20,13 @@ export function TaskProvider(props) {
         body: JSON.stringify(task),
       })
         .then((res) => res.json())
-        .then((tasks) => {
-          setTasks(tasks);
+        .then((task) => {
+          setTask(task);
         })
     );
   };
 
+  // setting res to setTask to cause the re-render
   const updateTask = (task) => {
     return getToken().then((token) => {
       fetch(`${apiUrl}/${task.id}`, {
@@ -65,7 +36,7 @@ export function TaskProvider(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(task),
-      });
+      }).then((res) => setTask(res));
     });
   };
 
@@ -76,18 +47,20 @@ export function TaskProvider(props) {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then(() => getAllTasks());
+      })
+        .then((res) => res.json())
+        .then((task) => {
+          setTask(task);
+        });
     });
   };
 
   return (
     <TaskContext.Provider
       value={{
-        getAllTasks,
-        getTasksById,
         addTask,
-        setTasks,
-        tasks,
+        setTask,
+        task,
         updateTask,
         deleteTask,
       }}
