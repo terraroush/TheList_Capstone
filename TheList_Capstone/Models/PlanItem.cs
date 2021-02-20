@@ -14,5 +14,7 @@ namespace TheList_Capstone.Models
         public int PlanId { get; set; }
 
         public Plan Plan { get; set; }
+
+        public bool IsComplete { get; set; }
     }
 }

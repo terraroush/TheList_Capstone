@@ -58,11 +58,6 @@ namespace TheList_Capstone.Controllers
 
             }
 
-            //if (relationships.Count == 0)
-            //{
-            //    availableConnections.AddRange(excludedCurrentUser);
-            //}
-
             if (connections != null)
             {
                 return Ok(availableConnections);
@@ -102,11 +97,6 @@ namespace TheList_Capstone.Controllers
             return Ok(connection);
         }
 
-        private UserProfile GetCurrentUserProfile()
-        {
-            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return _userRepo.GetByFirebaseUserId(firebaseUserId);
-        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
@@ -122,6 +112,11 @@ namespace TheList_Capstone.Controllers
             _connectionRepo.Delete(id);
             return NoContent();
 
+        }
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepo.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

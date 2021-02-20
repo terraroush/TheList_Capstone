@@ -10,6 +10,7 @@ const Ingredient = ({
     setChosenIngredient({
       name: ingredient.name,
       planId,
+      isComplete: false,
     });
   };
 

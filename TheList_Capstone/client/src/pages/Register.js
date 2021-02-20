@@ -5,7 +5,6 @@ import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./Login.css";
-// import { storage } from '../index';
 
 const Register = () => {
   const { register } = useContext(UserProfileContext);
@@ -15,56 +14,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  // const [image, setImage] = useState("");
   const [profilePicUrl, setProfilePicUrl] = useState("");
   const history = useHistory();
-
-  // const { getToken } = useContext(UserProfileContext)
-
-  // const AddUserImage = (image) => {
-  //   const imageObj = { imageName: image}
-  //   return getToken().then((token) =>
-  //     fetch(`/api/userprofile`, {
-  //       method: "PUT",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(imageObj)
-  //     })
-  //   );
-  // };
-
-  // const handleChange = e => {
-  //   if (e.target.files[0]) {
-  //     setImage(e.target.files[0])
-  //   }
-  // }
-
-  // const handleUpload = () => {
-  //   if (image !== null) {
-  //     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       snapshot => {},
-  //       error => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         storage
-  //           .ref("images")
-  //           .child(image.name)
-  //           .getDownloadURL()
-  //           .then(url => {
-  //             localStorage.setItem("image", url)
-  //           }).then(() => {
-  //             setUrl(localStorage.getItem("image"));
-  //             AddUserImage(url)
-  //           })
-  //       }
-  //     )
-  //   }
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,9 +41,6 @@ const Register = () => {
         setLoading(false);
         toast.error("This email is already in use.");
       })
-      // .then(() => {
-      //   handleUpload()
-      // })
       .then(() => {
         history.push("/");
       });
@@ -101,9 +49,6 @@ const Register = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
-        {/* <div className="avatar bg-primary">
-          <img src="/quill.png" alt="Avatar" />
-        </div> */}
         <h2 className="text-center">User Register</h2>
         <div className="form-group">
           <Input
@@ -126,7 +71,7 @@ const Register = () => {
             required="required"
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <Input
             onChange={(e) => setProfilePicUrl(e.target.value)}
             type="text"
@@ -134,7 +79,7 @@ const Register = () => {
             name="profilePicUrl"
             placeholder="profilePicUrl"
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <Input
             onChange={(e) => setEmail(e.target.value)}
@@ -165,11 +110,8 @@ const Register = () => {
             required="required"
           />
         </div>
-        {/* <div>
-          <input type="file" onChange={handleChange}/>
-        </div> */}
         <div className="form-group">
-          <Button type="submit" block color="danger" disabled={loading}>
+          <Button type="submit" block color="info" disabled={loading}>
             Sign Up
           </Button>
         </div>

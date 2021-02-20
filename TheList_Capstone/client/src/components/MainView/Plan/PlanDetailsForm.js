@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import { PlanContext } from "../../../providers/PlanProvider";
 import { useParams, useHistory } from "react-router-dom";
+import formatDate from "../../../utils/dateFormatter";
 import { toast } from "react-toastify";
 import "./DetailsForm.css";
 import Switch from "./Switch";
@@ -42,8 +43,9 @@ const PlanDetailsForm = () => {
       updatePlan({
         id: +planId,
         title: plan.title,
-        dateCreated: plan.dateCreated,
-        deadline: plan.deadline,
+        dateCreated: formatDate(plan.dateCreated),
+        // dateUpdated: formatDate(plan.dateUpdated),
+        deadline: formatDate(plan.deadline),
         active: plan.active,
         public: plan.public,
         userProfileId: activeUser,
@@ -61,7 +63,6 @@ const PlanDetailsForm = () => {
     } else {
       addPlan({
         title: plan.title,
-        dateCreated: new Date(),
         deadline: plan.deadline,
         active: true,
         public: isPublic,

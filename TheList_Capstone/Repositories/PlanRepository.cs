@@ -19,7 +19,6 @@ namespace TheList_Capstone.Repositories
             _context = context;
         }
 
-        // Will need to update to filter only public plan eventually. Keeping as is for testing purposes rn
         public List<Plan> GetAll()
         {
             return _context.Plan
@@ -32,10 +31,10 @@ namespace TheList_Capstone.Repositories
         public List<Plan> GetByUserProfileId(int id)
         {
             return _context.Plan
+                .Where(p => p.UserProfileId == id)
                 .Include(p => p.PlanItems)
                 .Include(p => p.UserProfile)
                 .Include(p => p.PlanType)
-                .Where(p => p.UserProfileId == id)
                 .OrderByDescending(p => p.DateCreated)
                 .ToList();
         }

@@ -25,6 +25,7 @@ namespace TheList_Capstone.Repositories
                     .ThenInclude(up => up.Plans)
                     .ThenInclude(up => up.PlanItems)
                 .SelectMany(c => c.ProviderUserProfile.Plans)
+                .Where(c => c.Public)
                 .Include(c => c.PlanType)
                 .Include(c => c.UserProfile)
                 .OrderByDescending(up => up.DateCreated)
@@ -36,22 +37,8 @@ namespace TheList_Capstone.Repositories
             return _context.Connection.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        public Connection GetConnection(int userId, int authorId)
-        {
-            return _context.Connection
-                .Where(c => c.ConnecterUserProfileId == userId)
-                .Where(c => c.ProviderUserProfileId == authorId)
-                .FirstOrDefault();
-        }
-
         public List<Connection> GetConnectedByUserId(int userId)
         {
-            //return _context.Connection.Select(c => c.ProviderUserProfile).Distinct()
-            //    .SelectMany(key => _context.Connection.Where(c => c.ProviderUserProfile == key).Take(1))
-            //    .Where(c => c.ConnecterUserProfileId == userId)
-            //    .Include(c => c.ProviderUserProfile)
-            //    .ToList();
-
             return _context.Connection
                 .Include(c => c.ProviderUserProfile)
                 .Include(c => c.ConnecterUserProfile)

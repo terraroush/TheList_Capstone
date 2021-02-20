@@ -1,7 +1,4 @@
 .planContainer-container {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
   margin-bottom: 3em;
 }
 
@@ -53,7 +50,7 @@
 }
 
 /*CUSTOM SELECTOR */
-select {
+/* select {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -61,12 +58,12 @@ select {
   outline: 0;
   box-shadow: none;
   border: 0 !important;
-  background-image: none;
-  /* border-radius: 10px; */
-}
+  background-image: none; */
+/* border-radius: 10px; */
+/* } */
 
 /* Custom Select */
-.select {
+/* .select {
   margin: 1rem;
   position: relative;
   overflow: hidden;
@@ -76,9 +73,9 @@ select {
   font-family: "Poppins", sans-serif;
   cursor: pointer;
   width: 12rem;
-}
+} */
 /* Arrow */
-.select::after {
+/* .select::after {
   content: "\25BC";
   position: absolute;
   top: 0;
@@ -86,9 +83,9 @@ select {
   padding: 0.5rem;
   background: rgba(195, 224, 204, 1);
   cursor: pointer;
-  pointer-events: none;
-  /* border-radius: 0 10px 10px 0; */
-}
+  pointer-events: none; */
+/* border-radius: 0 10px 10px 0; */
+/* } */
 /* Transition */
 
 /* .select:hover::after {

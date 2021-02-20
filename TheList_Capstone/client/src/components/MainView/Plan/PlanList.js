@@ -8,7 +8,7 @@ const PlanList = () => {
   const { plans, getPlansByUserId } = useContext(PlanContext);
 
   const history = useHistory();
-  const activeUser = localStorage.getItem("userProfileId");
+  const activeUser = +localStorage.getItem("userProfileId");
 
   useEffect(() => {
     getPlansByUserId(activeUser);

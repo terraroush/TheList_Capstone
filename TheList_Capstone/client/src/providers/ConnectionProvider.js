@@ -74,7 +74,6 @@ export function ConnectionProvider(props) {
   };
 
   const deleteConnection = (connection) => {
-    debugger;
     return getToken().then((token) => {
       fetch(`${apiUrl}/${connection.id}`, {
         method: "DELETE",

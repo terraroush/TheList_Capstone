@@ -45,12 +45,6 @@ namespace TheList_Capstone.Repositories
                 .FirstOrDefault(up => up.Id == id);
         }
 
-        //public void AddImageProfile(Image image, int id)
-        //{
-        //    var user = GetByUserProfileId(id);
-        //    user.ImageLocation = image.ImageName;
-        //    _context.SaveChanges();
-        //}
     }
 
 }

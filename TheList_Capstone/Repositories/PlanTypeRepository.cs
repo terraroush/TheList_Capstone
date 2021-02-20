@@ -17,8 +17,6 @@ namespace TheList_Capstone.Repositories
             _context = context;
         }
 
-        // This data entity need only provide a set number of predefined planType
-
         public PlanType GetById(int id)
         {
             return _context.PlanType
@@ -32,24 +30,5 @@ namespace TheList_Capstone.Repositories
                 .ToList();
         }
 
-        //As far as I can tell, I won't need to add, update or delete listKinds
-
-        //public void Add(PlanType planType)
-        //{
-        //    _context.Add(planType);
-        //    _context.SaveChanges();
-        //}
-
-        //public void Update(PlanType planType)
-        //{
-        //    _context.Entry(planType).State = EntityState.Modified;
-        //    _context.SaveChanges();
-        //}
-
-        //public void Delete(PlanType planType)
-        //{
-        //    _context.PlanType.Remove(planType);
-        //    _context.SaveChanges();
-        //}
     }
 }

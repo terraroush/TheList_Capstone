@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import Collapsible from "react-collapsible";
 import { toast } from "react-toastify";
+import formatDate from "../../../utils/dateFormatter";
 import { PlanContext } from "../../../providers/PlanProvider";
 import { useHistory } from "react-router-dom";
 import "./PlanCard.css";
@@ -22,24 +23,25 @@ const PlanCard = ({ plan }) => {
     <Card className="planCard-container">
       <CardHeader className="buttons-container">
         <CardTitle tag="h5" className="card-title">
-          {plan.title}
+          {plan.userProfile?.userName}: {plan.title}{" "}
+          {!plan.public && "(PRIVATE)"}
         </CardTitle>
       </CardHeader>
       <Collapsible trigger={<i className="fas fa-angle-down" />}>
         <CardBody>
           <ListGroup className="stuff">
             <ListGroupItem className="p-2">
-              Created: {plan.dateCreated}
+              Created: {formatDate(plan.dateCreated)}
             </ListGroupItem>
-            {plan.dateUpdated && (
+            {formatDate(plan.dateUpdated) && (
               <ListGroupItem className="p-2">
-                Last Update: {plan.dateUpdated}
+                Last Update: {formatDate(plan.dateUpdated)}
               </ListGroupItem>
             )}
 
             {plan.deadline && (
               <ListGroupItem className="p-2">
-                Due Date: {plan.deadline}
+                Due Date: {formatDate(plan.deadline)}
               </ListGroupItem>
             )}
 
