@@ -20,7 +20,7 @@ namespace TheList_Capstone.Repositories
         public PlanItem GetById(int id)
         {
             return _context.PlanItem
-                .Where(l => l.Id == id)
+                .Where(pi => pi.Id == id)
                 .FirstOrDefault();
         }
 

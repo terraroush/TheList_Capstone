@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace TheList_Capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PlanTypeController : ControllerBase
     {
         private IPlanTypeRepository _planTypeRepository;
@@ -42,47 +44,6 @@ namespace TheList_Capstone.Controllers
             return Ok(planType);
         }
 
-        // Again, as far as I can tell, I won't be needing the remainder of crud
-
-        //[HttpPost]
-        //public IActionResult Add(PlanType planType)
-        //{
-        //    _planTypeRepository.Add(planType);
-        //    return Ok(planType);
-        //}
-
-        //[HttpPut("{id}")]
-        //public IActionResult Put(int id, PlanType planType)
-        //{
-        //    // PlanType's Id coming from URL must match the PlanType object's
-        //    if (id != planType.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    try
-        //    {
-        //        _planTypeRepository.Update(planType);
-        //        return NoContent();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return NotFound();
-        //    }
-        //}
-
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    var planType = _planTypeRepository.GetById(id);
-
-        //    if (planType == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _planTypeRepository.Delete(planType);
-        //    return NoContent();
-        //}
+       
     }
 }

@@ -33,7 +33,7 @@ const PlanCard = ({ plan }) => {
             <ListGroupItem className="p-2">
               Created: {formatDate(plan.dateCreated)}
             </ListGroupItem>
-            {formatDate(plan.dateUpdated) && (
+            {plan.dateUpdated && (
               <ListGroupItem className="p-2">
                 Last Update: {formatDate(plan.dateUpdated)}
               </ListGroupItem>
@@ -44,10 +44,6 @@ const PlanCard = ({ plan }) => {
                 Due Date: {formatDate(plan.deadline)}
               </ListGroupItem>
             )}
-
-            {/* <ListGroupItem className="p-2">
-              {plan.active ? "Active" : "Expired"}
-            </ListGroupItem> */}
 
             <ListGroupItem className="p-2">
               {plan.public ? "Public" : "Private"}

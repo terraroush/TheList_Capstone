@@ -43,13 +43,5 @@ namespace TheList_Capstone.Controllers
                 userProfile);
         }
 
-        //[HttpPut]
-        //public IActionResult AddUserImage(Image image)
-        //{
-
-        //    var user = GetCurrentUserProfile();
-        //    _repo.AddImageProfile(image, user.Id);
-        //    return Ok();
-        //}
     }
 }

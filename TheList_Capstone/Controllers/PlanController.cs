@@ -13,7 +13,7 @@ namespace TheList_Capstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class PlanController : ControllerBase
     {
         private readonly IPlanRepository _planRepository;
@@ -42,8 +42,14 @@ namespace TheList_Capstone.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            var currentUser = GetCurrentUserProfile();
             var plan = _planRepository.GetById(id);
+
             if (plan == null)
+            {
+                return NotFound();
+            }
+            if (plan.UserProfileId != currentUser.Id)
             {
                 return NotFound();
             }
@@ -53,8 +59,13 @@ namespace TheList_Capstone.Controllers
         [HttpGet("getbyrecent/{id}")]
         public IActionResult GetRecentPlans(int id)
         {
+            var currentUser = GetCurrentUserProfile();
             var validUser = _userProfileRepository.GetById(id);
             if (validUser == null)
+            {
+                return NotFound();
+            }
+            if (validUser.Id != currentUser.Id)
             {
                 return NotFound();
             }

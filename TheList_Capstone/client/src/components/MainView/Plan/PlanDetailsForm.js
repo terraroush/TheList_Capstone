@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 import { PlanContext } from "../../../providers/PlanProvider";
 import { useParams, useHistory } from "react-router-dom";
-import formatDate from "../../../utils/dateFormatter";
 import { toast } from "react-toastify";
 import "./DetailsForm.css";
 import Switch from "./Switch";
@@ -51,7 +50,7 @@ const PlanDetailsForm = () => {
         userProfileId: plan.userProfileId,
         planTypeId: 1,
       })
-        .then(() => toast.success("good call on that edit"))
+        .then(() => toast.success("Nice change!"))
         .then(() => history.push("/"))
         .then((res) => {
           if (!res) {
