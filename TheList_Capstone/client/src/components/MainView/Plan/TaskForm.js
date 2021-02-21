@@ -75,24 +75,29 @@ const TaskForm = ({ task, planId, isGrocery }) => {
       onSubmit={submitTaskObjectHandler}
     >
       <FormGroup className="flexThis">
-        <input
-          className="complete-checkbox"
-          type="checkbox"
-          name="isComplete"
-          id="isComplete"
-          checked={currentTask.isComplete}
-          // on change, update isComplete value for this item and change nothing else
-          onChange={() => {
-            currentTask.isComplete
-              ? (currentTask.isComplete = false)
-              : (currentTask.isComplete = true);
-            updateTask(currentTask).then((res) => {
-              setIngredientData([]);
-            });
-          }}
-        />
-
-        <label htmlFor="isComplete" />
+        <label className="isComplete-label">
+          {" "}
+          <input
+            className="isComplete-input"
+            type="checkbox"
+            name="isComplete"
+            id="isComplete"
+            checked={currentTask.isComplete}
+            onChange={() => {
+              currentTask.isComplete
+                ? (currentTask.isComplete = false)
+                : (currentTask.isComplete = true);
+              updateTask(currentTask).then((res) => {
+                setIngredientData([]);
+              });
+            }}
+          />
+          <span className="isComplete-span">
+            {currentTask.isComplete && (
+              <img className="check" src={"/icons/check.svg"} />
+            )}
+          </span>
+        </label>
         <Label for="name" hidden>
           name
         </Label>

@@ -43,16 +43,16 @@ const PlanDetailsForm = () => {
       updatePlan({
         id: +planId,
         title: plan.title,
-        dateCreated: formatDate(plan.dateCreated),
-        // dateUpdated: formatDate(plan.dateUpdated),
-        deadline: formatDate(plan.deadline),
+        dateCreated: plan.dateCreated,
+        dateUpdated: plan.dateUpdated,
+        deadline: plan.deadline,
         active: plan.active,
         public: plan.public,
-        userProfileId: activeUser,
+        userProfileId: plan.userProfileId,
         planTypeId: 1,
       })
         .then(() => toast.success("good call on that edit"))
-        .then(() => history.push(`/listcenter/createlist/${plan.id}`))
+        .then(() => history.push("/"))
         .then((res) => {
           if (!res) {
             setIsLoading(false);

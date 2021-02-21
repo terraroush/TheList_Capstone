@@ -1,22 +1,35 @@
-.complete-checkbox {
-  display: none;
+.isComplete-label {
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
 }
 
-.complete-checkbox {
-  display: inline-block;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  background: white;
-  vertical-align: middle;
-  margin-right: 0.25em;
-  width: 2em;
-  height: 2em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border 0.3s ease;
-  border-radius: 50%;
+.isComplete-span {
+  padding: 0.5rem 0.25rem;
 }
-.complete-checkbox:hover {
-  border: 5px solid rgba(0, 0, 0, 0.2);
+
+.isComplete-input {
+  height: 25px;
+  width: 25px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 1px solid #202020;
+  border-radius: 50px;
+  outline: none;
+  transition-duration: 0.2s;
+  background-color: white;
+  cursor: pointer;
+}
+
+.isComplete-input:checked {
+  border: 1px solid #202020;
+  background-color: rgb(202, 219, 221);
+}
+
+.check {
+  position: absolute;
+  left: 0.01rem;
+  top: 0.15rem;
 }
