@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Button } from "reactstrap";
+import { Alert } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {

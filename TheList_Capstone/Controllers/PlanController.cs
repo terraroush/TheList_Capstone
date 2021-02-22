@@ -137,8 +137,13 @@ namespace TheList_Capstone.Controllers
             {
                 return BadRequest();
             }
+            var planToEdit = _planRepository.GetById(id);
+            if (planToEdit == null)
+            {
+                return NotFound();
+            }
 
-            _planRepository.Update(plan);
+            _planRepository.Update(planToEdit);
             return NoContent();
         }
 

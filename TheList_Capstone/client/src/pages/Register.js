@@ -71,15 +71,6 @@ const Register = () => {
             required="required"
           />
         </div>
-        {/* <div className="form-group">
-          <Input
-            onChange={(e) => setProfilePicUrl(e.target.value)}
-            type="text"
-            className="form-control"
-            name="profilePicUrl"
-            placeholder="profilePicUrl"
-          />
-        </div> */}
         <div className="form-group">
           <Input
             onChange={(e) => setEmail(e.target.value)}

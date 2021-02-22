@@ -58,6 +58,7 @@ namespace TheList_Capstone.Repositories
                 .Include(p => p.UserProfile)
                 .Include(p => p.PlanType)
                 .Where(p => p.Id == id)
+                .Where(p => p.Public)
                 .FirstOrDefault();
         }
 
