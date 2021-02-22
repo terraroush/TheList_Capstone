@@ -1,0 +1,6 @@
+.welcome-container {
+  display: inline-flex;
+}
+.welcome-title {
+  margin-bottom: 1em;
+}

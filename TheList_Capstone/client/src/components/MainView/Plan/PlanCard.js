@@ -18,6 +18,7 @@ import "./PlanCard.css";
 const PlanCard = ({ plan }) => {
   const { deletePlan } = useContext(PlanContext);
   const history = useHistory();
+  const currentUserId = +localStorage.getItem("userProfileId");
 
   return (
     <Card className="planCard-container">
@@ -76,7 +77,9 @@ const PlanCard = ({ plan }) => {
                     toast.success("I hope you said goodbye");
                   })
                   .then(() => {
-                    history.push("/listcenter/listory");
+                    plan?.userProfileId === currentUserId
+                      ? history.push("/listcenter/listory")
+                      : history.push("/");
                   });
             }}
           >

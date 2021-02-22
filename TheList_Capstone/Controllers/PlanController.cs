@@ -49,10 +49,10 @@ namespace TheList_Capstone.Controllers
             {
                 return NotFound();
             }
-            if (plan.UserProfileId != currentUser.Id)
-            {
-                return NotFound();
-            }
+            //if (plan.UserProfileId != currentUser.Id)
+            //{
+            //    return NotFound();
+            //}
        
             return Ok(plan);
         }
@@ -90,9 +90,13 @@ namespace TheList_Capstone.Controllers
         [HttpGet("getbyuser/{id}")]
         public IActionResult GetByUser(int id)
         {
-            // need to check if the id exists
+            var currentUser = GetCurrentUserProfile();
             var validUser = _userProfileRepository.GetById(id);
             if (validUser == null)
+            {
+                return NotFound();
+            }
+            if (validUser.Id != currentUser.Id)
             {
                 return NotFound();
             }
@@ -123,7 +127,17 @@ namespace TheList_Capstone.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Plan plan)
         {
-     
+            var currentUser = GetCurrentUserProfile();
+            var planAuthor = plan.UserProfileId;
+            //if (currentUser.Id != planAuthor)
+            //{
+            //    return NotFound();
+            //}
+            if (id != plan.Id)
+            {
+                return BadRequest();
+            }
+
             _planRepository.Update(plan);
             return NoContent();
         }

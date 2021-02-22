@@ -29,6 +29,8 @@ const PlanDetailsForm = () => {
     if (planId) {
       getPlanById(+planId).then((res) => {
         setPlan(res);
+        res.planTypeId === 1 ? setIsGrocery(true) : setIsGrocery(false);
+        res.public && setIsPublic(true);
         setIsLoading(false);
       });
     } else {
@@ -46,12 +48,12 @@ const PlanDetailsForm = () => {
         dateUpdated: plan.dateUpdated,
         deadline: plan.deadline,
         active: plan.active,
-        public: plan.public,
+        public: isPublic,
         userProfileId: plan.userProfileId,
-        planTypeId: 1,
+        planTypeId: isGrocery ? 1 : 2,
       })
         .then(() => toast.success("Nice change!"))
-        .then(() => history.push("/"))
+        .then(() => history.push(`/listcenter/createList/${+planId}`))
         .then((res) => {
           if (!res) {
             setIsLoading(false);

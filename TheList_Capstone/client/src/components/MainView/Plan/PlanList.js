@@ -16,22 +16,34 @@ const PlanList = () => {
   }, [task]);
 
   if (!plans) return null;
+  console.log(plans);
 
   return (
     <section className="listory-container">
       <h4>My Listory</h4>
       <br />
-      <Button
+      {/* <Button
         size="small"
         outline
         color="info"
         onClick={() => history.push("/listcenter/createlist")}
       >
         New List
-      </Button>
+      </Button> */}
 
       <div>
-        {plans.map((plan) => (
+        {plans.length === 0 && "Coming Soon! Try adding a list "}
+        {plans.length === 0 && (
+          <Button
+            size="small"
+            outline
+            color="info"
+            onClick={() => history.push("/listcenter/createlist")}
+          >
+            New List
+          </Button>
+        )}
+        {plans?.map((plan) => (
           <PlanContainer key={plan.id} plan={plan} />
         ))}
       </div>

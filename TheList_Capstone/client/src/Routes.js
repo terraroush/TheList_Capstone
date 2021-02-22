@@ -19,6 +19,7 @@ import PlanList from "./components/MainView/Plan/PlanList";
 import ConnectionList from "./components/MainView/Connections/ConnectionList";
 import ConnectionsPlanList from "./components/MainView/Connections/ConnectionsPlanList";
 import UserPlan from "./components/MainView/Plan/UserPlan";
+import NewUser from "./pages/NewUser";
 
 const Routes = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -39,6 +40,10 @@ const Routes = () => {
       <Switch>
         <Route path="/" exact>
           {isLoggedIn ? <ConnectionsPlanList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/newuser" exact>
+          {isLoggedIn ? <NewUser /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/listcenter" exact>

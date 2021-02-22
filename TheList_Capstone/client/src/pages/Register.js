@@ -42,7 +42,7 @@ const Register = () => {
         toast.error("This email is already in use.");
       })
       .then(() => {
-        history.push("/");
+        history.push("/newuser");
       });
   };
 

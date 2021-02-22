@@ -10,6 +10,7 @@ export function PlanProvider(props) {
   const [plans, setPlans] = useState([]);
   const [currentPlan, setCurrentPlan] = useState();
   const [recentPlans, setRecentPlans] = useState();
+  const currentUserId = +localStorage.getItem("userProfileId");
 
   const getAllPlans = () => {
     getToken().then((token) =>
@@ -91,18 +92,18 @@ export function PlanProvider(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(plan),
-      }).then(getAllPlans);
+      }).then((res) => setPlans(res));
     });
   };
 
-  const deletePlan = (plan) => {
+  const deletePlan = (id) => {
     return getToken().then((token) => {
-      fetch(`${apiUrl}/${plan}`, {
+      fetch(`${apiUrl}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then(getAllPlans);
+      }).then(() => getPlansByUserId(currentUserId));
     });
   };
 
