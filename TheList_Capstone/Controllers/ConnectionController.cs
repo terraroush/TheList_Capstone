@@ -86,13 +86,13 @@ namespace TheList_Capstone.Controllers
         [HttpPost]
         public IActionResult Post(Connection connection)
         {
-           
-            //var currentUser = GetCurrentUserProfile();
 
-            //if (currentUser.Id != connection.ConnecterUserProfileId)
-            //{
-            //    return NotFound();
-            //}
+            var currentUser = GetCurrentUserProfile();
+
+            if (currentUser.Id != connection.ConnecterUserProfileId)
+            {
+                return NotFound();
+            }
 
             _connectionRepo.Add(connection);
             return Ok(connection);
