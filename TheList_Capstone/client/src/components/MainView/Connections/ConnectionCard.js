@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardTitle,
@@ -16,12 +17,16 @@ const ConnectionCard = ({
   userName,
   button,
   onClick,
+  userId,
 }) => {
   if (!connection) return null;
+  console.log(userId);
   return (
     <Card className="flex-flow">
       <CardHeader className="specify-width">
-        <CardTitle>{name}</CardTitle>
+        <CardTitle>
+          <Link to={`/connections/${userId}`}>{name}</Link>
+        </CardTitle>
         <Button className="connection-btns" type="submit" onClick={onClick}>
           {<i className={button} />}
         </Button>

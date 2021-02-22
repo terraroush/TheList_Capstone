@@ -20,6 +20,7 @@ import ConnectionList from "./components/MainView/Connections/ConnectionList";
 import ConnectionsPlanList from "./components/MainView/Connections/ConnectionsPlanList";
 import UserPlan from "./components/MainView/Plan/UserPlan";
 import NewUser from "./pages/NewUser";
+import ConnectionCollection from "./components/MainView/Connections/ConnectionCollection";
 
 const Routes = () => {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -66,6 +67,10 @@ const Routes = () => {
 
         <Route path="/connections" exact>
           {isLoggedIn ? <ConnectionList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/connections/:userId(\d+)" exact>
+          {isLoggedIn ? <ConnectionCollection /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

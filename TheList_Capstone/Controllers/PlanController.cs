@@ -96,10 +96,10 @@ namespace TheList_Capstone.Controllers
             {
                 return NotFound();
             }
-            if (validUser.Id != currentUser.Id)
-            {
-                return NotFound();
-            }
+            //if (validUser.Id != currentUser.Id)
+            //{
+            //    return NotFound();
+            //}
 
             var plan = _planRepository.GetByUserProfileId(id);
             if (plan == null)

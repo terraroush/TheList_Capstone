@@ -25,7 +25,7 @@ const ConnectionList = () => {
 
   if (!connections) return null;
   if (!possibleConnections) return null;
-
+  console.log(connections);
   return (
     <article>
       <h4>Your Connections</h4>
@@ -34,6 +34,7 @@ const ConnectionList = () => {
         <ConnectionCard
           key={connection.id}
           connection={connection}
+          userId={+connection.providerUserProfile?.id}
           name={connection.providerUserProfile?.name}
           email={connection.providerUserProfile?.email}
           userName={connection.providerUserProfile?.userName}
@@ -48,6 +49,7 @@ const ConnectionList = () => {
         <ConnectionCard
           key={possibility.id}
           connection={possibility}
+          userId={+possibility.id}
           name={possibility.name}
           email={possibility.email}
           userName={possibility.userName}

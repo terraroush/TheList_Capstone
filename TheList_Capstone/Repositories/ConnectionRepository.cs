@@ -42,6 +42,7 @@ namespace TheList_Capstone.Repositories
             return _context.Connection
                 .Include(c => c.ProviderUserProfile)
                 .Include(c => c.ConnecterUserProfile)
+                    .ThenInclude(up => up.Plans)
                 .Where(c => c.ConnecterUserProfileId == userId)
                 .ToList();
 
