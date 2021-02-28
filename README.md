@@ -52,7 +52,7 @@ LINQ
 - copy/paste with your keys instead of the placeholders:
   ```
   REACT_APP_API_KEY=yourFirebaseApiKey
-  REACT_APP_SPOONACULAR_API_KEY=yourSpoonacularApiKey
+  REACT_APP_SPOONACULAR_KEY=yourSpoonacularApiKey
   ```
 ### Terminal
 9. from ```client``` dir, run ```npm install```
