@@ -63,6 +63,3 @@ LINQ
 <!-- ![Image of wireframe2]()
 ![Image of wireframe4]()
 ![Image of wireframe7]() -->
-
-## ERD _entity relationship diagram_
-
