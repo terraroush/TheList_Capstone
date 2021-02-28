@@ -27,11 +27,27 @@ LINQ
 
 ### Installation
 
-1. Clone this repo and cd in to it in the terminal:
+## Firebase
+1. You need a Firebase project for authentication and authorization:
+- Go to [Firebase](https://firebase.google.com/)
+- click "get started" then "add project" then name according to your preference
+- add Authentication by enabling Email/Password
+- click the gear next to "Project Overview", from Project Settings, collect the Project ID and the Web API Key for later use
 
-   then
+## Spoonacular
+2. You will also need an API key from [Spoonacular](https://spoonacular.com/food-api), sign up is free
+- create an account and locate your key for use later
 
-...to be continued
+## Terminal
+3. You'll also need to clone the project locally.
+- from terminal run: ```git clone git@github.com:terraroush/TheList_Capstone.git```
+
+## Visual Studio (for back-end code)
+4. Open TheList_Capstone in Visual Studio
+5. Include your Firebase Project ID:
+- open ```appsettings.json```; change ```"FirebaseProjectId": "thelist-capstone"``` to the name of your Firebase Project ID.
+6. Set up the database
+- in the ```SQL``` folder, open and run ```02_Db_Create.sql```
 
 ## Wireframe v1 The Original Mock Ups
 
