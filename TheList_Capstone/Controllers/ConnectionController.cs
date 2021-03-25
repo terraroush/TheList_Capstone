@@ -102,14 +102,6 @@ namespace TheList_Capstone.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            //var user = GetCurrentUserProfile();
-            //var connectionToDelete = _connectionRepo.GetByConnectionId(id);
-
-            //if (connectionToDelete.ConnecterUserProfileId != user.Id)
-            //{
-            //    return Unauthorized();
-            //}
-
             _connectionRepo.Delete(id);
             return NoContent();
 

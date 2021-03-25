@@ -30,8 +30,10 @@ namespace TheList_Capstone.Repositories
         }
         public List<Plan> GetByUserProfileId(int id)
         {
+            // if current user is not the owner of the list, only show public lists
             return _context.Plan
                 .Where(p => p.UserProfileId == id)
+                //.Where(p => p.Public)
                 .Include(p => p.PlanItems)
                 .Include(p => p.UserProfile)
                 .Include(p => p.PlanType)
@@ -39,6 +41,18 @@ namespace TheList_Capstone.Repositories
                 .ToList();
         }
 
+        public List<Plan> GetPublicByUserProfileId(int id)
+        {
+            // if current user is not the owner of the list, only show public lists
+            return _context.Plan
+                .Where(p => p.UserProfileId == id)
+                .Where(p => p.Public)
+                .Include(p => p.PlanItems)
+                .Include(p => p.UserProfile)
+                .Include(p => p.PlanType)
+                .OrderByDescending(p => p.DateCreated)
+                .ToList();
+        }
         public List<Plan> GetMostRecent(int id)
         {
             return _context.Plan

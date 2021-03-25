@@ -5,12 +5,12 @@ import { PlanContext } from "../../../providers/PlanProvider";
 import { useParams } from "react-router-dom";
 
 const ConnectionCollection = () => {
-  const { plans, getPlansByUserId } = useContext(PlanContext);
+  const { plans, getPublicPlansByUserId } = useContext(PlanContext);
   const { userId } = useParams();
   const { task } = useContext(TaskContext);
 
   useEffect(() => {
-    getPlansByUserId(userId);
+    getPublicPlansByUserId(userId);
   }, [task]);
 
   if (!plans) return null;

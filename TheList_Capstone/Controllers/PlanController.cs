@@ -116,6 +116,35 @@ namespace TheList_Capstone.Controllers
                 return NotFound();
             }
         }
+        [HttpGet("getpublicbyuser/{id}")]
+        public IActionResult GetPublicByUser(int id)
+        {
+            var currentUser = GetCurrentUserProfile();
+            var validUser = _userProfileRepository.GetById(id);
+            if (validUser == null)
+            {
+                return NotFound();
+            }
+            //if (validUser.Id != currentUser.Id)
+            //{
+            //    return NotFound();
+            //}
+
+            var plan = _planRepository.GetPublicByUserProfileId(id);
+            if (plan == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                return Ok(plan);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+        }
 
         [HttpPost]
         public IActionResult Add(Plan plan)

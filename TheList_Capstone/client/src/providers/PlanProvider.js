@@ -56,6 +56,20 @@ export function PlanProvider(props) {
         })
     );
   };
+  const getPublicPlansByUserId = (id) => {
+    getToken().then((token) =>
+      fetch(`${apiUrl}/getpublicbyuser/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((plans) => {
+          setPlans(plans);
+        })
+    );
+  };
   const getRecentPlansByUserId = (id) => {
     getToken().then((token) =>
       fetch(`${apiUrl}/getbyrecent/${id}`, {
@@ -113,6 +127,7 @@ export function PlanProvider(props) {
         getAllPlans,
         getPlanById,
         getPlansByUserId,
+        getPublicPlansByUserId,
         getRecentPlansByUserId,
         currentPlan,
         recentPlans,
