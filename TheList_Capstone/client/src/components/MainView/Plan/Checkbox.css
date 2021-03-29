@@ -33,3 +33,6 @@
   left: 0.01rem;
   top: 0.15rem;
 }
+.isComplete-hidden {
+  display: none;
+}

@@ -7,7 +7,7 @@ import "./Plan.css";
 import "./Checkbox.css";
 import IngredientList from "./IngredientList";
 
-const TaskForm = ({ task, planId, isGrocery }) => {
+const TaskForm = ({ task, planId, isGrocery, isMainForm }) => {
   const { addTask, updateTask, deleteTask } = useContext(TaskContext);
   const {
     ingredientData,
@@ -75,7 +75,9 @@ const TaskForm = ({ task, planId, isGrocery }) => {
       onSubmit={submitTaskObjectHandler}
     >
       <FormGroup className="flexThis">
-        <label className="isComplete-label">
+        <label
+          className={isMainForm ? "isComplete-hidden" : "isComplete-label"}
+        >
           {" "}
           <input
             className="isComplete-input"

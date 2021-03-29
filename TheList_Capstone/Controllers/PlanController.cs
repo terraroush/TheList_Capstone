@@ -18,6 +18,7 @@ namespace TheList_Capstone.Controllers
     {
         private readonly IPlanRepository _planRepository;
         private readonly IUserProfileRepository _userProfileRepository;
+        private readonly IConnectionRepository _connectionRepository;
 
         private UserProfile GetCurrentUserProfile()
         {
@@ -25,10 +26,12 @@ namespace TheList_Capstone.Controllers
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
-        public PlanController(IPlanRepository planRepository, IUserProfileRepository userProfileRepository)
+        public PlanController(IPlanRepository planRepository, IUserProfileRepository userProfileRepository, IConnectionRepository connectionRepository
+            )
         {
             _planRepository = planRepository;
             _userProfileRepository = userProfileRepository;
+            _connectionRepository = connectionRepository;
 
         }
 
@@ -49,11 +52,7 @@ namespace TheList_Capstone.Controllers
             {
                 return NotFound();
             }
-            //if (plan.UserProfileId != currentUser.Id)
-            //{
-            //    return NotFound();
-            //}
-       
+
             return Ok(plan);
         }
         [HttpGet("getbyrecent/{id}")]
@@ -96,10 +95,11 @@ namespace TheList_Capstone.Controllers
             {
                 return NotFound();
             }
-            //if (validUser.Id != currentUser.Id)
-            //{
-            //    return NotFound();
-            //}
+            if (validUser.Id != currentUser.Id)
+            {
+                return NotFound();
+            }
+
 
             var plan = _planRepository.GetByUserProfileId(id);
             if (plan == null)
@@ -125,10 +125,14 @@ namespace TheList_Capstone.Controllers
             {
                 return NotFound();
             }
+
+            // this is causing a bug that says plans.map is not a function
+
             //if (validUser.Id != currentUser.Id)
             //{
             //    return NotFound();
             //}
+
 
             var plan = _planRepository.GetPublicByUserProfileId(id);
             if (plan == null)
@@ -162,6 +166,7 @@ namespace TheList_Capstone.Controllers
             //{
             //    return NotFound();
             //}
+
             if (id != plan.Id)
             {
                 return BadRequest();
@@ -172,6 +177,11 @@ namespace TheList_Capstone.Controllers
                 return NotFound();
             }
 
+            planToEdit.Title = plan.Title;
+            planToEdit.Deadline = plan.Deadline;
+            planToEdit.PlanTypeId = plan.PlanTypeId;
+            planToEdit.Public = plan.Public;
+
             _planRepository.Update(planToEdit);
             return NoContent();
         }
@@ -180,7 +190,7 @@ namespace TheList_Capstone.Controllers
         public IActionResult Delete(int id)
         {
             var planToDelete = _planRepository.GetById(id);
-
+            
             if (planToDelete == null)
             {
                 return NotFound();

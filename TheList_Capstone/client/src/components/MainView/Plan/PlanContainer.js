@@ -12,6 +12,7 @@ const PlanContainer = ({ plan }) => (
         className="stationaryForm"
         planId={plan.id}
         isGrocery={plan.planType?.isGrocery}
+        isMainForm={true}
       />
     </GroceryProvider>
     {plan.planItems?.map((planItem) => (
